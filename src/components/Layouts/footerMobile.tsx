@@ -2,8 +2,8 @@ import { Flex, Button, Text } from "@chakra-ui/react";
 
 export default function Footer() {
   return (
-    <Flex>
-      <Flex justify="space-around" w="full" align="center">
+    <Flex align="end" h="full">
+      <Flex justify="space-around" w="full" align="end">
         <Flex direction="column" align="center">
           <Text>R$1200</Text>
           <Text>Débito</Text>

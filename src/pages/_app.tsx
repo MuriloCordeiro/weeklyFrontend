@@ -1,14 +1,13 @@
 import type { AppProps } from "next/app";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import Layout from "../components/Layouts/layout";
+import Layout from "../components/Layouts/layoutMobile";
 import Footer from "../components/Layouts/footerMobile";
 
 const breakpoints = {
-  sm: "30em",
-  md: "48em",
-  lg: "62em",
-  xl: "80em",
-  "2xl": "96em",
+  base: "0rem",
+  sm: "22.5rem", //360px
+  md: "64rem", //1024px
+  lg: "120rem", //1920px
 };
 const theme = extendTheme({
   breakpoints,
@@ -22,7 +21,6 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
       <Component {...pageProps} />
-      <Footer />
     </ChakraProvider>
   );
 }
