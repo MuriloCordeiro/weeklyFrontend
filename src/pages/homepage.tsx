@@ -30,7 +30,7 @@ export default function Home() {
     base: true,
     sm: true,
     md: false,
-    lg: true,
+    lg: false,
   });
   return (
     <>
