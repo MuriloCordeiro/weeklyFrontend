@@ -9,6 +9,7 @@ export default function Footer() {
           <Text>Débito</Text>
         </Flex>
         <Flex direction="column" align="center">
+          <Text>R$1200,00</Text>
           <Button borderRadius="20px" size="lg">
             +
           </Button>
