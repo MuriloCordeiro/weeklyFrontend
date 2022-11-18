@@ -12,7 +12,7 @@ import Home from "../../pages/homepage";
 
 export default function Header() {
   return (
-    <Flex h="auto" w="auto" mb="1rem">
+    <Flex h="auto" w="auto">
       <Tabs w="full">
         <TabList>
           <Tab>One</Tab>
@@ -21,7 +21,7 @@ export default function Header() {
         </TabList>
 
         <TabPanels>
-          <TabPanel>{/* <Home /> */}</TabPanel>
+          <TabPanel></TabPanel>
           <TabPanel>
             <p>two!</p>
           </TabPanel>

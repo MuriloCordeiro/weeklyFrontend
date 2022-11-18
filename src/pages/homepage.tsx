@@ -19,7 +19,7 @@ import {
   Text,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import Footer from "../components/Layouts/footerMobile";
+import Footer from "../components/Layouts/footer";
 import LayoutMob from "../components/Layouts/layoutMobile";
 import LayoutDesk from "../components/Layouts/layoutDesktop";
 
@@ -53,6 +53,7 @@ export default function Home() {
             <Button w="100%" color="green">
               DESPESAS FIXAS
             </Button>
+            {/* <Footer /> */}
           </Flex>
         </LayoutMob>
       ) : (
