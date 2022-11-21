@@ -1,6 +1,6 @@
 import { Flex } from "@chakra-ui/react";
-import Footer from "./footerMobile";
-import Header from "./headerMobile";
+import Footer from "./footer";
+import Header from "./header";
 
 export default function LayoutDesk(props: any) {
   return (

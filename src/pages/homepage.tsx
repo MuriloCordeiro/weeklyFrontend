@@ -19,7 +19,7 @@ import {
   Text,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import Footer from "../components/Layouts/footerMobile";
+import Footer from "../components/Layouts/footer";
 import LayoutMob from "../components/Layouts/layoutMobile";
 import LayoutDesk from "../components/Layouts/layoutDesktop";
 
@@ -37,7 +37,15 @@ export default function Home() {
       {isWideVersion ? (
         <LayoutMob>
           <Flex direction="column">
-            <Button w="100%" mb="2rem" color="red" onClick={onToggle}>
+            <Button
+              borderRadius="14px"
+              w="100%"
+              mb="2rem"
+              h="70px"
+              color="white"
+              variant="outline"
+              onClick={onToggle}
+            >
               DESPESAS VARIAVEIS
             </Button>
             <Collapse in={isOpen} animateOpacity>
@@ -50,9 +58,17 @@ export default function Home() {
                 <Text>R$ 80,00</Text>
               </Flex>
             </Collapse>
-            <Button w="100%" color="green">
+
+            <Button
+              w="100%"
+              h="70px"
+              color="white"
+              variant="outline"
+              borderRadius="14px"
+            >
               DESPESAS FIXAS
             </Button>
+            {/* <Footer /> */}
           </Flex>
         </LayoutMob>
       ) : (

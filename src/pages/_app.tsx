@@ -1,7 +1,8 @@
 import type { AppProps } from "next/app";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import Layout from "../components/Layouts/layoutMobile";
-import Footer from "../components/Layouts/footerMobile";
+import Footer from "../components/Layouts/footer";
+import Header from "../components/Layouts/header";
 
 const breakpoints = {
   base: "0rem",
