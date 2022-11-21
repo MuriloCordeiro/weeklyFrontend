@@ -31,7 +31,7 @@ export default function LayoutMob(props: any) {
           bgPosition="center"
           bgRepeat="no-repeat" */}
         <Flex
-          bgColor="#252939"
+          bgColor="#1E1A20"
           width="100vw"
           h="100vh"
           p="1rem"

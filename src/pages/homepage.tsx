@@ -40,30 +40,41 @@ export default function Home() {
             <Button
               borderRadius="14px"
               w="100%"
-              mb="2rem"
               h="70px"
               color="white"
               variant="outline"
+              bgColor="#36323C"
               onClick={onToggle}
+              mb="1rem"
             >
               DESPESAS VARIAVEIS
             </Button>
             <Collapse in={isOpen} animateOpacity>
-              <Flex mb="1rem" justify="space-between" w="100%">
-                <Text mr="1rem">Conta de luz</Text>
-                <Text>R$ 150,00</Text>
-              </Flex>
-              <Flex mb="1rem" justify="space-between" w="100%">
-                <Text mr="1rem">Conta de agua</Text>
-                <Text>R$ 80,00</Text>
+              <Flex
+                direction="column"
+                color="white"
+                bgColor="#36323C"
+                p="1rem"
+                borderRadius="6px"
+                mb="1rem"
+              >
+                <Flex justify="space-between" w="100%">
+                  <Text mr="1rem">Conta de luz</Text>
+                  <Text>R$ 150,00</Text>
+                </Flex>
+                <Flex justify="space-between" w="100%">
+                  <Text mr="1rem">Conta de água</Text>
+                  <Text>R$ 80,00</Text>
+                </Flex>
               </Flex>
             </Collapse>
 
             <Button
-              w="100%"
-              h="70px"
               color="white"
               variant="outline"
+              bgColor="#36323C"
+              w="100%"
+              h="70px"
               borderRadius="14px"
             >
               DESPESAS FIXAS
