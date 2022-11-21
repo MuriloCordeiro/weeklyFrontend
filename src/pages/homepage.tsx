@@ -63,7 +63,7 @@ export default function Home() {
                   <Text>R$ 150,00</Text>
                 </Flex>
                 <Flex justify="space-between" w="100%">
-                  <Text mr="1rem">Conta de agua</Text>
+                  <Text mr="1rem">Conta de água</Text>
                   <Text>R$ 80,00</Text>
                 </Flex>
               </Flex>
