@@ -3,6 +3,7 @@ import { Flex, Button, Text } from "@chakra-ui/react";
 export default function Footer() {
   return (
     <Flex
+      h="10px"
       borderTopWidth="2px"
       justify="space-around"
       w="full"
