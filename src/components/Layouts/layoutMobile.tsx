@@ -31,7 +31,7 @@ export default function LayoutMob(props: any) {
           bgPosition="center"
           bgRepeat="no-repeat" */}
         <Flex
-          bgColor="#1E1A20"
+          bgColor="#24293D"
           width="100vw"
           h="100vh"
           p="1rem"
@@ -39,7 +39,10 @@ export default function LayoutMob(props: any) {
           borderWidth="2px"
           justify="space-between"
         >
-          {props.children}
+          <Header />
+          <Flex h="full" borderTopRadius="10px" bgColor="#303958" mt="1rem">
+            {props.children}
+          </Flex>
         </Flex>
         <Footer />
       </Flex>

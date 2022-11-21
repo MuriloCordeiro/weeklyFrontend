@@ -18,13 +18,25 @@ import {
   useDisclosure,
   Text,
   useBreakpointValue,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
 } from "@chakra-ui/react";
 import Footer from "../components/Layouts/footer";
 import LayoutMob from "../components/Layouts/layoutMobile";
 import LayoutDesk from "../components/Layouts/layoutDesktop";
+import { GiPayMoney, GiReceiveMoney } from "react-icons/gi";
+import { IoIosArrowDown } from "react-icons/io";
+import { BsStack } from "react-icons/bs";
 
 export default function Home() {
-  const { isOpen, onToggle } = useDisclosure();
+  const { isOpen: isOpenExpense, onToggle: onToggleExpense } = useDisclosure();
+  const { isOpen: isOpenIncome, onToggle: onToggleIncome } = useDisclosure();
+  const { isOpen: isOpenTotal, onToggle: onToggleTotal } = useDisclosure();
 
   const isWideVersion = useBreakpointValue({
     base: true,
@@ -36,49 +48,226 @@ export default function Home() {
     <>
       {isWideVersion ? (
         <LayoutMob>
-          <Flex direction="column">
+          <Flex direction="column" p="1rem" alignContent="center" w="full">
+            {/* AQUI É OS GASTOS */}
             <Button
-              borderRadius="14px"
+              alignItems="center"
+              size="lg"
+              borderRadius="6px"
               w="100%"
-              h="70px"
-              color="white"
-              variant="outline"
-              bgColor="#36323C"
-              onClick={onToggle}
+              h="40px"
+              colorScheme="white"
+              bgColor="#24293D"
+              onClick={onToggleIncome}
+              leftIcon={<BsStack />}
+              rightIcon={<IoIosArrowDown />}
               mb="1rem"
             >
-              DESPESAS VARIAVEIS
+              <Text mr="full" ml="full" fontWeight="medium" w="full">
+                Rendas
+              </Text>
             </Button>
-            <Collapse in={isOpen} animateOpacity>
+            <Collapse in={isOpenIncome} animateOpacity>
               <Flex
                 direction="column"
                 color="white"
-                bgColor="#36323C"
-                p="1rem"
+                bgColor="#24293D"
                 borderRadius="6px"
                 mb="1rem"
+                w="full"
+                p="1rem"
               >
-                <Flex justify="space-between" w="100%">
-                  <Text mr="1rem">Conta de luz</Text>
-                  <Text>R$ 150,00</Text>
-                </Flex>
-                <Flex justify="space-between" w="100%">
-                  <Text mr="1rem">Conta de água</Text>
-                  <Text>R$ 80,00</Text>
-                </Flex>
+                <TableContainer>
+                  <Table variant="unstyled" size="xsm">
+                    {/* <TableCaption>Imperial to metric conversion factors</TableCaption> */}
+                    <Thead>
+                      <Tr>
+                        <Th>
+                          <Text
+                            align="center"
+                            fontSize="14px"
+                            fontWeight="medium"
+                          >
+                            Nome
+                          </Text>
+                        </Th>
+                        <Th>
+                          <Text
+                            align="center"
+                            fontWeight="medium"
+                            fontSize="14px"
+                          >
+                            Parcela
+                          </Text>
+                        </Th>
+                        <Th>
+                          <Text
+                            align="center"
+                            fontWeight="medium"
+                            fontSize="14px"
+                          >
+                            Valor
+                          </Text>
+                        </Th>
+                      </Tr>
+                    </Thead>
+                    <Tbody>
+                      <Tr>
+                        <Td>
+                          <Text
+                            fontWeight="bold"
+                            align="center"
+                            bgColor="#D9D9D9"
+                            borderRadius="10px"
+                            fontSize="14px"
+                            p="2px"
+                            color="#24293D"
+                          >
+                            Salário
+                          </Text>
+                        </Td>
+                        <Td>
+                          <Text
+                            fontWeight="bold"
+                            align="center"
+                            bgColor="#D9D9D9"
+                            p="2px"
+                            borderRadius="10px"
+                            color="#24293D"
+                            fontSize="14px"
+                          >
+                            vazio
+                          </Text>
+                        </Td>
+                        <Td>
+                          <Text
+                            fontWeight="bold"
+                            align="center"
+                            bgColor="#D9D9D9"
+                            p="2px"
+                            borderRadius="10px"
+                            color="#24293D"
+                            fontSize="14px"
+                          >
+                            R$ 1.200,00
+                          </Text>
+                        </Td>
+                      </Tr>
+                    </Tbody>
+                  </Table>
+                </TableContainer>
               </Flex>
             </Collapse>
 
+            {/* AQUI É AS RENDA */}
             <Button
-              color="white"
-              variant="outline"
-              bgColor="#36323C"
+              alignItems="center"
+              size="lg"
+              borderRadius="6px"
               w="100%"
-              h="70px"
-              borderRadius="14px"
+              h="40px"
+              colorScheme="white"
+              bgColor="#24293D"
+              onClick={onToggleExpense}
+              mb="1rem"
+              leftIcon={<BsStack />}
+              rightIcon={<IoIosArrowDown />}
             >
-              DESPESAS FIXAS
+              <Text mr="full" ml="full" fontWeight="medium" w="full">
+                Despesas
+              </Text>
             </Button>
+            <Collapse in={isOpenExpense} animateOpacity>
+              <Flex
+                direction="column"
+                color="white"
+                bgColor="#24293D"
+                borderRadius="6px"
+                mb="1rem"
+                w="full"
+                p="1rem"
+              >
+                <TableContainer>
+                  <Table variant="unstyled" size="xsm">
+                    {/* <TableCaption>Imperial to metric conversion factors</TableCaption> */}
+                    <Thead>
+                      <Tr>
+                        <Th>
+                          <Text
+                            align="center"
+                            fontSize="14px"
+                            fontWeight="medium"
+                          >
+                            Nome
+                          </Text>
+                        </Th>
+                        <Th>
+                          <Text
+                            align="center"
+                            fontWeight="medium"
+                            fontSize="14px"
+                          >
+                            Parcela
+                          </Text>
+                        </Th>
+                        <Th>
+                          <Text
+                            align="center"
+                            fontWeight="medium"
+                            fontSize="14px"
+                          >
+                            Valor
+                          </Text>
+                        </Th>
+                      </Tr>
+                    </Thead>
+                    <Tbody>
+                      <Tr>
+                        <Td>
+                          <Text
+                            fontWeight="bold"
+                            align="center"
+                            bgColor="#D9D9D9"
+                            borderRadius="10px"
+                            fontSize="14px"
+                            p="2px"
+                            color="#24293D"
+                          >
+                            Conta de água
+                          </Text>
+                        </Td>
+                        <Td>
+                          <Text
+                            fontWeight="bold"
+                            align="center"
+                            bgColor="#D9D9D9"
+                            p="2px"
+                            borderRadius="10px"
+                            color="#24293D"
+                            fontSize="14px"
+                          >
+                            1/12
+                          </Text>
+                        </Td>
+                        <Td>
+                          <Text
+                            fontWeight="bold"
+                            align="center"
+                            bgColor="#D9D9D9"
+                            p="2px"
+                            borderRadius="10px"
+                            color="#24293D"
+                            fontSize="14px"
+                          >
+                            R$ 800,00
+                          </Text>
+                        </Td>
+                      </Tr>
+                    </Tbody>
+                  </Table>
+                </TableContainer>
+              </Flex>
+            </Collapse>
             {/* <Footer /> */}
           </Flex>
         </LayoutMob>
