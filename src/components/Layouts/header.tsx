@@ -53,17 +53,13 @@ export default function Header() {
         fontWeight="bold"
         fontSize="18px"
         direction="column"
-        data-aos="fade-left"
-        mr="0.8rem"
+        data-aos="fade-up"
       >
-        <Flex w="30px" color="red" borderWidth="2px" data-aos="fade-left" />
-        <Flex w="30px" color="red" borderWidth="2px" data-aos="fade-left" />
-        <Flex w="30px" color="red" borderWidth="2px" data-aos="fade-left" />
-        <SideBar
-          isOpenSideBar={isOpenSideBar}
-          onCloseSideBar={onCloseSideBar}
-        />
+        <Flex w="30px" color="red" borderWidth="2px" />
+        <Flex w="30px" color="red" borderWidth="2px" />
+        <Flex w="30px" color="red" borderWidth="2px" />
       </Flex>
+      <SideBar isOpenSideBar={isOpenSideBar} onCloseSideBar={onCloseSideBar} />
     </Flex>
   );
 }
