@@ -15,7 +15,7 @@ export default function LayoutMob(props: any) {
         <Flex
           bgColor="#24293D"
           width="100vw"
-          height="100vh"
+          height="80vh"
           p="1rem"
           direction="column"
           justify="space-between"
