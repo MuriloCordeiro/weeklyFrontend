@@ -12,7 +12,13 @@ export default function Footer() {
   }, 1500);
 
   return (
-    <Flex justify="space-between" zIndex={2} bgColor="#303958" p="15px">
+    <Flex
+      justify="space-between"
+      zIndex={2}
+      bgColor="#303958"
+      p="15px"
+      position="sticky"
+    >
       <Flex
         justify="space-between"
         w="full"
