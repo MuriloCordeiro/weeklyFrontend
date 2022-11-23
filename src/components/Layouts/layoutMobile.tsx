@@ -1,10 +1,14 @@
 import { Flex, Image } from "@chakra-ui/react";
 import Footer from "./footer";
 import Header from "./header";
-
-const batata = "testando";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 export default function LayoutMob(props: any) {
+  setTimeout(() => {
+    Aos.init({ duration: 1500 });
+  }, 1500);
+
   return (
     <>
       <Flex direction="column">
@@ -36,15 +40,25 @@ export default function LayoutMob(props: any) {
           h="100vh"
           p="1rem"
           direction="column"
-          borderWidth="2px"
           justify="space-between"
         >
           <Header />
-          <Flex h="full" borderTopRadius="10px" bgColor="#303958" mt="1rem">
+          <Flex
+            bgRepeat="no-repeat"
+            bgAttachment="fixed"
+            bgPosition="center"
+            bgBlendMode="soft-light"
+            bgImage="url(/Image/piggy1.png)"
+            data-aos="fade-up"
+            h="full"
+            borderTopRadius="10px"
+            bgColor="#303958"
+            mt="1rem"
+          >
             {props.children}
+            <Footer />
           </Flex>
         </Flex>
-        <Footer />
       </Flex>
     </>
   );
