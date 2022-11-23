@@ -12,18 +12,14 @@ export default function Footer() {
   }, 1500);
 
   return (
-    <Flex
-      p="15px"
-      bgColor="#24293D"
-      left="8"
-      right="8"
-      bottom="6"
-      justify="space-between"
-      zIndex={2}
-      borderRadius="50px"
-      position="absolute"
-    >
-      <Flex justify="space-between" w="full">
+    <Flex justify="space-between" zIndex={2} bgColor="#303958" p="15px">
+      <Flex
+        justify="space-between"
+        w="full"
+        bgColor="#24293D"
+        borderRadius="50px"
+        p="15px"
+      >
         <IconButton
           size="lg"
           aria-label={"ActionButton"}

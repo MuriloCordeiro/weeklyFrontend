@@ -15,7 +15,7 @@ export default function LayoutMob(props: any) {
         <Flex
           bgColor="#24293D"
           width="100vw"
-          height="80vh"
+          height="100vh"
           p="1rem"
           direction="column"
           justify="space-between"
@@ -34,8 +34,8 @@ export default function LayoutMob(props: any) {
             mt="1rem"
           >
             {props.children}
-            <Footer />
           </Flex>
+          <Footer />
         </Flex>
       </Flex>
     </>
