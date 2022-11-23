@@ -13,7 +13,7 @@ export default function Footer() {
 
   return (
     <Flex
-      p="6px"
+      p="15px"
       bgColor="#24293D"
       left="8"
       right="8"

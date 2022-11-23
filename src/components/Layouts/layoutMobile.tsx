@@ -11,11 +11,11 @@ export default function LayoutMob(props: any) {
 
   return (
     <>
-      <Flex direction="column">
+      <Flex direction="column" minHeight="100vh">
         <Flex
           bgColor="#24293D"
           width="100vw"
-          minHeight="90vh"
+          height="100vh"
           p="1rem"
           direction="column"
           justify="space-between"
