@@ -59,8 +59,11 @@ export default function Header() {
         <Flex w="30px" color="red" borderWidth="2px" data-aos="fade-left" />
         <Flex w="30px" color="red" borderWidth="2px" data-aos="fade-left" />
         <Flex w="30px" color="red" borderWidth="2px" data-aos="fade-left" />
+        <SideBar
+          isOpenSideBar={isOpenSideBar}
+          onCloseSideBar={onCloseSideBar}
+        />
       </Flex>
-      <SideBar isOpenSideBar={isOpenSideBar} onCloseSideBar={onCloseSideBar} />
     </Flex>
   );
 }
