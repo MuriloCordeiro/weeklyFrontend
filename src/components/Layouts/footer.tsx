@@ -21,7 +21,7 @@ export default function Footer() {
       justify="space-between"
       zIndex={2}
       borderRadius="50px"
-      position="fixed"
+      position="sticky"
     >
       <Flex justify="space-between" w="full">
         <IconButton
