@@ -3,22 +3,20 @@ import { Flex, Button, Text, IconButton } from "@chakra-ui/react";
 import { BsPlusLg } from "react-icons/bs";
 import { BsHouseDoor } from "react-icons/bs";
 import { VscSettingsGear } from "react-icons/vsc";
+import navStyles from "../components/navbar.module.css";
 
 import Aos from "aos";
 import "aos/dist/aos.css";
-export default function Footer() {
+export default function NavBar() {
   setTimeout(() => {
     Aos.init({ duration: 1500 });
   }, 1500);
 
   return (
-    <Flex
-      justify="space-between"
-      zIndex={2}
-      bgColor="#303958"
-      p="15px"
-      position="sticky"
-    >
+    <Flex justify="space-between" zIndex={2} bgColor="#303958" p="15px">
+      <Flex zIndex={111} className={navStyles.mobileNav}>
+        <Button>testes</Button>
+      </Flex>
       <Flex
         justify="space-between"
         w="full"

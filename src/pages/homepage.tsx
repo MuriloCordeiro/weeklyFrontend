@@ -39,7 +39,7 @@ import {
   StatArrow,
   StatGroup,
 } from "@chakra-ui/react";
-import Footer from "../components/Layouts/footer";
+import Footer from "../components/mainNavBar/navBar";
 import LayoutMob from "../components/Layouts/layoutMobile";
 import LayoutDesk from "../components/Layouts/layoutDesktop";
 import { GiPayMoney, GiReceiveMoney } from "react-icons/gi";
@@ -62,7 +62,7 @@ export default function Home() {
     <>
       {isWideVersion ? (
         <LayoutMob>
-          <Flex direction="column" p="1rem" alignContent="center" w="full">
+          <Flex direction="column" p="1rem" alignContent="end" w="full">
             <Text
               align="center"
               fontSize="18px"
@@ -181,7 +181,6 @@ export default function Home() {
                 </TableContainer>
               </Flex>
             </Collapse>
-
             {/* AQUI É AS RENDA */}
             <Button
               alignItems="center"
@@ -291,7 +290,6 @@ export default function Home() {
                 </TableContainer>
               </Flex>
             </Collapse>
-
             {/* AQUI É OS TOTAIS */}
             <Button
               alignItems="center"
@@ -401,7 +399,7 @@ export default function Home() {
                 </TableContainer>
               </Flex>
             </Collapse>
-            {/* <Footer /> */}
+            <Footer />
           </Flex>
         </LayoutMob>
       ) : (
