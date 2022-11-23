@@ -25,6 +25,13 @@ import {
   Th,
   Thead,
   Tr,
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
 } from "@chakra-ui/react";
 import Footer from "../components/Layouts/footer";
 import LayoutMob from "../components/Layouts/layoutMobile";
