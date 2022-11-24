@@ -46,7 +46,9 @@ import { GiPayMoney, GiReceiveMoney } from "react-icons/gi";
 import { IoIosArrowDown } from "react-icons/io";
 import { BsStack } from "react-icons/bs";
 import { TfiStatsDown, TfiStatsUp, TfiClipboard } from "react-icons/tfi";
-
+import NavBar from "../components/mainNavBar/navBar";
+// import navStyles from "../mainNavBar/navbar.module.css";
+import navStyles from "../components/mainNavBar/navBar.module.css";
 export default function Home() {
   const { isOpen: isOpenExpense, onToggle: onToggleExpense } = useDisclosure();
   const { isOpen: isOpenIncome, onToggle: onToggleIncome } = useDisclosure();
@@ -62,7 +64,7 @@ export default function Home() {
     <>
       {isWideVersion ? (
         <LayoutMob>
-          <Flex direction="column" p="1rem" alignContent="end" w="full">
+          <Flex direction="column" p="1rem" w="full" h="full">
             <Text
               align="center"
               fontSize="18px"
@@ -399,7 +401,14 @@ export default function Home() {
                 </TableContainer>
               </Flex>
             </Collapse>
-            <Footer />
+            <Flex
+              justify="end"
+              h="full"
+              direction="column"
+              className={navStyles.mobileNav}
+            >
+              <NavBar />
+            </Flex>
           </Flex>
         </LayoutMob>
       ) : (

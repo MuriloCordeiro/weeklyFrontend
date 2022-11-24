@@ -1,5 +1,5 @@
 import { Flex } from "@chakra-ui/react";
-import Footer from "../mainNavBar/navBar";
+import NavBar from "../mainNavBar/navBar";
 import Header from "./header";
 
 export default function LayoutDesk(props: any) {
@@ -14,7 +14,7 @@ export default function LayoutDesk(props: any) {
       >
         <Header />
         {props.children}
-        <Footer />
+        <NavBar />
       </Flex>
     </>
   );
