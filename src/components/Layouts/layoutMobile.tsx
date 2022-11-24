@@ -16,12 +16,12 @@ export default function LayoutMob(props: any) {
         bgColor="#24293D"
         width="100vw"
         height="100vh"
-        p="1rem"
         direction="column"
         justify="space-between"
       >
         <Header />
         <Flex
+          mx="1rem"
           bgRepeat="no-repeat"
           bgAttachment="fixed"
           bgPosition="center"

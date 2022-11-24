@@ -18,8 +18,8 @@ export default function NavBar() {
         zIndex={4}
         className={navStyles.mobileNav}
         bgColor="#303958"
-        data-aos="fade-up"
         p="15px"
+        mx="1rem"
         borderBottomRadius="10px"
       >
         <Flex
