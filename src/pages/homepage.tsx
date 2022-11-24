@@ -47,7 +47,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { BsStack } from "react-icons/bs";
 import { TfiStatsDown, TfiStatsUp, TfiClipboard } from "react-icons/tfi";
 import NavBar from "../components/mainNavBar/navBar";
-import navStyles from "../components/mainNavBar/navBar.module.css";
+// import navStyles from "../components/mainNavBar/navBar.module.css";
 
 export default function Home() {
   const { isOpen: isOpenExpense, onToggle: onToggleExpense } = useDisclosure();
@@ -405,7 +405,7 @@ export default function Home() {
               justify="end"
               h="full"
               direction="column"
-              className={navStyles.mobileNav}
+              // className={navStyles.mobileNav}
             >
               <NavBar />
             </Flex>
