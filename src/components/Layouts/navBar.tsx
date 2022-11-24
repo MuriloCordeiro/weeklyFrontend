@@ -3,53 +3,47 @@ import { Flex, Button, Text, IconButton } from "@chakra-ui/react";
 import { BsPlusLg } from "react-icons/bs";
 import { BsHouseDoor } from "react-icons/bs";
 import { VscSettingsGear } from "react-icons/vsc";
-import navStyles from "../mainNavBar/navbar.module.css";
 
 import Aos from "aos";
 import "aos/dist/aos.css";
 export default function NavBar() {
   setTimeout(() => {
     Aos.init({ duration: 1500 });
-  }, 5000);
+  }, 1500);
 
   return (
-    <>
-      <Flex
-        w="full"
-        className={navStyles.mobileNav}
-        p="1rem"
-        position="sticky"
-        bottom="0"
-        borderBottomRadius="10px"
-      >
-        <Flex
-          justify="space-between"
-          w="full"
-          bgColor="#24293D"
+    <Flex
+      p="6px"
+      bgColor="#24293D"
+      left="8"
+      right="8"
+      bottom="6"
+      justify="space-between"
+      zIndex={2}
+      borderRadius="50px"
+      position="absolute"
+    >
+      <Flex justify="space-between" w="full">
+        <IconButton
+          size="lg"
+          aria-label={"ActionButton"}
+          icon={<BsHouseDoor />}
           borderRadius="50px"
-          p="15px"
-        >
-          <IconButton
-            size="lg"
-            aria-label={"ActionButton"}
-            icon={<BsHouseDoor />}
-            borderRadius="50px"
-          />
-          <IconButton
-            size="lg"
-            aria-label={"ActionButton"}
-            icon={<BsPlusLg />}
-            borderRadius="50px"
-          />
-          <IconButton
-            size="lg"
-            aria-label={"ActionButton"}
-            icon={<VscSettingsGear />}
-            borderRadius="50px"
-          />
-        </Flex>
+        />
+        <IconButton
+          size="lg"
+          aria-label={"ActionButton"}
+          icon={<BsPlusLg />}
+          borderRadius="50px"
+        />
+        <IconButton
+          size="lg"
+          aria-label={"ActionButton"}
+          icon={<VscSettingsGear />}
+          borderRadius="50px"
+        />
       </Flex>
-    </>
+    </Flex>
     // <Flex align="center">
     //   <Flex
     //     bgColor="#24293D"
