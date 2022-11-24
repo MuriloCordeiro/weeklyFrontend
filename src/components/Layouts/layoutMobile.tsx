@@ -11,33 +11,30 @@ export default function LayoutMob(props: any) {
 
   return (
     <>
-      <Flex direction="column" h="100vh" width="100vw">
+      <Flex
+        minHeight="100vh"
+        bgColor="#24293D"
+        width="100vw"
+        height="100vh"
+        p="1rem"
+        direction="column"
+        justify="space-between"
+      >
+        <Header />
         <Flex
-          minHeight="100vh"
-          bgColor="#24293D"
-          width="100vw"
-          height="100vh"
-          p="1rem"
-          direction="column"
-          justify="space-between"
+          bgRepeat="no-repeat"
+          bgAttachment="fixed"
+          bgPosition="center"
+          bgBlendMode="soft-light"
+          bgImage="url(/Image/piggy1.png)"
+          data-aos="fade-up"
+          h="full"
+          bgColor="#303958"
+          mt="1rem"
         >
-          <Header />
-          <Flex
-            bgRepeat="no-repeat"
-            bgAttachment="fixed"
-            bgPosition="center"
-            bgBlendMode="soft-light"
-            bgImage="url(/Image/piggy1.png)"
-            data-aos="fade-up"
-            h="full"
-            borderTopRadius="10px"
-            bgColor="#303958"
-            mt="1rem"
-          >
-            {props.children}
-          </Flex>
-          <NavBar />
+          {props.children}
         </Flex>
+        <NavBar />
       </Flex>
     </>
   );
