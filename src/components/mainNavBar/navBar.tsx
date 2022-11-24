@@ -19,7 +19,6 @@ export default function NavBar() {
         className={navStyles.mobileNav}
         bgColor="#303958"
         p="15px"
-        mx="1rem"
         borderBottomRadius="10px"
       >
         <Flex

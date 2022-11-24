@@ -15,20 +15,18 @@ export default function LayoutMob(props: any) {
         minHeight="100vh"
         bgColor="#24293D"
         width="100vw"
-        height="100vh"
         direction="column"
-        justify="space-between"
+        p="1rem"
       >
         <Header />
         <Flex
-          mx="1rem"
+          height="100vh"
           bgRepeat="no-repeat"
           bgAttachment="fixed"
           bgPosition="center"
           bgBlendMode="soft-light"
           bgImage="url(/Image/piggy1.png)"
           data-aos="fade-up"
-          h="full"
           bgColor="#303958"
           mt="1rem"
         >
