@@ -39,13 +39,15 @@ import {
   StatArrow,
   StatGroup,
 } from "@chakra-ui/react";
-import Footer from "../components/Layouts/footer";
+import Footer from "../components/mainNavBar/navBar";
 import LayoutMob from "../components/Layouts/layoutMobile";
 import LayoutDesk from "../components/Layouts/layoutDesktop";
 import { GiPayMoney, GiReceiveMoney } from "react-icons/gi";
 import { IoIosArrowDown } from "react-icons/io";
 import { BsStack } from "react-icons/bs";
 import { TfiStatsDown, TfiStatsUp, TfiClipboard } from "react-icons/tfi";
+import NavBar from "../components/mainNavBar/navBar";
+// import navStyles from "../components/mainNavBar/navBar.module.css";
 
 export default function Home() {
   const { isOpen: isOpenExpense, onToggle: onToggleExpense } = useDisclosure();
@@ -62,7 +64,7 @@ export default function Home() {
     <>
       {isWideVersion ? (
         <LayoutMob>
-          <Flex direction="column" p="1rem" alignContent="center" w="full">
+          <Flex direction="column" p="1rem" w="full" h="full">
             <Text
               align="center"
               fontSize="18px"
@@ -181,7 +183,6 @@ export default function Home() {
                 </TableContainer>
               </Flex>
             </Collapse>
-
             {/* AQUI É AS RENDA */}
             <Button
               alignItems="center"
@@ -291,7 +292,6 @@ export default function Home() {
                 </TableContainer>
               </Flex>
             </Collapse>
-
             {/* AQUI É OS TOTAIS */}
             <Button
               alignItems="center"
@@ -401,7 +401,14 @@ export default function Home() {
                 </TableContainer>
               </Flex>
             </Collapse>
-            {/* <Footer /> */}
+            <Flex
+              justify="end"
+              h="full"
+              direction="column"
+              // className={navStyles.mobileNav}
+            >
+              <NavBar />
+            </Flex>
           </Flex>
         </LayoutMob>
       ) : (

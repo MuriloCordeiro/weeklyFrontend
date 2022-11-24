@@ -1,5 +1,5 @@
 import { Flex, Image } from "@chakra-ui/react";
-import Footer from "./footer";
+import NavBar from "../mainNavBar/navBar";
 import Header from "./header";
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -11,11 +11,11 @@ export default function LayoutMob(props: any) {
 
   return (
     <>
-      <Flex direction="column">
+      <Flex direction="column" h="100vh" width="100vw">
         <Flex
           bgColor="#24293D"
-          width="100vw"
-          height="100vh"
+          width="100%"
+          height="100%"
           p="1rem"
           direction="column"
           justify="space-between"
@@ -35,7 +35,6 @@ export default function LayoutMob(props: any) {
           >
             {props.children}
           </Flex>
-          <Footer />
         </Flex>
       </Flex>
     </>
