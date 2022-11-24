@@ -23,7 +23,7 @@ export default function LayoutMob(props: any) {
           bgColor="#303958"
           borderRadius="10px"
           direction="column"
-          minHeight="80vh"
+          minHeight="90vh"
         >
           <Flex> {props.children}</Flex>
           <NavBar />
