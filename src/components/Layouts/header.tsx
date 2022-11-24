@@ -31,6 +31,7 @@ export default function Header() {
     <Flex
       h="auto"
       w="auto"
+      m="1rem"
       data-aos="fade-right"
       align="center"
       justify="space-between"
