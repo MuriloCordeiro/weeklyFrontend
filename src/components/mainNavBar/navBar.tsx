@@ -19,6 +19,7 @@ export default function NavBar() {
         className={navStyles.mobileNav}
         bgColor="#303958"
         p="15px"
+        position="sticky"
       >
         <Flex
           justify="space-between"

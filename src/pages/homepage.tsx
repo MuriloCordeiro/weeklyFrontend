@@ -401,14 +401,6 @@ export default function Home() {
                 </TableContainer>
               </Flex>
             </Collapse>
-            <Flex
-              justify="end"
-              h="full"
-              direction="column"
-              // className={navStyles.mobileNav}
-            >
-              <NavBar />
-            </Flex>
           </Flex>
         </LayoutMob>
       ) : (

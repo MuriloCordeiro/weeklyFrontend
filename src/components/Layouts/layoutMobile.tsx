@@ -14,8 +14,8 @@ export default function LayoutMob(props: any) {
       <Flex direction="column" h="100vh" width="100vw">
         <Flex
           bgColor="#24293D"
-          width="100%"
-          height="100%"
+          width="100vw"
+          height="100vh"
           p="1rem"
           direction="column"
           justify="space-between"
@@ -35,6 +35,7 @@ export default function LayoutMob(props: any) {
           >
             {props.children}
           </Flex>
+          <NavBar />
         </Flex>
       </Flex>
     </>
