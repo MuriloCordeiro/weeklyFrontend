@@ -1,4 +1,18 @@
-import { Flex, Button, Text, IconButton } from "@chakra-ui/react";
+import {
+  Flex,
+  Button,
+  Text,
+  IconButton,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverArrow,
+  PopoverCloseButton,
+  PopoverAnchor,
+} from "@chakra-ui/react";
 
 import { BsPlusLg } from "react-icons/bs";
 import { BsHouseDoor } from "react-icons/bs";
@@ -35,12 +49,30 @@ export default function NavBar() {
             icon={<BsHouseDoor />}
             borderRadius="50px"
           />
-          <IconButton
-            size="lg"
-            aria-label={"ActionButton"}
-            icon={<BsPlusLg />}
-            borderRadius="50px"
-          />
+          <Popover>
+            <PopoverTrigger>
+              <IconButton
+                size="lg"
+                aria-label={"ActionButton"}
+                icon={<BsPlusLg />}
+                borderRadius="50px"
+              />
+            </PopoverTrigger>
+            <PopoverContent bgColor="#24293D" w="full" mb="1rem">
+              <PopoverArrow mt="8px" />
+              <PopoverCloseButton />
+
+              <PopoverBody>
+                <Flex justifyContent="space-between">
+                  <Button fontSize="12px" mr="1rem">
+                    Adicionar despesa
+                  </Button>
+                  <Button fontSize="12px">Adicionar renda</Button>
+                </Flex>
+              </PopoverBody>
+            </PopoverContent>
+          </Popover>
+
           <IconButton
             size="lg"
             aria-label={"ActionButton"}
