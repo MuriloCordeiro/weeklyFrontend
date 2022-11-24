@@ -13,6 +13,7 @@ export default function LayoutMob(props: any) {
     <>
       <Flex direction="column" h="100vh" width="100vw">
         <Flex
+          minHeight="100vh"
           bgColor="#24293D"
           width="100vw"
           height="100vh"
