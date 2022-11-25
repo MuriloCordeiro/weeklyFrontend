@@ -44,7 +44,7 @@ import LayoutMob from "../components/Layouts/layoutMobile";
 import LayoutDesk from "../components/Layouts/layoutDesktop";
 import { GiPayMoney, GiReceiveMoney } from "react-icons/gi";
 import { IoIosArrowDown } from "react-icons/io";
-import { BsStack } from "react-icons/bs";
+import { BsPencilSquare, BsStack } from "react-icons/bs";
 import { TfiStatsDown, TfiStatsUp, TfiClipboard } from "react-icons/tfi";
 import NavBar from "../components/mainNavBar/navBar";
 // import navStyles from "../components/mainNavBar/navBar.module.css";
@@ -60,6 +60,25 @@ export default function Home() {
     md: false,
     lg: false,
   });
+
+  const Income = [
+    {
+      Nome: "Murilo",
+      Tipo: "Salario",
+      Valor: "R$ 1200,00",
+    },
+    {
+      Nome: "Murilo",
+      Tipo: "Salario",
+      Valor: "R$ 1200,00",
+    },
+    {
+      Nome: "Murilo",
+      Tipo: "Salario",
+      Valor: "R$ 1200,00",
+    },
+  ];
+
   return (
     <>
       {isWideVersion ? (
@@ -86,7 +105,7 @@ export default function Home() {
               onClick={onToggleIncome}
               leftIcon={<TfiStatsUp />}
               rightIcon={<IoIosArrowDown />}
-              mb="1rem"
+              mb="10px"
             >
               <Text mr="full" ml="full" fontWeight="medium" w="full">
                 Rendas
@@ -94,97 +113,126 @@ export default function Home() {
             </Button>
             <Collapse in={isOpenIncome} animateOpacity>
               <Flex
-                direction="column"
-                color="white"
-                bgColor="#24293D"
-                borderRadius="6px"
-                mb="1rem"
                 w="full"
-                p="1rem"
+                justify="space-between"
+                fontSize="14px"
+                color="white"
+                p="2px"
+                mb="3px"
+                bgColor="#24293D"
               >
-                <TableContainer>
-                  <Table variant="unstyled" size="xsm">
-                    {/* <TableCaption>Imperial to metric conversion factors</TableCaption> */}
-                    <Thead>
-                      <Tr>
-                        <Th>
-                          <Text
-                            align="center"
-                            fontSize="14px"
-                            fontWeight="medium"
-                          >
-                            Nome
-                          </Text>
-                        </Th>
-                        <Th>
-                          <Text
-                            align="center"
-                            fontWeight="medium"
-                            fontSize="14px"
-                          >
-                            Parcela
-                          </Text>
-                        </Th>
-                        <Th>
-                          <Text
-                            align="center"
-                            fontWeight="medium"
-                            fontSize="14px"
-                          >
-                            Valor
-                          </Text>
-                        </Th>
-                      </Tr>
-                    </Thead>
-                    <Tbody>
-                      <Tr>
-                        <Td>
-                          <Text
-                            fontWeight="bold"
-                            align="center"
-                            bgColor="#D9D9D9"
-                            borderRadius="10px"
-                            fontSize="14px"
-                            p="2px"
-                            color="#24293D"
-                          >
-                            Salário
-                          </Text>
-                        </Td>
-                        <Td>
-                          <Text
-                            fontWeight="bold"
-                            align="center"
-                            bgColor="#D9D9D9"
-                            p="2px"
-                            borderRadius="10px"
-                            color="#24293D"
-                            fontSize="14px"
-                          >
-                            vazio
-                          </Text>
-                        </Td>
-                        <Td>
-                          <Text
-                            fontWeight="bold"
-                            align="center"
-                            bgColor="#D9D9D9"
-                            p="2px"
-                            borderRadius="10px"
-                            color="#24293D"
-                            fontSize="14px"
-                          >
-                            R$ 1.200,00
-                          </Text>
-                        </Td>
-                      </Tr>
-                    </Tbody>
-                  </Table>
-                </TableContainer>
+                <Text>Nome</Text>
+                <Text>Tipo</Text>
+                <Text>Valor</Text>
+                <Text>Ações</Text>
               </Flex>
+
+              {Income.map((value: any, index: any) => (
+                <>
+                  <Flex
+                    h="45px"
+                    key={index}
+                    align="center"
+                    justify="space-between"
+                    borderColor="white"
+                    color="white"
+                    borderBottomWidth="0.5px"
+                    bgColor="#24293D"
+                    w="full"
+                    p="5px"
+                  >
+                    <Flex>{value.Nome}</Flex>
+                    <Flex>{value.Tipo}</Flex>
+                    <Flex>{value.Valor}</Flex>
+                    <Flex>
+                      <BsPencilSquare size="20px" />
+                    </Flex>
+                  </Flex>
+                </>
+              ))}
+
+              {/* <TableContainer>
+                   <Table variant="unstyled" size="xsm">
+                     <Thead>
+                       <Tr>
+                         <Th>
+                           <Text
+                             align="center"
+                             fontSize="14px"
+                             fontWeight="medium"
+                           >
+                             Nome
+                           </Text>
+                         </Th>
+                         <Th>
+                           <Text
+                             align="center"
+                             fontWeight="medium"
+                             fontSize="14px"
+                           >
+                             Parcela
+                           </Text>
+                         </Th>
+                         <Th>
+                           <Text
+                             align="center"
+                             fontWeight="medium"
+                             fontSize="14px"
+                           >
+                             Valor
+                           </Text>
+                         </Th>
+                       </Tr>
+                     </Thead>
+                     <Tbody>
+                       <Tr>
+                         <Td>
+                           <Text
+                             fontWeight="bold"
+                             align="center"
+                             bgColor="#D9D9D9"
+                             borderRadius="10px"
+                             fontSize="14px"
+                             p="2px"
+                             color="#24293D"
+                           >
+                             Salário
+                           </Text>
+                         </Td>
+                         <Td>
+                           <Text
+                             fontWeight="bold"
+                             align="center"
+                             bgColor="#D9D9D9"
+                             p="2px"
+                             borderRadius="10px"
+                             color="#24293D"
+                             fontSize="14px"
+                           >
+                             vazio
+                           </Text>
+                         </Td>
+                         <Td>
+                           <Text
+                             fontWeight="bold"
+                             align="center"
+                             bgColor="#D9D9D9"
+                             p="2px"
+                             borderRadius="10px"
+                             color="#24293D"
+                             fontSize="14px"
+                           >
+                             R$ 1.200,00
+                           </Text>
+                         </Td>
+                       </Tr>
+                     </Tbody>
+                   </Table>
+                 </TableContainer> */}
             </Collapse>
             {/* AQUI É AS RENDA */}
             <Button
+              mt="1rem"
               alignItems="center"
               size="lg"
               borderRadius="6px"
