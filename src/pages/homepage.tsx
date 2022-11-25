@@ -16,7 +16,7 @@ import {
 import LayoutMob from "../components/Layouts/layoutMobile";
 import LayoutDesk from "../components/Layouts/layoutDesktop";
 import { GiPayMoney, GiReceiveMoney } from "react-icons/gi";
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { BsPencilSquare, BsStack } from "react-icons/bs";
 import { TfiStatsDown, TfiStatsUp, TfiClipboard } from "react-icons/tfi";
 // import navStyles from "../components/mainNavBar/navBar.module.css";
