@@ -12,6 +12,15 @@ import {
   WrapItem,
   IconButton,
   useDisclosure,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverArrow,
+  PopoverCloseButton,
+  PopoverAnchor,
 } from "@chakra-ui/react";
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -31,7 +40,7 @@ export default function Header() {
     <Flex
       h="auto"
       w="auto"
-      m="1rem"
+      p="1rem"
       data-aos="fade-right"
       align="center"
       justify="space-between"

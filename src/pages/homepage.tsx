@@ -1,19 +1,6 @@
 import {
   Flex,
   Button,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverHeader,
-  PopoverBody,
-  PopoverFooter,
-  PopoverArrow,
-  PopoverCloseButton,
-  PopoverAnchor,
-  Fade,
-  ScaleFade,
-  Slide,
-  SlideFade,
   Collapse,
   useDisclosure,
   Text,
@@ -25,33 +12,16 @@ import {
   Th,
   Thead,
   Tr,
-  Drawer,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
-  Stat,
-  StatLabel,
-  StatNumber,
-  StatHelpText,
-  StatArrow,
-  StatGroup,
 } from "@chakra-ui/react";
-import Footer from "../components/mainNavBar/navBar";
 import LayoutMob from "../components/Layouts/layoutMobile";
 import LayoutDesk from "../components/Layouts/layoutDesktop";
-import { GiPayMoney, GiReceiveMoney } from "react-icons/gi";
-import { IoIosArrowDown } from "react-icons/io";
-import { BsStack } from "react-icons/bs";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { TfiStatsDown, TfiStatsUp, TfiClipboard } from "react-icons/tfi";
-import NavBar from "../components/mainNavBar/navBar";
 // import navStyles from "../components/mainNavBar/navBar.module.css";
 
 export default function Home() {
-  const { isOpen: isOpenExpense, onToggle: onToggleExpense } = useDisclosure();
   const { isOpen: isOpenIncome, onToggle: onToggleIncome } = useDisclosure();
+  const { isOpen: isOpenExpense, onToggle: onToggleExpense } = useDisclosure();
   const { isOpen: isOpenTotal, onToggle: onToggleTotal } = useDisclosure();
 
   const isWideVersion = useBreakpointValue({
@@ -60,6 +30,7 @@ export default function Home() {
     md: false,
     lg: false,
   });
+
   return (
     <>
       {isWideVersion ? (
@@ -85,7 +56,9 @@ export default function Home() {
               bgColor="#24293D"
               onClick={onToggleIncome}
               leftIcon={<TfiStatsUp />}
-              rightIcon={<IoIosArrowDown />}
+              rightIcon={
+                isOpenIncome === true ? <IoIosArrowUp /> : <IoIosArrowDown />
+              }
               mb="1rem"
             >
               <Text mr="full" ml="full" fontWeight="medium" w="full">
@@ -104,7 +77,6 @@ export default function Home() {
               >
                 <TableContainer>
                   <Table variant="unstyled" size="xsm">
-                    {/* <TableCaption>Imperial to metric conversion factors</TableCaption> */}
                     <Thead>
                       <Tr>
                         <Th>
@@ -195,7 +167,9 @@ export default function Home() {
               onClick={onToggleExpense}
               mb="1rem"
               leftIcon={<TfiStatsDown />}
-              rightIcon={<IoIosArrowDown />}
+              rightIcon={
+                isOpenExpense === true ? <IoIosArrowUp /> : <IoIosArrowDown />
+              }
             >
               <Text mr="full" ml="full" fontWeight="medium" w="full">
                 Despesas
@@ -213,7 +187,6 @@ export default function Home() {
               >
                 <TableContainer>
                   <Table variant="unstyled" size="xsm">
-                    {/* <TableCaption>Imperial to metric conversion factors</TableCaption> */}
                     <Thead>
                       <Tr>
                         <Th>
@@ -304,7 +277,9 @@ export default function Home() {
               onClick={onToggleTotal}
               mb="1rem"
               leftIcon={<TfiClipboard />}
-              rightIcon={<IoIosArrowDown />}
+              rightIcon={
+                isOpenTotal === true ? <IoIosArrowUp /> : <IoIosArrowDown />
+              }
             >
               <Text mr="full" ml="full" fontWeight="medium" w="full">
                 Totais
