@@ -16,7 +16,18 @@ import {
 
 import { BsPlusLg } from "react-icons/bs";
 import { BsHouseDoor } from "react-icons/bs";
+import { BiMessageSquareAdd } from "react-icons/bi";
 import { VscSettingsGear } from "react-icons/vsc";
+import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
+
+import {
+  MdOutlineAddchart,
+  MdAddChart,
+  MdOutlineBookmarkAdd,
+  MdOutlinePlaylistAdd,
+  MdOutlinePersonAddDisabled,
+} from "react-icons/md";
+
 import navStyles from "../mainNavBar/navbar.module.css";
 
 import Aos from "aos";
@@ -58,16 +69,41 @@ export default function NavBar() {
                 borderRadius="50px"
               />
             </PopoverTrigger>
-            <PopoverContent bgColor="#24293D" w="full" mb="1rem">
-              <PopoverArrow mt="8px" />
+            <PopoverContent mb="1rem" borderWidth="0">
+              <PopoverArrow mt="0.5rem" />
               <PopoverCloseButton />
 
               <PopoverBody>
                 <Flex justifyContent="space-between">
-                  <Button fontSize="12px" mr="1rem">
-                    Adicionar despesa
+                  {/* MdOutlineAddchart, MdAddChart, MdOutlineBookmarkAdd,
+              MdOutlinePlaylistAdd, MdOutlinePersonAddDisabled, */}
+                  {/* GoTriangleDown, GoTriangleUp */}
+                  <Button
+                    w="full"
+                    mr="1rem"
+                    _hover={{ color: "gray" }}
+                    color="white"
+                    bgColor="#24293D"
+                    // bgColor="white"
+                    fontSize="12px"
+                    rightIcon={<GoTriangleUp size="1.5rem" color="green" />}
+                    // leftIcon={<MdOutlineAddchart size="1.5rem" color="green" />}
+                  >
+                    NOVA RENDA
                   </Button>
-                  <Button fontSize="12px">Adicionar renda</Button>
+
+                  <Button
+                    w="full"
+                    _hover={{ color: "gray" }}
+                    color="white"
+                    // bgColor="white"
+                    bgColor="#24293D"
+                    fontSize="12px"
+                    leftIcon={<GoTriangleDown size="1.5rem" color="red" />}
+                    // rightIcon={<MdOutlineAddchart size="1.5rem" color="red" />}
+                  >
+                    NOVA DESPESA
+                  </Button>
                 </Flex>
               </PopoverBody>
             </PopoverContent>
