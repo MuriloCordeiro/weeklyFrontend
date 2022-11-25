@@ -24,6 +24,11 @@ export default function LayoutMob(props: any) {
           borderRadius="10px"
           direction="column"
           minHeight="90vh"
+          bgRepeat="no-repeat"
+          bgAttachment="fixed"
+          bgPosition="center"
+          bgBlendMode="soft-light"
+          bgImage="url(/Image/piggy1.png)"
         >
           <Flex> {props.children}</Flex>
           <NavBar />

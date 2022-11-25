@@ -58,7 +58,7 @@ export default function Home() {
           <Flex direction="column" p="1rem" w="full" h="full">
             <Text
               align="center"
-              fontSize="18px"
+              fontSize="16px"
               fontWeight="bold"
               color="white"
               mb="1rem"
@@ -76,52 +76,59 @@ export default function Home() {
               bgColor="#24293D"
               onClick={onToggleIncome}
               leftIcon={<TfiStatsUp />}
-              rightIcon={<IoIosArrowDown />}
-              mb="10px"
+              rightIcon={
+                isOpenExpense === true ? <IoIosArrowUp /> : <IoIosArrowDown />
+              }
+              mb="5px"
             >
-              <Text mr="full" ml="full" fontWeight="medium" w="full">
+              <Text fontWeight="medium" w="full" fontSize="16px">
                 Rendas
               </Text>
             </Button>
             <Collapse in={isOpenIncome} animateOpacity>
               <Flex
-                w="full"
+                ml="0.5rem"
+                w="95%"
                 justify="space-between"
                 fontSize="14px"
                 color="white"
-                p="2px"
-                mb="3px"
+                p="4px"
                 bgColor="#24293D"
+                borderTopRadius="10px"
+                borderBottomWidth="1px"
+                borderColor="gray"
               >
                 <Text>Nome</Text>
                 <Text>Tipo</Text>
                 <Text>Valor</Text>
                 <Text>Ações</Text>
               </Flex>
-
-              {Income.map((value: any, index: any) => (
-                <>
-                  <Flex
-                    h="45px"
-                    key={index}
-                    align="center"
-                    justify="space-between"
-                    borderColor="white"
-                    color="white"
-                    borderBottomWidth="0.5px"
-                    bgColor="#24293D"
-                    w="full"
-                    p="5px"
-                  >
-                    <Flex>{value.Nome}</Flex>
-                    <Flex>{value.Tipo}</Flex>
-                    <Flex>{value.Valor}</Flex>
-                    <Flex>
-                      <BsPencilSquare size="20px" />
+              <Flex ml="0.5rem" w="95%" direction="column" bgColor="#24293D">
+                {Income.map((value: any, index: any) => (
+                  <>
+                    <Flex
+                      h="45px"
+                      key={index}
+                      align="center"
+                      justify="space-between"
+                      color="white"
+                      // borderBottomWidth="0.5px"
+                      w="full"
+                      p="5px"
+                      fontSize="12px"
+                      borderBottomWidth="1px"
+                      borderColor="gray"
+                    >
+                      <Flex>{value.Nome}</Flex>
+                      <Flex>{value.Tipo}</Flex>
+                      <Flex>{value.Valor}</Flex>
+                      <Flex>
+                        <BsPencilSquare size="20px" />
+                      </Flex>
                     </Flex>
-                  </Flex>
-                </>
-              ))}
+                  </>
+                ))}
+              </Flex>
 
               {/* <TableContainer>
                    <Table variant="unstyled" size="xsm">
@@ -202,7 +209,7 @@ export default function Home() {
                    </Table>
                  </TableContainer> */}
             </Collapse>
-            {/* AQUI É AS RENDA */}
+            {/* AQUI É AS DESPESAS */}
             <Button
               mt="1rem"
               alignItems="center"
@@ -219,7 +226,13 @@ export default function Home() {
                 isOpenExpense === true ? <IoIosArrowUp /> : <IoIosArrowDown />
               }
             >
-              <Text mr="full" ml="full" fontWeight="medium" w="full">
+              <Text
+                mr="full"
+                ml="full"
+                fontWeight="medium"
+                w="full"
+                fontSize="16px"
+              >
                 Despesas
               </Text>
             </Button>
@@ -323,13 +336,13 @@ export default function Home() {
               colorScheme="white"
               bgColor="#24293D"
               onClick={onToggleTotal}
-              mb="1rem"
+              mt="1rem"
               leftIcon={<TfiClipboard />}
               rightIcon={
                 isOpenTotal === true ? <IoIosArrowUp /> : <IoIosArrowDown />
               }
             >
-              <Text mr="full" ml="full" fontWeight="medium" w="full">
+              <Text fontWeight="medium" w="full" fontSize="16px">
                 Totais
               </Text>
             </Button>
