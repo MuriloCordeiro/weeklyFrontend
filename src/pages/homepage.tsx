@@ -147,7 +147,12 @@ export default function Home() {
                             {value.Nome}
                           </Text>
                         </Flex>
-                        <Text fontSize="14px" color="green" fontWeight="bold">
+                        <Text
+                          fontSize="14px"
+                          color="green"
+                          fontWeight="bold"
+                          w="full"
+                        >
                           {value.Valor}
                         </Text>
                       </Flex>

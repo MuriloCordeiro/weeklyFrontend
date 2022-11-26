@@ -83,7 +83,7 @@ export default function NavBar() {
                     mr="1rem"
                     _hover={{ color: "gray" }}
                     color="white"
-                    bgColor="#24293D"
+                    bgColor="#011735"
                     // bgColor="white"
                     fontSize="12px"
                     rightIcon={<GoTriangleUp size="1.5rem" color="green" />}
@@ -97,7 +97,7 @@ export default function NavBar() {
                     _hover={{ color: "gray" }}
                     color="white"
                     // bgColor="white"
-                    bgColor="#24293D"
+                    bgColor="#011735"
                     fontSize="12px"
                     leftIcon={<GoTriangleDown size="1.5rem" color="red" />}
                     // rightIcon={<MdOutlineAddchart size="1.5rem" color="red" />}
