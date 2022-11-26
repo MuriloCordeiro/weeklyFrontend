@@ -63,7 +63,7 @@ export default function Header() {
         fontWeight="bold"
         fontSize="18px"
         direction="column"
-        data-aos="fade-up"
+        data-aos="fade-right"
       >
         <Flex w="30px" color="red" borderWidth="2px" />
         <Flex w="30px" color="red" borderWidth="2px" />

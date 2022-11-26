@@ -50,12 +50,12 @@ export default function NavBar() {
         <Flex
           justify="space-between"
           w="full"
-          bgColor="#24293D"
+          bgColor="#011735"
           borderRadius="50px"
-          p="15px"
+          p="10px"
         >
           <IconButton
-            size="lg"
+            size="md"
             aria-label={"ActionButton"}
             icon={<BsHouseDoor />}
             borderRadius="50px"
@@ -63,7 +63,7 @@ export default function NavBar() {
           <Popover>
             <PopoverTrigger>
               <IconButton
-                size="lg"
+                size="md"
                 aria-label={"ActionButton"}
                 icon={<BsPlusLg />}
                 borderRadius="50px"
@@ -110,7 +110,7 @@ export default function NavBar() {
           </Popover>
 
           <IconButton
-            size="lg"
+            size="md"
             aria-label={"ActionButton"}
             icon={<VscSettingsGear />}
             borderRadius="50px"

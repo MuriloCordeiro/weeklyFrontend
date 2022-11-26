@@ -48,9 +48,31 @@ export default function Home() {
       Valor: "R$ 1200,00",
     },
     {
-      Nome: "Vendas",
+      Nome: "Mesada",
       Tipo: "Variavel",
+      Valor: "R$ 500,00",
+    },
+    {
+      Nome: "Roubo",
+      Tipo: "Variavel",
+      Valor: "R$ 200,00",
+    },
+  ];
+  const Expense = [
+    {
+      Nome: "Café sem graça",
+      Tipo: "Variavel",
+      Valor: "R$ 15,00",
+    },
+    {
+      Nome: "Carro",
+      Tipo: "Parcela - 1/12",
       Valor: "R$ 1200,00",
+    },
+    {
+      Nome: "Luz",
+      Tipo: "Fixo",
+      Valor: "R$ 100,00",
     },
   ];
 
@@ -89,11 +111,13 @@ export default function Home() {
                   <Flex color="white">Totais</Flex>
                 </Tab>
               </TabList>
-              {Income &&
-                Income.map((value, index) => (
-                  <TabPanels key={index}>
-                    <TabPanel>
+
+              <TabPanels>
+                <TabPanel>
+                  {Income &&
+                    Income.map((value, index) => (
                       <Flex
+                        key={index}
                         as="button"
                         h="50px"
                         w="full"
@@ -101,8 +125,9 @@ export default function Home() {
                         align="center"
                         p="1rem"
                         borderRadius="10px"
+                        mb="0.5rem"
                       >
-                        <GoTriangleUp size="25px" color="green" />
+                        <GoTriangleUp size="30px" color="green" />
 
                         <Flex
                           ml="1rem"
@@ -126,10 +151,14 @@ export default function Home() {
                           {value.Valor}
                         </Text>
                       </Flex>
-                    </TabPanel>
+                    ))}
+                </TabPanel>
 
-                    <TabPanel>
+                <TabPanel>
+                  {Expense &&
+                    Expense.map((value, index) => (
                       <Flex
+                        key={index}
                         as="button"
                         h="50px"
                         w="full"
@@ -137,6 +166,7 @@ export default function Home() {
                         align="center"
                         p="1rem"
                         borderRadius="10px"
+                        mb="0.5rem"
                       >
                         <GoTriangleDown size="25px" color="red" />
 
@@ -152,19 +182,24 @@ export default function Home() {
                             color="#B6B6B9"
                             fontWeight="bold"
                           >
-                            Ontem
+                            {value.Tipo}
                           </Text>
                           <Text color="white" fontSize="14px" fontWeight="bold">
-                            Mercadinho da esquina
+                            {value.Nome}
                           </Text>
                         </Flex>
-                        <Text fontSize="14px" color="red" fontWeight="bold">
-                          R$15,00
+                        <Text
+                          fontSize="14px"
+                          color="red"
+                          fontWeight="bold"
+                          w="full"
+                        >
+                          {value.Valor}
                         </Text>
                       </Flex>
-                    </TabPanel>
-                  </TabPanels>
-                ))}
+                    ))}
+                </TabPanel>
+              </TabPanels>
             </Tabs>
           </Flex>
         </LayoutMob>

@@ -17,7 +17,7 @@ export default function LayoutMob(props: any) {
     <>
       <Flex bgColor="#011735" minHeight="100vh" direction="column" p="1rem">
         <Header />
-        <Flex direction="column" color="white" p="0.5rem">
+        <Flex direction="column" color="white" p="0.5rem" data-aos="fade-right">
           <Text fontSize="14px" fontWeight="medium">
             Balanço disponível
           </Text>
