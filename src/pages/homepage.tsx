@@ -27,6 +27,11 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { BsPencilSquare, BsStack } from "react-icons/bs";
 import { TfiStatsDown, TfiStatsUp, TfiClipboard } from "react-icons/tfi";
 import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
+import { Chart, ArcElement } from "chart.js";
+import { Doughnut } from "react-chartjs-2";
+import { useState } from "react";
+Chart.register(ArcElement);
+
 // import navStyles from "../components/mainNavBar/navBar.module.css";
 
 export default function Home() {
@@ -34,12 +39,32 @@ export default function Home() {
   const { isOpen: isOpenExpense, onToggle: onToggleExpense } = useDisclosure();
   const { isOpen: isOpenTotal, onToggle: onToggleTotal } = useDisclosure();
 
+  const [teste, setTeste] = useState(300);
   const isWideVersion = useBreakpointValue({
     base: true,
     sm: true,
     md: false,
     lg: false,
   });
+
+  const data = {
+    labels: ["Red", "Blue", "Yellow"],
+    datasets: [
+      {
+        label: "My First Dataset",
+        data: [300, teste, 100],
+        backgroundColor: [
+          "rgb(255, 99, 132)",
+          "rgb(54, 162, 235)",
+          "rgb(255, 205, 86)",
+        ],
+        hoverBorderColor: "red",
+        cutout: 15,
+
+        hoverOffset: 4,
+      },
+    ],
+  };
 
   const Income = [
     {
@@ -80,6 +105,9 @@ export default function Home() {
     <>
       {isWideVersion ? (
         <LayoutMob>
+          <Flex w="60px" h="100px">
+            <Doughnut data={data} />
+          </Flex>
           <Flex direction="column" py="1rem" w="full" h="full">
             <Tabs variant="unstyled" w="full" align="center">
               <TabList>
