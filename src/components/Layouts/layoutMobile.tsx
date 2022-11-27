@@ -8,6 +8,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { useEffect, useState } from "react";
 import { Chart, ArcElement } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
+// @ts-ignore
 import Lottie from "react-lottie";
 import animationData from "../../animation.json";
 
@@ -43,7 +44,7 @@ export default function LayoutMob(props: any) {
   };
   const defaultOptions = {
     loop: true,
-    autoplay: false,
+    autoplay: true,
     animationData: animationData,
     rendererSettings: {
       preserveAspectRatio: "xMidYMid slice",
