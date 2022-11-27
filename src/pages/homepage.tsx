@@ -27,9 +27,12 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { BsPencilSquare, BsStack } from "react-icons/bs";
 import { TfiStatsDown, TfiStatsUp, TfiClipboard } from "react-icons/tfi";
 import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
-import { Chart, ArcElement } from "chart.js";
-import { Doughnut } from "react-chartjs-2";
 import { useState } from "react";
+
+import { Chart, ArcElement } from "chart.js";
+
+import { Doughnut } from "react-chartjs-2";
+
 Chart.register(ArcElement);
 
 // import navStyles from "../components/mainNavBar/navBar.module.css";
@@ -40,6 +43,7 @@ export default function Home() {
   const { isOpen: isOpenTotal, onToggle: onToggleTotal } = useDisclosure();
 
   const [teste, setTeste] = useState(300);
+
   const isWideVersion = useBreakpointValue({
     base: true,
     sm: true,
@@ -104,138 +108,155 @@ export default function Home() {
   return (
     <>
       {isWideVersion ? (
-        <LayoutMob>
-          <Flex w="60px" h="100px">
+        <>
+          <LayoutMob>
+            {/* <div class="embla">
+            <div class="embla__container">
+              <div class="embla__slide">Slide 1</div>
+              <div class="embla__slide">Slide 2</div>
+              <div class="embla__slide">Slide 3</div>
+            </div>
+          </div> */}
+            {/* <Flex w="60px" h="100px">
             <Doughnut data={data} />
-          </Flex>
-          <Flex direction="column" py="1rem" w="full" h="full">
-            <Tabs variant="unstyled" w="full" align="center">
-              <TabList>
-                <Tab
-                  _selected={{
-                    color: "white",
-                    bg: "#011735",
-                    borderRadius: "10px",
-                  }}
-                >
-                  <Flex color="white">Rendas</Flex>
-                </Tab>
-                <Tab
-                  _selected={{
-                    color: "white",
-                    bg: "#011735",
-                    borderRadius: "10px",
-                  }}
-                >
-                  <Flex color="white">Despesas</Flex>
-                </Tab>
-                <Tab
-                  _selected={{
-                    color: "white",
-                    bg: "#011735",
-                    borderRadius: "10px",
-                  }}
-                >
-                  <Flex color="white">Totais</Flex>
-                </Tab>
-              </TabList>
+          </Flex> */}
+            <Flex direction="column" py="1rem" w="full" h="full">
+              <Tabs variant="unstyled" w="full" align="center">
+                <TabList>
+                  <Tab
+                    _selected={{
+                      color: "white",
+                      bg: "#011735",
+                      borderRadius: "10px",
+                    }}
+                  >
+                    <Flex color="white">Rendas</Flex>
+                  </Tab>
+                  <Tab
+                    _selected={{
+                      color: "white",
+                      bg: "#011735",
+                      borderRadius: "10px",
+                    }}
+                  >
+                    <Flex color="white">Despesas</Flex>
+                  </Tab>
+                  <Tab
+                    _selected={{
+                      color: "white",
+                      bg: "#011735",
+                      borderRadius: "10px",
+                    }}
+                  >
+                    <Flex color="white">Totais</Flex>
+                  </Tab>
+                </TabList>
 
-              <TabPanels>
-                <TabPanel>
-                  {Income &&
-                    Income.map((value, index) => (
-                      <Flex
-                        key={index}
-                        as="button"
-                        h="50px"
-                        w="full"
-                        bgColor="#011735"
-                        align="center"
-                        p="1rem"
-                        borderRadius="10px"
-                        mb="0.5rem"
-                      >
-                        <GoTriangleUp size="30px" color="green" />
-
+                <TabPanels>
+                  <TabPanel>
+                    {Income &&
+                      Income.map((value, index) => (
                         <Flex
-                          ml="1rem"
+                          key={index}
+                          as="button"
+                          h="50px"
                           w="full"
-                          direction="column"
-                          align="start"
-                          justify="space-between"
+                          bgColor="#011735"
+                          align="center"
+                          p="1rem"
+                          borderRadius="10px"
+                          mb="0.5rem"
                         >
-                          <Text
-                            fontSize="11px"
-                            color="#B6B6B9"
-                            fontWeight="bold"
+                          <GoTriangleUp size="30px" color="green" />
+
+                          <Flex
+                            ml="1rem"
+                            w="full"
+                            direction="column"
+                            align="start"
+                            justify="space-between"
                           >
-                            Hoje - {value.Tipo}
-                          </Text>
-                          <Text color="white" fontSize="14px" fontWeight="bold">
-                            {value.Nome}
+                            <Text
+                              fontSize="11px"
+                              color="#B6B6B9"
+                              fontWeight="bold"
+                            >
+                              Hoje - {value.Tipo}
+                            </Text>
+                            <Text
+                              color="white"
+                              fontSize="14px"
+                              fontWeight="bold"
+                            >
+                              {value.Nome}
+                            </Text>
+                          </Flex>
+                          <Text
+                            fontSize="14px"
+                            color="green"
+                            fontWeight="bold"
+                            w="full"
+                          >
+                            {value.Valor}
                           </Text>
                         </Flex>
-                        <Text
-                          fontSize="14px"
-                          color="green"
-                          fontWeight="bold"
-                          w="full"
-                        >
-                          {value.Valor}
-                        </Text>
-                      </Flex>
-                    ))}
-                </TabPanel>
+                      ))}
+                  </TabPanel>
 
-                <TabPanel>
-                  {Expense &&
-                    Expense.map((value, index) => (
-                      <Flex
-                        key={index}
-                        as="button"
-                        h="50px"
-                        w="full"
-                        bgColor="#011735"
-                        align="center"
-                        p="1rem"
-                        borderRadius="10px"
-                        mb="0.5rem"
-                      >
-                        <GoTriangleDown size="25px" color="red" />
-
+                  <TabPanel>
+                    {Expense &&
+                      Expense.map((value, index) => (
                         <Flex
-                          ml="1rem"
+                          key={index}
+                          as="button"
+                          h="50px"
                           w="full"
-                          direction="column"
-                          align="start"
-                          justify="space-between"
+                          bgColor="#011735"
+                          align="center"
+                          p="1rem"
+                          borderRadius="10px"
+                          mb="0.5rem"
                         >
-                          <Text
-                            fontSize="11px"
-                            color="#B6B6B9"
-                            fontWeight="bold"
+                          <GoTriangleDown size="25px" color="red" />
+
+                          <Flex
+                            ml="1rem"
+                            w="full"
+                            direction="column"
+                            align="start"
+                            justify="space-between"
                           >
-                            {value.Tipo}
-                          </Text>
-                          <Text color="white" fontSize="14px" fontWeight="bold">
-                            {value.Nome}
+                            <Text
+                              fontSize="11px"
+                              color="#B6B6B9"
+                              fontWeight="bold"
+                            >
+                              {value.Tipo}
+                            </Text>
+                            <Text
+                              color="white"
+                              fontSize="14px"
+                              fontWeight="bold"
+                            >
+                              {value.Nome}
+                            </Text>
+                          </Flex>
+                          <Text
+                            fontSize="14px"
+                            color="red"
+                            fontWeight="bold"
+                            w="full"
+                          >
+                            {value.Valor}
                           </Text>
                         </Flex>
-                        <Text
-                          fontSize="14px"
-                          color="red"
-                          fontWeight="bold"
-                          w="full"
-                        >
-                          {value.Valor}
-                        </Text>
-                      </Flex>
-                    ))}
-                </TabPanel>
-              </TabPanels>
-            </Tabs>
-          </Flex>
-        </LayoutMob>
+                      ))}
+                  </TabPanel>
+                </TabPanels>
+              </Tabs>
+            </Flex>
+          </LayoutMob>
+        </>
       ) : (
         <LayoutDesk>
           AQUI SERÁ O DESKTOP

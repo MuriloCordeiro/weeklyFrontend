@@ -4,28 +4,137 @@ import Header from "./header";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
-import { useEffect } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import { useEffect, useState } from "react";
+import { Chart, ArcElement } from "chart.js";
+import { Doughnut } from "react-chartjs-2";
+import Lottie from "react-lottie";
+import animationData from "../../animation.json";
 
+Chart.register(ArcElement);
 export default function LayoutMob(props: any) {
   setTimeout(() => {
     Aos.init({ duration: 1500 });
   }, 1500);
 
-  // useEffect(()=>{})
+  const [emblaRef] = useEmblaCarousel();
+  const [teste, setTeste] = useState(300);
+
+  const data = {
+    options: {
+      title: {
+        display: true,
+        text: " ",
+      },
+    },
+
+    datasets: [
+      {
+        labels: ["teste", "Blue", "Yellow"],
+
+        data: [300, teste, 100],
+        backgroundColor: ["#e32929", "#197bce", "#48ba1c"],
+        // hoverBorderColor: "red",
+        cutout: 28,
+        borderWidth: 0,
+        // hoverOffset: 4,
+      },
+    ],
+  };
+  const defaultOptions = {
+    loop: true,
+    autoplay: false,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
 
   return (
     <>
+      {/* <Flex
+        ref={emblaRef}
+        overflow="hidden"
+        w="full"
+        mr="2rem"
+        paddingLeft="2rem"
+        textAlign="start"
+      >
+        <Flex display="flex" w="full" alignContent="end">
+          <Text flex="0 0 100%">teste 1</Text>
+          <Text flex="0 0 100%"> teste 2</Text>
+
+          
+        </Flex>
+      </Flex> */}
       <Flex bgColor="#011735" minHeight="100vh" direction="column" p="1rem">
         <Header />
-        <Flex direction="column" color="white" p="0.5rem" data-aos="fade-right">
-          <Text fontSize="14px" fontWeight="medium">
-            Balanço disponível
-          </Text>
-          <Flex align="center">
-            <Text fontSize="28px" fontWeight="bold" mr="0.5rem">
-              - R$1.000,00
-            </Text>
-            <GoTriangleDown size="25px" color="red" />
+
+        <Flex
+          direction="column"
+          color="white"
+          p="0.5rem"
+          data-aos="fade-right"
+          ref={emblaRef}
+          overflow="hidden"
+        >
+          <Flex display="flex" w="full">
+            <Flex direction="column" flex="0 0 100%">
+              <Text fontSize="14px" fontWeight="medium">
+                Balanço disponível
+              </Text>
+              <Flex align="center">
+                <Text fontSize="28px" fontWeight="bold" mr="0.5rem">
+                  - R$1.000,00
+                </Text>
+                <GoTriangleDown size="25px" color="red" />
+                <Flex ml="1rem" mb="1rem">
+                  <Lottie options={defaultOptions} height={50} width={80} />
+                </Flex>{" "}
+              </Flex>
+            </Flex>
+            <Flex flex="0 0 100%" h="70px" paddingLeft="5rem">
+              <Doughnut data={data} />
+
+              <Flex
+                justify="space-evenly"
+                direction="column"
+                fontWeight="bold"
+                fontSize="12px"
+                ml="1rem"
+              >
+                <Flex align="center">
+                  <Flex
+                    w="10px"
+                    h="10px"
+                    bgColor="green"
+                    mr="5px"
+                    borderRadius="2px"
+                  />
+                  Seu total de receitas
+                </Flex>
+                <Flex align="center">
+                  <Flex
+                    w="10px"
+                    h="10px"
+                    bgColor="red"
+                    mr="5px"
+                    borderRadius="2px"
+                  />
+                  Seu total de despesas
+                </Flex>
+                <Flex align="center">
+                  <Flex
+                    w="10px"
+                    h="10px"
+                    bgColor="blue"
+                    mr="5px"
+                    borderRadius="2px"
+                  />
+                  Seus totais
+                </Flex>
+              </Flex>
+            </Flex>
           </Flex>
         </Flex>
         <Flex
