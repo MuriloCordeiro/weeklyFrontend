@@ -66,7 +66,7 @@ export default function HomeLogin() {
               {/* <NavBar /> */}
 
               <Flex direction="column" align="center" p="1rem">
-                <Lottie options={defaultOptions} />
+                {/* <Lottie options={defaultOptions} /> */}
                 <Text
                   mt="2rem"
                   fontSize="24px"

@@ -89,9 +89,9 @@ export default function LayoutMob(props: any) {
                   - R$1.000,00
                 </Text>
                 <GoTriangleDown size="25px" color="red" />
-                <Flex ml="1rem" mb="1rem">
+                {/* <Flex ml="1rem" mb="1rem">
                   <Lottie options={defaultOptions} height={50} width={80} />
-                </Flex>{" "}
+                </Flex>{" "} */}
               </Flex>
             </Flex>
             <Flex flex="0 0 100%" h="70px" paddingLeft="5rem">
