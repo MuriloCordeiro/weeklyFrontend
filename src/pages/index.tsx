@@ -88,7 +88,7 @@ export default function HomeLogin() {
                   <InputLeftElement>
                     <BsShieldLock color="gray.300" />
                   </InputLeftElement>
-                  <Input placeholder="Digite sua senha." variant="solid" />
+                  <Input placeholder="Digite sua senha. " variant="solid" />
                 </InputGroup>
 
                 <Flex justify="space-evenly" w="full" mt="1rem">
