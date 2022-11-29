@@ -10,7 +10,7 @@ import { Chart, ArcElement } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 // @ts-ignore
 import Lottie from "react-lottie";
-import animationData from "../../animation.json";
+import animationData from "../../animations/swipe.json";
 
 Chart.register(ArcElement);
 export default function LayoutMob(props: any) {
