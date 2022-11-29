@@ -8,8 +8,6 @@ import useEmblaCarousel from "embla-carousel-react";
 import { useEffect, useState } from "react";
 import { Chart, ArcElement } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
-// @ts-ignore
-import Lottie from "react-lottie";
 import animationData from "../../animations/swipe.json";
 
 Chart.register(ArcElement);

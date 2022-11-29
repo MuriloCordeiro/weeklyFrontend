@@ -9,11 +9,11 @@ import {
   InputLeftElement,
   InputRightElement,
   Stack,
+  Image,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import LayoutDesk from "../components/Layouts/layoutDesktop";
-// @ts-ignore
-import Lottie from "react-lottie";
+// import Lottie from "react-lottie";
 import animationData from "../animations/login.json";
 
 import { AiOutlineUser, AiOutlineEyeInvisible } from "react-icons/ai";
@@ -67,8 +67,8 @@ export default function HomeLogin() {
 
               <Flex direction="column" align="center" p="1rem">
                 {/* <Lottie options={defaultOptions} /> */}
+                <Image src="/Image/bgimagelogin.gif" alt="" />
                 <Text
-                  mt="2rem"
                   fontSize="24px"
                   color="white"
                   fontWeight="bold"
