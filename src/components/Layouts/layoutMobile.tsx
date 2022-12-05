@@ -6,11 +6,11 @@ import "aos/dist/aos.css";
 import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
 import useEmblaCarousel from "embla-carousel-react";
 import { useEffect, useState } from "react";
-import { Chart, ArcElement } from "chart.js";
+// import { Chart, ArcElement } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import animationData from "../../animations/swipe.json";
 
-Chart.register(ArcElement);
+// Chart.register(ArcElement);
 export default function LayoutMob(props: any) {
   setTimeout(() => {
     Aos.init({ duration: 1500 });

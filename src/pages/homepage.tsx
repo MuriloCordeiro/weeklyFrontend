@@ -29,11 +29,11 @@ import { TfiStatsDown, TfiStatsUp, TfiClipboard } from "react-icons/tfi";
 import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
 import { useState } from "react";
 
-import { Chart, ArcElement } from "chart.js";
+// import { Chart, ArcElement } from "chart.js";
 
 import { Doughnut } from "react-chartjs-2";
 
-Chart.register(ArcElement);
+// Chart.register(ArcElement);
 
 // import navStyles from "../components/mainNavBar/navBar.module.css";
 

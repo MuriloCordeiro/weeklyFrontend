@@ -10,6 +10,8 @@ import {
   InputRightElement,
   Stack,
   Image,
+  useToast,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import LayoutDesk from "../components/Layouts/layoutDesktop";
@@ -18,10 +20,22 @@ import animationData from "../animations/login.json";
 
 import { AiOutlineUser, AiOutlineEyeInvisible } from "react-icons/ai";
 import { BsShieldLock } from "react-icons/bs";
+import { useAuth } from "../contexts/AuthContext";
+import { useState } from "react";
+import SignUpPage from "../components/SignUp";
 
 export default function HomeLogin() {
   const Router = useRouter();
+  const { signInEmailPassword } = useAuth();
 
+  // const { createUserWithEmailAndPassword } = useAuth();
+  const toast = useToast({
+    duration: 5000,
+    isClosable: true,
+  });
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>();
   const isWideVersion = useBreakpointValue({
     base: true,
     sm: true,
@@ -38,10 +52,58 @@ export default function HomeLogin() {
     },
   };
 
+  // async function createNewUser(newemail: string, newpasword: string) {
+  //   const response = await createUserWithEmailAndPassword(
+  //     newemail,
+  //     newpassword
+  //   );
+  // }
+
+  // async function submitLogin(email: string, password: string) {
+  //   setIsLoading(true);
+  //   if (email == "" || null) {
+  //     toast.closeAll();
+  //     toast({
+  //       title: "Verifique o e-mail",
+  //       description: "O campo de e-mail esta vazio.",
+  //       status: "error",
+  //     });
+  //     setIsLoading(false);
+  //   } else if (password == "" || null) {
+  //     toast.closeAll();
+  //     toast({
+  //       title: "Verifique a senha.",
+  //       description: "O campo de senha esta vazio.",
+  //       status: "error",
+  //     });
+  //     setIsLoading(false);
+  //   } else {
+  //     const response = await signInEmailPassword(email, password);
+  //     if (response !== undefined) {
+  //       toast.closeAll();
+  //       toast({
+  //         title: "Dados inválidos",
+  //         description: "Email ou senha incorretos",
+  //         status: "error",
+  //       });
+  //     } else {
+  //       toast.closeAll();
+  //       localStorage.setItem("email", email);
+  //       toast({
+  //         title: "Login realizado com sucesso",
+  //         description: "Bem-vindo à Dashboard da Pneufree!",
+  //         status: "success",
+  //       });
+  //     }
+  //     setIsLoading(false);
+  //   }
+  // }
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
       {isWideVersion ? (
         <>
+          <SignUpPage isOpen={isOpen} onClose={onClose} />
           <Flex
             bgColor="#011735"
             minHeight="100vh"
@@ -102,6 +164,7 @@ export default function HomeLogin() {
                     variant="outline"
                     color="white"
                     w="125px"
+                    onClick={onOpen}
                   >
                     Cadastre-se
                   </Button>
