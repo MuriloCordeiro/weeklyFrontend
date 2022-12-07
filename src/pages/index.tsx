@@ -20,7 +20,13 @@ import animationData from "../animations/login.json";
 
 import { AiOutlineUser, AiOutlineEyeInvisible } from "react-icons/ai";
 import { BsShieldLock } from "react-icons/bs";
-import { signInWithPopup, GoogleAuthProvider, User } from "firebase/auth";
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  User,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { auth } from "../services/firebase";
 import { useState } from "react";
 import SignUpPage from "../components/SignUp";
@@ -35,8 +41,8 @@ export default function HomeLogin() {
     duration: 5000,
     isClosable: true,
   });
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [email, setEmail] = useState<string>("murilo@hotmail.com");
+  const [password, setPassword] = useState<string>("123456");
   const [isLoading, setIsLoading] = useState<boolean>();
   const isWideVersion = useBreakpointValue({
     base: true,
@@ -70,6 +76,17 @@ export default function HomeLogin() {
         console.log(error);
       });
   }
+
+  function test() {
+    // const emailprovider = new createUserWithEmailAndPassword(email, password);
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   return (
     <>
       {isWideVersion ? (
@@ -90,6 +107,7 @@ export default function HomeLogin() {
               {user.displayName}
             </Text>
             {/* {user.photoURL && <img src={user.photoURL} alt="Foto do usuário" />} */}
+            <Button onClick={test}>criaremail</Button>
 
             <Flex
               justify="center"
