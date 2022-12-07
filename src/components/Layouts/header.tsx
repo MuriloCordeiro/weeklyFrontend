@@ -56,7 +56,7 @@ export default function Header() {
             w="60px"
             h="60px"
             borderRadius="5px"
-            src={user && user?.photoURL}
+            // src={user && user?.photoURL}
             alt="Imagem de perfil"
           />
 
