@@ -57,7 +57,7 @@ export default function Header() {
             h="60px"
             borderRadius="5px"
             src={user?.photoURL}
-            alt="teste"
+            alt="Imagem de perfil"
           />
 
           {/* <img src={user?.photoURL} alt="teste" /> */}
