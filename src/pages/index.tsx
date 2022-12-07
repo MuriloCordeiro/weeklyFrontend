@@ -41,8 +41,8 @@ export default function HomeLogin() {
     duration: 5000,
     isClosable: true,
   });
-  const [email, setEmail] = useState<string>("julio@hotmail.com");
-  const [password, setPassword] = useState<string>("12345655");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>();
   const isWideVersion = useBreakpointValue({
     base: true,
@@ -81,7 +81,7 @@ export default function HomeLogin() {
     // const emailprovider = new createUserWithEmailAndPassword(email, password);
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
-        window.alert("deu boa");
+        // window.alert("deu boa");
         console.log("result", result);
       })
       .catch((error) => {
