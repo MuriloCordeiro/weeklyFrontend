@@ -20,13 +20,15 @@ import animationData from "../animations/login.json";
 
 import { AiOutlineUser, AiOutlineEyeInvisible } from "react-icons/ai";
 import { BsShieldLock } from "react-icons/bs";
-import { useAuth } from "../contexts/AuthContext";
+import { signInWithPopup, GoogleAuthProvider, User } from "firebase/auth";
+import { auth } from "../services/firebase";
 import { useState } from "react";
 import SignUpPage from "../components/SignUp";
+// import { useAuth } from "../contexts/AuthContext";
 
 export default function HomeLogin() {
   const Router = useRouter();
-  const { signInEmailPassword } = useAuth();
+  // const { signInEmailPassword } = useAuth();
 
   // const { createUserWithEmailAndPassword } = useAuth();
   const toast = useToast({
@@ -52,58 +54,27 @@ export default function HomeLogin() {
     },
   };
 
-  // async function createNewUser(newemail: string, newpasword: string) {
-  //   const response = await createUserWithEmailAndPassword(
-  //     newemail,
-  //     newpassword
-  //   );
-  // }
-
-  // async function submitLogin(email: string, password: string) {
-  //   setIsLoading(true);
-  //   if (email == "" || null) {
-  //     toast.closeAll();
-  //     toast({
-  //       title: "Verifique o e-mail",
-  //       description: "O campo de e-mail esta vazio.",
-  //       status: "error",
-  //     });
-  //     setIsLoading(false);
-  //   } else if (password == "" || null) {
-  //     toast.closeAll();
-  //     toast({
-  //       title: "Verifique a senha.",
-  //       description: "O campo de senha esta vazio.",
-  //       status: "error",
-  //     });
-  //     setIsLoading(false);
-  //   } else {
-  //     const response = await signInEmailPassword(email, password);
-  //     if (response !== undefined) {
-  //       toast.closeAll();
-  //       toast({
-  //         title: "Dados inválidos",
-  //         description: "Email ou senha incorretos",
-  //         status: "error",
-  //       });
-  //     } else {
-  //       toast.closeAll();
-  //       localStorage.setItem("email", email);
-  //       toast({
-  //         title: "Login realizado com sucesso",
-  //         description: "Bem-vindo à Dashboard da Pneufree!",
-  //         status: "success",
-  //       });
-  //     }
-  //     setIsLoading(false);
-  //   }
-  // }
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const [user, setUser] = useState<User>({} as User);
+
+  function signInWithGoogle() {
+    const provider = new GoogleAuthProvider();
+
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log(result.user);
+        setUser(result.user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   return (
     <>
       {isWideVersion ? (
         <>
-          <SignUpPage isOpen={isOpen} onClose={onClose} />
+          {/* <SignUpPage isOpen={isOpen} onClose={onClose} /> */}
           <Flex
             bgColor="#011735"
             minHeight="100vh"
@@ -111,6 +82,15 @@ export default function HomeLogin() {
             p="1rem"
             justify="center"
           >
+            <Button onClick={signInWithGoogle}>teste</Button>
+            <Text fontSize="32px" color="white">
+              {user.email}
+            </Text>
+            <Text fontSize="32px" fontWeight="bold" color="white">
+              {user.displayName}
+            </Text>
+            {/* {user.photoURL && <img src={user.photoURL} alt="Foto do usuário" />} */}
+
             <Flex
               justify="center"
               // data-aos="fade-up"
