@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Flex,
   Button,
@@ -27,11 +28,11 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { BsPencilSquare, BsStack } from "react-icons/bs";
 import { TfiStatsDown, TfiStatsUp, TfiClipboard } from "react-icons/tfi";
 import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
-import { useState } from "react";
+import { useAuth } from "../contexts/AuthContext";
 
 // import { Chart, ArcElement } from "chart.js";
 
-import { Doughnut } from "react-chartjs-2";
+// import { Doughnut } from "react-chartjs-2";
 
 // Chart.register(ArcElement);
 

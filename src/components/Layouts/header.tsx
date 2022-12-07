@@ -21,12 +21,16 @@ import {
   PopoverArrow,
   PopoverCloseButton,
   PopoverAnchor,
+  Image,
 } from "@chakra-ui/react";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import { useAuth } from "../../contexts/AuthContext";
 import SideBar from "../SidebarNav";
 
 export default function Header() {
+  const { user, signInWithGoogle } = useAuth();
+
   setTimeout(() => {
     Aos.init({ duration: 1200 });
   }, 1500);
@@ -47,10 +51,27 @@ export default function Header() {
     >
       <Wrap align="center">
         <WrapItem>
-          <Avatar name="Dan Abrahmov" src="/Image/murilo.jpg" />
+          <Image
+            mr="1rem"
+            w="60px"
+            h="60px"
+            borderRadius="5px"
+            src={user?.photoURL}
+            alt="teste"
+          />
+
+          {/* <img src={user?.photoURL} alt="teste" /> */}
+          {/* <Image
+            src="https://lh3.googleusercontent.com/a/AEdFTp5YbPOffZr-h8Lc8-VIcScd6MCdJ0oDvbGQdWJ0uA=s96-c"
+            alt=""
+          /> */}
+          {/* <Image
+            src="https://lh3.googleusercontent.com/a/AEdFTp5YbPOffZr-h8Lc8-VIcScd6MCdJ0oDvbGQdWJ0uA=s96-c"
+            alt=""
+          /> */}
         </WrapItem>
         <Text color="white" fontWeight="bold" fontSize="18px">
-          Bem-vindo, Murilo
+          Bem-vindo, <br /> {user?.displayName}
         </Text>
       </Wrap>
       <Flex

@@ -17,7 +17,7 @@ import { useRouter } from "next/router";
 import LayoutDesk from "../components/Layouts/layoutDesktop";
 // import Lottie from "react-lottie";
 import animationData from "../animations/login.json";
-
+import { useAuth } from "../contexts/AuthContext";
 import { AiOutlineUser, AiOutlineEyeInvisible } from "react-icons/ai";
 import { BsShieldLock } from "react-icons/bs";
 import {
@@ -31,7 +31,6 @@ import { auth } from "../services/firebase";
 import { useState } from "react";
 import SignUpPage from "../components/SignUp";
 // import { useAuth } from "../contexts/AuthContext";
-
 export default function HomeLogin() {
   const Router = useRouter();
   // const { signInEmailPassword } = useAuth();
@@ -62,20 +61,20 @@ export default function HomeLogin() {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const [user, setUser] = useState<User>({} as User);
+  // const [user, setUser] = useState<User>({} as User);
 
-  function signInWithGoogle() {
-    const provider = new GoogleAuthProvider();
+  // function signInWithGoogle() {
+  //   const provider = new GoogleAuthProvider();
 
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        console.log(result.user);
-        setUser(result.user);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+  //   signInWithPopup(auth, provider)
+  //     .then((result) => {
+  //       console.log(result.user);
+  //       setUser(result.user);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }
 
   function handleCreateUser() {
     // const emailprovider = new createUserWithEmailAndPassword(email, password);
@@ -89,6 +88,8 @@ export default function HomeLogin() {
         console.log("error", error);
       });
   }
+  const { user, signInWithGoogle } = useAuth();
+
   return (
     <>
       {isWideVersion ? (
@@ -103,10 +104,10 @@ export default function HomeLogin() {
           >
             {/* <Button onClick={signInWithGoogle}>teste</Button> */}
             <Text fontSize="32px" color="white">
-              {user.email}
+              {user?.email}
             </Text>
             <Text fontSize="32px" fontWeight="bold" color="white">
-              {user.displayName}
+              {user?.displayName}
             </Text>
             {/* {user.photoURL && <img src={user.photoURL} alt="Foto do usuário" />} */}
             {/* <Button onClick={test}>criaremail</Button> */}

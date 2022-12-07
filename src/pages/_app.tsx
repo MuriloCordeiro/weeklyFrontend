@@ -4,6 +4,7 @@ import Layout from "../components/Layouts/layoutMobile";
 import Footer from "../components/mainNavBar/navBar";
 import Header from "../components/Layouts/header";
 import { defaultTheme } from "../../styles/theme.ts";
+import { AuthProvider } from "../contexts/AuthContext";
 
 // const breakpoints = {
 //   base: "0rem",
@@ -22,7 +23,9 @@ import { defaultTheme } from "../../styles/theme.ts";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={defaultTheme}>
-      <Component {...pageProps} />
+      <AuthProvider>
+        <Component {...pageProps} />
+      </AuthProvider>
     </ChakraProvider>
   );
 }
