@@ -41,8 +41,8 @@ export default function HomeLogin() {
     duration: 5000,
     isClosable: true,
   });
-  const [email, setEmail] = useState<string>("murilo@hotmail.com");
-  const [password, setPassword] = useState<string>("123456");
+  const [email, setEmail] = useState<string>("julio@hotmail.com");
+  const [password, setPassword] = useState<string>("12345655");
   const [isLoading, setIsLoading] = useState<boolean>();
   const isWideVersion = useBreakpointValue({
     base: true,
@@ -77,14 +77,16 @@ export default function HomeLogin() {
       });
   }
 
-  function test() {
+  function handleCreateUser() {
     // const emailprovider = new createUserWithEmailAndPassword(email, password);
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
-        console.log(result);
+        window.alert("deu boa");
+        console.log("result", result);
       })
       .catch((error) => {
-        console.log(error);
+        // window.alert("não deu boa");
+        console.log("error", error);
       });
   }
   return (
@@ -99,7 +101,7 @@ export default function HomeLogin() {
             p="1rem"
             justify="center"
           >
-            <Button onClick={signInWithGoogle}>teste</Button>
+            {/* <Button onClick={signInWithGoogle}>teste</Button> */}
             <Text fontSize="32px" color="white">
               {user.email}
             </Text>
@@ -107,7 +109,7 @@ export default function HomeLogin() {
               {user.displayName}
             </Text>
             {/* {user.photoURL && <img src={user.photoURL} alt="Foto do usuário" />} */}
-            <Button onClick={test}>criaremail</Button>
+            {/* <Button onClick={test}>criaremail</Button> */}
 
             <Flex
               justify="center"
@@ -138,20 +140,38 @@ export default function HomeLogin() {
                   <br /> Seu Controle de Gastos
                 </Text>
 
-                <InputGroup mt="2rem" w="80%" variant="solid" size="md">
+                <InputGroup mt="2rem" w="full" variant="solid" size="md">
                   <InputLeftElement>
                     <AiOutlineUser color="gray.300" />
                   </InputLeftElement>
-                  <Input placeholder="Digite seu email." />
+                  <Input
+                    placeholder="Digite seu email."
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
+                  />
                 </InputGroup>
-                <InputGroup w="80%" variant="solid" size="md" mt="1rem">
+                <InputGroup w="full" variant="solid" size="md" mt="1rem">
                   <InputLeftElement>
                     <BsShieldLock color="gray.300" />
                   </InputLeftElement>
-                  <Input placeholder="Digite sua senha. " variant="solid" />
+                  <Input
+                    placeholder="Digite sua senha. "
+                    variant="solid"
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
+                  />
                 </InputGroup>
 
-                <Flex justify="space-evenly" w="full" mt="1rem">
+                <Flex
+                  justify="space-evenly"
+                  w="full"
+                  mt="1rem"
+                  direction="column"
+                >
                   {/* <Button mt="1rem" size="sm" w="100px">
                     Cadastre-se
                   </Button> */}
@@ -161,10 +181,8 @@ export default function HomeLogin() {
                     // bgColor="#011735"
                     variant="outline"
                     color="white"
-                    w="125px"
-                    onClick={onOpen}
                   >
-                    Cadastre-se
+                    Entrar
                   </Button>
                   <Button
                     mt="1rem"
@@ -172,9 +190,20 @@ export default function HomeLogin() {
                     // bgColor="#011735"
                     variant="outline"
                     color="white"
-                    w="125px"
+                    onClick={signInWithGoogle}
                   >
-                    Entrar
+                    Entrar com google
+                  </Button>
+                  <Button
+                    mt="1rem"
+                    borderRadius="10px"
+                    // bgColor="#011735"
+                    variant="outline"
+                    color="white"
+                    onClick={handleCreateUser}
+                    // onClick={onOpen}
+                  >
+                    Criar uma conta
                   </Button>
                 </Flex>
               </Flex>
