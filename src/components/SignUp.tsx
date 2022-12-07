@@ -19,14 +19,10 @@ type SignUpModal = {
 };
 
 export default function SignUpPage({ isOpen, onClose }: SignUpModal) {
-  const { signup } = useAuth();
+  // const { signup } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  function submit(email, password) {
-    signup;
-  }
 
   console.log("email", email, "password", password);
   return (
@@ -54,7 +50,7 @@ export default function SignUpPage({ isOpen, onClose }: SignUpModal) {
               }}
             />
 
-            <Button onClick={submit}>teste</Button>
+            {/* <Button onClick={submit}>teste</Button> */}
           </ModalBody>
 
           <ModalFooter>
