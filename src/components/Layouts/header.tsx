@@ -21,7 +21,6 @@ import {
   PopoverArrow,
   PopoverCloseButton,
   PopoverAnchor,
-  Image,
 } from "@chakra-ui/react";
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -51,27 +50,10 @@ export default function Header() {
     >
       <Wrap align="center">
         <WrapItem>
-          <Image
-            mr="1rem"
-            w="60px"
-            h="60px"
-            borderRadius="5px"
-            // src={user && user?.photoURL}
-            alt="Imagem de perfil"
-          />
-
-          {/* <img src={user?.photoURL} alt="teste" /> */}
-          {/* <Image
-            src="https://lh3.googleusercontent.com/a/AEdFTp5YbPOffZr-h8Lc8-VIcScd6MCdJ0oDvbGQdWJ0uA=s96-c"
-            alt=""
-          /> */}
-          {/* <Image
-            src="https://lh3.googleusercontent.com/a/AEdFTp5YbPOffZr-h8Lc8-VIcScd6MCdJ0oDvbGQdWJ0uA=s96-c"
-            alt=""
-          /> */}
+          {/* <Avatar name="Dan Abrahmov" src={user?.photoURL} /> */}
         </WrapItem>
         <Text color="white" fontWeight="bold" fontSize="18px">
-          Bem-vindo, <br /> {user?.displayName}
+          Bem-vindo, {user?.displayName}
         </Text>
       </Wrap>
       <Flex

@@ -6,10 +6,11 @@ import "aos/dist/aos.css";
 import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
 import useEmblaCarousel from "embla-carousel-react";
 import { useEffect, useState } from "react";
+import { useAuth } from "../../contexts/AuthContext";
 // import { Chart, ArcElement } from "chart.js";
 // import { Doughnut } from "react-chartjs-2";
 import animationData from "../../animations/swipe.json";
-
+import Router, { useRouter } from "next/router";
 // Chart.register(ArcElement);
 export default function LayoutMob(props: any) {
   setTimeout(() => {
@@ -18,7 +19,16 @@ export default function LayoutMob(props: any) {
 
   const [emblaRef] = useEmblaCarousel();
   const [teste, setTeste] = useState(300);
+  const { user, signInWithGoogle, isAuthenticated } = useAuth();
+  useEffect(() => {
+    {
+      isAuthenticated ? "" : Router.push("/");
+    }
+  }, [isAuthenticated]);
 
+  {
+    console.log("isAuthenticated", isAuthenticated);
+  }
   const data = {
     options: {
       title: {

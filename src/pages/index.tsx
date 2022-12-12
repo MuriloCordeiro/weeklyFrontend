@@ -25,7 +25,6 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   User,
-  signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../services/firebase";
 import { useState } from "react";
@@ -58,7 +57,7 @@ export default function HomeLogin() {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
-
+  const { user, signInWithGoogle, signInEmailPassword } = useAuth();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   // const [user, setUser] = useState<User>({} as User);
@@ -88,12 +87,21 @@ export default function HomeLogin() {
         console.log("error", error);
       });
   }
-  const { user, signInWithGoogle } = useAuth();
+
+  async function handleLogin(email: string, password: string) {
+    const response = await signInEmailPassword(email, password);
+    if (response) {
+      console.log("deu boa", response);
+    } else {
+      console.log("não deu boa", response);
+    }
+  }
 
   return (
     <>
       {isWideVersion ? (
         <>
+          <Button>vai</Button>
           {/* <SignUpPage isOpen={isOpen} onClose={onClose} /> */}
           <Flex
             bgColor="#011735"
@@ -182,6 +190,9 @@ export default function HomeLogin() {
                     // bgColor="#011735"
                     variant="outline"
                     color="white"
+                    onClick={() => {
+                      handleLogin(email, password);
+                    }}
                   >
                     Entrar
                   </Button>
