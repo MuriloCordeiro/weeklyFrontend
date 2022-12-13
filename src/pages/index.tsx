@@ -28,7 +28,8 @@ import {
 } from "firebase/auth";
 import { auth } from "../services/firebase";
 import { useState } from "react";
-import SignUpPage from "../components/SignUp";
+
+import SignUp from "../components/SignUp";
 // import { useAuth } from "../contexts/AuthContext";
 export default function HomeLogin() {
   const Router = useRouter();
@@ -75,19 +76,6 @@ export default function HomeLogin() {
   //     });
   // }
 
-  function handleCreateUser() {
-    // const emailprovider = new createUserWithEmailAndPassword(email, password);
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((result) => {
-        // window.alert("deu boa");
-        console.log("result", result);
-      })
-      .catch((error) => {
-        // window.alert("não deu boa");
-        console.log("error", error);
-      });
-  }
-
   async function handleLogin(email: string, password: string) {
     const response = await signInEmailPassword(email, password);
     if (response) {
@@ -101,7 +89,6 @@ export default function HomeLogin() {
     <>
       {isWideVersion ? (
         <>
-          <Button>vai</Button>
           {/* <SignUpPage isOpen={isOpen} onClose={onClose} /> */}
           <Flex
             bgColor="#011735"
@@ -206,17 +193,21 @@ export default function HomeLogin() {
                   >
                     Entrar com google
                   </Button>
+
+                  {/* const { isOpen, onOpen, onClose } = useDisclosure(); */}
                   <Button
                     mt="1rem"
                     borderRadius="10px"
                     // bgColor="#011735"
                     variant="outline"
                     color="white"
-                    onClick={handleCreateUser}
-                    // onClick={onOpen}
+                    // onClick={handleCreateUser}
+                    onClick={onOpen}
                   >
                     Criar uma conta
                   </Button>
+
+                  <SignUp isOpen={isOpen} onClose={onClose} />
                 </Flex>
               </Flex>
             </Flex>

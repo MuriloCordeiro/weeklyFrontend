@@ -61,10 +61,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
       .then((result) => {
         console.log(result.user.uid);
         setUser(result.user);
-        if (result) {
+        if (user) {
           // setToken(result.user.uid);
           setIsAuthenticated(true);
-          setSessionCookie(true);
+          setCookie(undefined, CLIENT_TOKEN, user.uid, {
+            maxAge: COOKIE_MAX_AGE,
+            path: "/",
+          });
           Router.push("/homepage");
         } else {
           setIsAuthenticated(false);
@@ -78,23 +81,30 @@ export function AuthProvider({ children }: AuthProviderProps) {
   function signInEmailPassword(email: string, password: string) {
     signInWithEmailAndPassword(auth, email, password)
       .then((result) => {
-        console.log("senha e email", result);
+        setUser(result.user);
+        if (user) {
+          setIsAuthenticated(true);
+          setCookie(undefined, CLIENT_TOKEN, user.uid, {
+            maxAge: COOKIE_MAX_AGE,
+            path: "/",
+          });
+          Router.push("/homepage");
+        } else {
+          setIsAuthenticated(false);
+        }
       })
       .catch((error) => {
         console.log("erroooor", error);
       });
   }
 
-  function setSessionCookie(isAuthenticated: boolean) {
-    if (isAuthenticated) {
-      setCookie(undefined, CLIENT_TOKEN, isAuthenticated.toString(), {
-        maxAge: COOKIE_MAX_AGE,
-        path: "/",
-      });
-    } else {
-      destroyCookie(undefined, CLIENT_TOKEN);
-    }
-  }
+  // function setSessionCookie(isAuthenticated: boolean) {
+  //   if (isAuthenticated) {
+
+  //   } else {
+  //     destroyCookie(undefined, CLIENT_TOKEN);
+  //   }
+  // }
 
   return (
     <AuthContext.Provider
