@@ -88,7 +88,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
             maxAge: COOKIE_MAX_AGE,
             path: "/",
           });
-          // Router.push("/homepage");
+          Router.push("/homepage");
         } else {
           setIsAuthenticated(false);
         }
