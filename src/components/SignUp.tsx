@@ -11,7 +11,7 @@ import {
   Input,
   Text,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import {
   signInWithPopup,
@@ -29,8 +29,12 @@ type SignUpModal = {
 export default function SignUpPage({ isOpen, onClose }: SignUpModal) {
   // const { signup } = useAuth();
   const { user, signInWithGoogle, signInEmailPassword } = useAuth();
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  ("");
+  const [isFilled, setIsFilled] = useState<boolean>(false);
 
   function handleCreateUser() {
     createUserWithEmailAndPassword(auth, email, password)
@@ -44,6 +48,30 @@ export default function SignUpPage({ isOpen, onClose }: SignUpModal) {
       });
   }
 
+  function handleInputs() {
+    if (name.length > 1) {
+      setIsFilled(true);
+    } else if (email.length > 1) {
+      setIsFilled(true);
+    } else if (password.length > 1) {
+      setIsFilled(true);
+    } else {
+      setIsFilled(false);
+      window.alert("preencha");
+    }
+    if (name.length > 1 && email.length > 1 && password.length > 1) {
+      handleCreateUser;
+    }
+  }
+
+  // window.alert("preencha");
+  // if (isFilled === false) {
+  //   window.alert("preencha");
+  // }
+  // useEffect(() => {
+
+  // }, [isFilled]);
+
   console.log("email", email, "password", password);
   return (
     <>
@@ -51,13 +79,28 @@ export default function SignUpPage({ isOpen, onClose }: SignUpModal) {
         <Modal isOpen={isOpen} onClose={onClose} size="xl">
           <ModalOverlay />
           <ModalContent m="1rem" alignSelf="center" bgColor="#021C45">
-            <ModalHeader>Modal Title</ModalHeader>
+            <ModalHeader color="white">Criar novo usuário:</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
               <Flex direction="column">
-                <Text>Digite seu email:</Text>
+                <Text color="white">Nome:</Text>
                 <Input
-                  placeholder="Email"
+                  borderRadius="10px"
+                  variant="solid"
+                  placeholder="Digite seu nome aqui."
+                  value={name}
+                  onChange={(e) => {
+                    setName(e.currentTarget.value);
+                  }}
+                />
+              </Flex>
+              <Flex direction="column" mt="1rem">
+                <Text color="white">Email:</Text>
+                <Input
+                  // isDisabled={isFilled}
+                  borderRadius="10px"
+                  variant="solid"
+                  placeholder="Digite seu email aqui."
                   value={email}
                   onChange={(e) => {
                     setEmail(e.currentTarget.value);
@@ -65,35 +108,57 @@ export default function SignUpPage({ isOpen, onClose }: SignUpModal) {
                 />
               </Flex>
               <Flex direction="column" mt="1rem">
-                <Text>Digite sua senha:</Text>
+                <Text color="white">Digite sua senha:</Text>
                 <Input
-                  placeholder="Senha"
+                  borderRadius="10px"
+                  variant="solid"
+                  placeholder="Digite sua senha aqui."
                   value={password}
                   onChange={(e) => {
                     setPassword(e.currentTarget.value);
                   }}
                 />
               </Flex>
-              {/* <Flex direction="column" mt="1rem">
-                <Text>Confirme sua senha:</Text>
+              <Flex direction="column" mt="1rem">
+                <Text color="white">
+                  {password.length === confirmPassword.length
+                    ? "Confirme sua senha:"
+                    : "A senha deve ser igual"}
+                </Text>
                 <Input
-                  placeholder="Senha"
-                  value={password}
+                  bgColor={
+                    password.length === confirmPassword.length
+                      ? "white"
+                      : "red.200"
+                  }
+                  borderRadius="10px"
+                  variant="solid"
+                  placeholder="Confirme sua senha aqui."
+                  value={confirmPassword}
                   onChange={(e) => {
-                    setPassword(e.currentTarget.value);
+                    setConfirmPassword(e.currentTarget.value);
                   }}
                 />
-              </Flex> */}
+              </Flex>
               {/* <Button onClick={submit}>teste</Button> */}
             </ModalBody>
 
             <ModalFooter>
-              <Button colorScheme="blue" mr={3} onClick={onClose}>
-                Close
-              </Button>
-              <Button variant="ghost" onClick={handleCreateUser}>
-                Confirmar
-              </Button>
+              <Flex justify="center" w="full">
+                <Button colorScheme="red" mr={3} onClick={onClose}>
+                  Cancelar
+                </Button>
+                <Button
+                  isDisabled={
+                    password.length === confirmPassword.length ? false : true
+                  }
+                  colorScheme="green"
+                  onClick={handleInputs}
+                  // onClick={handleCreateUser}
+                >
+                  Confirmar
+                </Button>
+              </Flex>
             </ModalFooter>
           </ModalContent>
         </Modal>
