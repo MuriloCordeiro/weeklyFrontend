@@ -31,6 +31,7 @@ import { auth } from "../services/firebase";
 import { useState } from "react";
 
 import SignUp from "../components/SignUp";
+import { parseCookies } from "nookies";
 // import { useAuth } from "../contexts/AuthContext";
 export default function HomeLogin() {
   const Router = useRouter();
@@ -43,7 +44,7 @@ export default function HomeLogin() {
   });
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [isLoading, setIsLoading] = useState<boolean>();
+  const [loading, setLoading] = useState<boolean>();
   const isWideVersion = useBreakpointValue({
     base: true,
     sm: true,
@@ -59,7 +60,8 @@ export default function HomeLogin() {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
-  const { user, signInWithGoogle, signInEmailPassword } = useAuth();
+  const { user, signInWithGoogle, signInEmailPassword, isAuthenticated } =
+    useAuth();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const Toast = useToast({
     position: "bottom",
@@ -83,28 +85,36 @@ export default function HomeLogin() {
   //       console.log(error);
   //     });
   // }
+  const CLIENT_TOKEN: any = process.env.NEXT_PUBLIC_CLIENT_TOKEN;
+
+  const cookies = parseCookies();
+
+  const userToken = cookies[CLIENT_TOKEN];
 
   async function handleLogin(email: string, password: string) {
-    const response = await signInEmailPassword(email, password);
-    if (response) {
-      Toast.closeAll();
-      Toast({
-        title: "Usuário criado com sucesso!",
-        status: "success",
-        containerStyle: {
-          color: "white",
-        },
-      });
-    } else {
-      Toast.closeAll();
-      Toast({
-        title: "Usuário inválido.",
-        status: "error",
-        containerStyle: {
-          color: "white",
-        },
-      });
-    }
+    // setLoading(true);
+    await signInEmailPassword(email, password);
+
+    // if (!userToken) {
+    //   Toast.closeAll();
+    //   Toast({
+    //     title: "Deu ruim.",
+    //     status: "error",
+    //     containerStyle: {
+    //       color: "white",
+    //     },
+    //   });
+    // } else {
+    //   Toast.closeAll();
+    //   Toast({
+    //     title: "Deu boa.",
+    //     status: "success",
+    //     containerStyle: {
+    //       color: "white",
+    //     },
+    //   });
+    // }
+    // setLoading(false);
   }
 
   return (
@@ -194,6 +204,7 @@ export default function HomeLogin() {
                     Cadastre-se
                   </Button> */}
                   <Button
+                    isLoading={loading}
                     mt="1rem"
                     borderRadius="10px"
                     // bgColor="#011735"
