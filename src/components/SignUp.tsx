@@ -10,6 +10,7 @@ import {
   Button,
   Input,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
@@ -20,6 +21,7 @@ import {
   User,
 } from "firebase/auth";
 import { auth } from "../services/firebase";
+import { useRouter } from "next/router";
 
 type SignUpModal = {
   isOpen: boolean;
@@ -28,6 +30,15 @@ type SignUpModal = {
 
 export default function SignUpPage({ isOpen, onClose }: SignUpModal) {
   // const { signup } = useAuth();
+  const Toast = useToast({
+    position: "bottom",
+    isClosable: true,
+    duration: 2500,
+    containerStyle: {
+      color: "white",
+    },
+  });
+  const Router = useRouter();
   const { user, signInWithGoogle, signInEmailPassword } = useAuth();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -39,8 +50,18 @@ export default function SignUpPage({ isOpen, onClose }: SignUpModal) {
   function handleCreateUser() {
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
-        // window.alert("deu boa");
-        console.log("result", result);
+        if (result) {
+          Toast.closeAll();
+          Toast({
+            title: "Usuário criado com sucesso!",
+            status: "success",
+            containerStyle: {
+              color: "white",
+            },
+          });
+        }
+
+        Router.reload();
       })
       .catch((error) => {
         // window.alert("não deu boa");
@@ -48,21 +69,18 @@ export default function SignUpPage({ isOpen, onClose }: SignUpModal) {
       });
   }
 
-  function handleInputs() {
-    if (name.length > 1) {
-      setIsFilled(true);
-    } else if (email.length > 1) {
-      setIsFilled(true);
-    } else if (password.length > 1) {
-      setIsFilled(true);
-    } else {
-      setIsFilled(false);
-      window.alert("preencha");
-    }
-    if (name.length > 1 && email.length > 1 && password.length > 1) {
-      handleCreateUser;
-    }
-  }
+  // function handleInputs() {
+  //   if (name.length > 1) {
+  //     setIsFilled(true);
+  //   } else if (email.length > 1) {
+  //     setIsFilled(true);
+  //   } else if (password.length > 1) {
+  //     setIsFilled(true);
+  //   } else {
+  //     setIsFilled(false);
+  //     window.alert("preencha");
+  //   }
+  // }
 
   // window.alert("preencha");
   // if (isFilled === false) {
@@ -83,57 +101,54 @@ export default function SignUpPage({ isOpen, onClose }: SignUpModal) {
             <ModalCloseButton />
             <ModalBody>
               <Flex direction="column">
-                <Text color="white">Nome:</Text>
                 <Input
                   borderRadius="10px"
                   variant="solid"
-                  placeholder="Digite seu nome aqui."
+                  placeholder="Nome"
                   value={name}
                   onChange={(e) => {
                     setName(e.currentTarget.value);
                   }}
                 />
               </Flex>
-              <Flex direction="column" mt="1rem">
-                <Text color="white">Email:</Text>
+              <Flex direction="column" mt="1.5rem">
                 <Input
                   // isDisabled={isFilled}
                   borderRadius="10px"
                   variant="solid"
-                  placeholder="Digite seu email aqui."
+                  placeholder="E-mail"
                   value={email}
                   onChange={(e) => {
                     setEmail(e.currentTarget.value);
                   }}
                 />
               </Flex>
-              <Flex direction="column" mt="1rem">
-                <Text color="white">Digite sua senha:</Text>
+              <Flex direction="column" mt="1.5rem">
                 <Input
                   borderRadius="10px"
                   variant="solid"
-                  placeholder="Digite sua senha aqui."
+                  placeholder="Senha"
                   value={password}
                   onChange={(e) => {
                     setPassword(e.currentTarget.value);
                   }}
                 />
               </Flex>
-              <Flex direction="column" mt="1rem">
-                <Text color="white">
-                  {password.length === confirmPassword.length
+              <Flex direction="column" mt="1.5rem">
+                {/* <Text color="white">
+                  {password.length > 1 && password === confirmPassword
                     ? "Confirme sua senha:"
                     : "A senha deve ser igual"}
-                </Text>
+                </Text> */}
                 <Input
                   bgColor={
-                    password.length === confirmPassword.length
+                    password.length > 1 && password === confirmPassword
                       ? "white"
                       : "red.200"
                   }
                   borderRadius="10px"
                   variant="solid"
-                  placeholder="Confirme sua senha aqui."
+                  placeholder="Confirme sua senha aqui"
                   value={confirmPassword}
                   onChange={(e) => {
                     setConfirmPassword(e.currentTarget.value);
@@ -150,10 +165,15 @@ export default function SignUpPage({ isOpen, onClose }: SignUpModal) {
                 </Button>
                 <Button
                   isDisabled={
-                    password.length === confirmPassword.length ? false : true
+                    name.length > 1 &&
+                    email.length > 1 &&
+                    password.length > 1 &&
+                    password === confirmPassword
+                      ? false
+                      : true
                   }
                   colorScheme="green"
-                  onClick={handleInputs}
+                  onClick={handleCreateUser}
                   // onClick={handleCreateUser}
                 >
                   Confirmar

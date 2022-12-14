@@ -12,6 +12,7 @@ import {
   Image,
   useToast,
   useDisclosure,
+  Toast,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import LayoutDesk from "../components/Layouts/layoutDesktop";
@@ -60,7 +61,14 @@ export default function HomeLogin() {
   };
   const { user, signInWithGoogle, signInEmailPassword } = useAuth();
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const Toast = useToast({
+    position: "bottom",
+    isClosable: true,
+    duration: 2500,
+    containerStyle: {
+      color: "white",
+    },
+  });
   // const [user, setUser] = useState<User>({} as User);
 
   // function signInWithGoogle() {
@@ -79,9 +87,23 @@ export default function HomeLogin() {
   async function handleLogin(email: string, password: string) {
     const response = await signInEmailPassword(email, password);
     if (response) {
-      console.log("deu boa", response);
+      Toast.closeAll();
+      Toast({
+        title: "Usuário criado com sucesso!",
+        status: "success",
+        containerStyle: {
+          color: "white",
+        },
+      });
     } else {
-      console.log("não deu boa", response);
+      Toast.closeAll();
+      Toast({
+        title: "Usuário inválido.",
+        status: "error",
+        containerStyle: {
+          color: "white",
+        },
+      });
     }
   }
 
@@ -176,6 +198,7 @@ export default function HomeLogin() {
                     borderRadius="10px"
                     // bgColor="#011735"
                     variant="outline"
+                    colorScheme="#021C45"
                     color="white"
                     onClick={() => {
                       handleLogin(email, password);
@@ -186,9 +209,9 @@ export default function HomeLogin() {
                   <Button
                     mt="1rem"
                     borderRadius="10px"
-                    // bgColor="#011735"
-                    variant="outline"
+                    colorScheme="#021C45"
                     color="white"
+                    variant="outline"
                     onClick={signInWithGoogle}
                   >
                     Entrar com google
@@ -196,15 +219,13 @@ export default function HomeLogin() {
 
                   {/* const { isOpen, onOpen, onClose } = useDisclosure(); */}
                   <Button
-                    mt="1rem"
+                    colorScheme="#021C45"
+                    mt="1.5rem"
                     borderRadius="10px"
-                    // bgColor="#011735"
-                    variant="outline"
-                    color="white"
                     // onClick={handleCreateUser}
                     onClick={onOpen}
                   >
-                    Criar uma conta
+                    <Text as="u">Criar uma conta</Text>
                   </Button>
 
                   <SignUp isOpen={isOpen} onClose={onClose} />
