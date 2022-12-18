@@ -13,6 +13,8 @@ import {
   useToast,
   useDisclosure,
   Toast,
+  IconButton,
+  Icon,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import LayoutDesk from "../components/Layouts/layoutDesktop";
@@ -21,6 +23,7 @@ import animationData from "../animations/login.json";
 import { useAuth } from "../contexts/AuthContext";
 import { AiOutlineUser, AiOutlineEyeInvisible } from "react-icons/ai";
 import { BsShieldLock } from "react-icons/bs";
+import { FcGoogle } from "react-icons/fc";
 import {
   signInWithPopup,
   GoogleAuthProvider,
@@ -130,12 +133,12 @@ export default function HomeLogin() {
             justify="center"
           >
             {/* <Button onClick={signInWithGoogle}>teste</Button> */}
-            <Text fontSize="32px" color="white">
+            {/* <Text fontSize="32px" color="white">
               {user?.email}
             </Text>
             <Text fontSize="32px" fontWeight="bold" color="white">
               {user?.displayName}
-            </Text>
+            </Text> */}
             {/* {user.photoURL && <img src={user.photoURL} alt="Foto do usuário" />} */}
             {/* <Button onClick={test}>criaremail</Button> */}
 
@@ -162,17 +165,24 @@ export default function HomeLogin() {
                   fontSize="24px"
                   color="white"
                   fontWeight="bold"
-                  textAlign="center"
+                  alignSelf="start"
                 >
-                  Bem-vindo ao
-                  <br /> Seu Controle de Gastos
+                  Seja bem-vindo!
                 </Text>
-
+                <Text
+                  fontSize="16px"
+                  color="gray.300"
+                  fontWeight="medium"
+                  alignSelf="start"
+                >
+                  Faça o login para começar.
+                </Text>
                 <InputGroup mt="2rem" w="full" variant="solid" size="md">
                   <InputLeftElement>
                     <AiOutlineUser color="gray.300" />
                   </InputLeftElement>
                   <Input
+                    borderRadius="12px"
                     placeholder="Digite seu email."
                     value={email}
                     onChange={(e) => {
@@ -185,6 +195,7 @@ export default function HomeLogin() {
                     <BsShieldLock color="gray.300" />
                   </InputLeftElement>
                   <Input
+                    borderRadius="12px"
                     placeholder="Digite sua senha. "
                     variant="solid"
                     value={password}
@@ -202,13 +213,16 @@ export default function HomeLogin() {
                 >
                   {/* <Button mt="1rem" size="sm" w="100px">
                     Cadastre-se
+                    
                   </Button> */}
                   <Button
+                    borderWidth="1px"
                     isLoading={loading}
                     mt="1rem"
+                    h="40px"
                     borderRadius="10px"
-                    // bgColor="#011735"
-                    variant="outline"
+                    bgColor="#011735"
+                    // variant="solid"
                     colorScheme="#021C45"
                     color="white"
                     onClick={() => {
@@ -217,26 +231,51 @@ export default function HomeLogin() {
                   >
                     Entrar
                   </Button>
+
+                  <Text
+                    mt="1.5rem"
+                    align="center"
+                    color="gray.300"
+                    fontSize="13px"
+                  >
+                    Você também pode se conectar com:
+                  </Text>
+                  {/* <IconButton>
+                    <Text>teste</Text>
+                  </IconButton> */}
+
                   <Button
-                    mt="1rem"
+                    alignContent="end"
+                    h="40px"
+                    justifyContent="center"
+                    mt="1.5rem"
+                    bgColor="#011735"
                     borderRadius="10px"
                     colorScheme="#021C45"
                     color="white"
                     variant="outline"
                     onClick={signInWithGoogle}
+                    aria-label={"Entrar com google"}
                   >
-                    Entrar com google
+                    {<FcGoogle size="25px" />}
+                    <Text alignSelf="center" ml="1rem">
+                      Entrar com Conta Google
+                    </Text>
                   </Button>
 
                   {/* const { isOpen, onOpen, onClose } = useDisclosure(); */}
+
                   <Button
                     colorScheme="#021C45"
-                    mt="1.5rem"
+                    mt="1rem"
                     borderRadius="10px"
                     // onClick={handleCreateUser}
                     onClick={onOpen}
                   >
-                    <Text as="u">Criar uma conta</Text>
+                    {" "}
+                    <Text as="u" fontSize="14px" fontWeight="medium">
+                      Criar uma conta
+                    </Text>
                   </Button>
 
                   <SignUp isOpen={isOpen} onClose={onClose} />

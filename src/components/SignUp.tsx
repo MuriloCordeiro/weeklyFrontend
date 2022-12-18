@@ -45,28 +45,55 @@ export default function SignUpPage({ isOpen, onClose }: SignUpModal) {
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   ("");
-  const [isFilled, setIsFilled] = useState<boolean>(false);
+  const [isFilled, setIsFilled] = useState<boolean>(true);
 
   function handleCreateUser() {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((result) => {
-        if (result) {
-          Toast.closeAll();
+    if (confirmPassword.length < 6) {
+      Toast({
+        title: "Sua senha precisa de no mínimo 6 caracteres",
+        status: "error",
+        containerStyle: {
+          color: "white",
+        },
+      });
+    } else if (password !== confirmPassword) {
+      setIsFilled(false);
+      Toast({
+        title: "Sua senha deve ser idêntica.",
+        status: "error",
+        containerStyle: {
+          color: "white",
+        },
+      });
+    } else {
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((result) => {
+          if (result) {
+            Toast.closeAll();
+            Toast({
+              title: "Usuário criado com sucesso!",
+              status: "success",
+              containerStyle: {
+                color: "white",
+              },
+            });
+          }
+
+          Router.reload();
+        })
+        .catch((error) => {
+          // window.alert("não deu boa");
+          // console.log("errorrrr", error);
+
           Toast({
-            title: "Usuário criado com sucesso!",
-            status: "success",
+            title: "Email já existe, tente outro.",
+            status: "error",
             containerStyle: {
               color: "white",
             },
           });
-        }
-
-        Router.reload();
-      })
-      .catch((error) => {
-        // window.alert("não deu boa");
-        console.log("error", error);
-      });
+        });
+    }
   }
 
   // function handleInputs() {
@@ -90,6 +117,19 @@ export default function SignUpPage({ isOpen, onClose }: SignUpModal) {
 
   // }, [isFilled]);
 
+  // useEffect(() => {
+  //   Toast.closeAll();
+  //   if (confirmPassword.length < 6 && confirmPassword.length > 4) {
+  //     Toast({
+  //       title: "Usuário criado com sucesso!",
+  //       status: "warning",
+  //       containerStyle: {
+  //         color: "white",
+  //       },
+  //     });
+  //   }
+  // }, [confirmPassword]);
+
   console.log("email", email, "password", password);
   return (
     <>
@@ -97,7 +137,12 @@ export default function SignUpPage({ isOpen, onClose }: SignUpModal) {
         <Modal isOpen={isOpen} onClose={onClose} size="xl">
           <ModalOverlay />
           <ModalContent m="1rem" alignSelf="center" bgColor="#021C45">
-            <ModalHeader color="white">Criar novo usuário:</ModalHeader>
+            <ModalHeader color="white">
+              <Text fontSize="24px">Vamos começar!</Text>
+              <Text fontSize="12px" color="gray.300">
+                Preencha todos os campos pra criar uma conta
+              </Text>
+            </ModalHeader>
             <ModalCloseButton />
             <ModalBody>
               <Flex direction="column">
@@ -125,6 +170,7 @@ export default function SignUpPage({ isOpen, onClose }: SignUpModal) {
               </Flex>
               <Flex direction="column" mt="1.5rem">
                 <Input
+                  bgColor={isFilled ? "white" : "red.200"}
                   borderRadius="10px"
                   variant="solid"
                   placeholder="Senha"
@@ -141,11 +187,7 @@ export default function SignUpPage({ isOpen, onClose }: SignUpModal) {
                     : "A senha deve ser igual"}
                 </Text> */}
                 <Input
-                  bgColor={
-                    password.length > 1 && password === confirmPassword
-                      ? "white"
-                      : "red.200"
-                  }
+                  bgColor={isFilled ? "white" : "red.200"}
                   borderRadius="10px"
                   variant="solid"
                   placeholder="Confirme sua senha aqui"
@@ -165,10 +207,7 @@ export default function SignUpPage({ isOpen, onClose }: SignUpModal) {
                 </Button>
                 <Button
                   isDisabled={
-                    name.length > 1 &&
-                    email.length > 1 &&
-                    password.length > 1 &&
-                    password === confirmPassword
+                    name.length > 1 && email.length > 4 && password.length > 2
                       ? false
                       : true
                   }
