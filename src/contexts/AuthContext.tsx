@@ -51,6 +51,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [token, setToken] = useState();
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const cookies = parseCookies();
+  const [loading, setIsLoading] = useState();
 
   const CLIENT_TOKEN: any = process.env.NEXT_PUBLIC_CLIENT_TOKEN;
   const COOKIE_MAX_AGE: any = process.env.NEXT_PUBLIC_CLIENT_MAX_AGE;

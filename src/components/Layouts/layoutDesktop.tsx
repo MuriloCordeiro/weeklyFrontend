@@ -12,9 +12,9 @@ export default function LayoutDesk(props: any) {
         direction="column"
         borderWidth="2px"
       >
-        <Header />
+        {/* <Header /> */}
         {props.children}
-        <NavBar />
+        {/* <NavBar /> */}
       </Flex>
     </>
   );
