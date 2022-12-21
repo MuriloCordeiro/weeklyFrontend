@@ -228,7 +228,7 @@ export default function Home() {
                             justify="space-between"
                           >
                             <Text
-                              fontSize="11px"
+                              fontSize="11.5px"
                               color="#B6B6B9"
                               fontWeight="bold"
                             >
