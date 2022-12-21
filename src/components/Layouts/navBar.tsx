@@ -23,6 +23,7 @@ export default function NavBar() {
       borderRadius="50px"
       position="absolute"
     >
+      {/* teste */}
       <Flex justify="space-between" w="full">
         <IconButton
           size="lg"
