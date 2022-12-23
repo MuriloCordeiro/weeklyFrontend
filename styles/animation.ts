@@ -5,6 +5,7 @@ import {
   InputGroupProps,
   Text,
   TextProps,
+  BoxProps,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 

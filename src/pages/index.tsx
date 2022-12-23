@@ -15,6 +15,7 @@ import {
   Toast,
   IconButton,
   Icon,
+  Box,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import LayoutDesk from "../components/Layouts/layoutDesktop";
@@ -422,11 +423,14 @@ export default function HomeLogin() {
                 />
               </InputMotion>
 
-              <Flex
+              <MotionFlex
                 justify="space-evenly"
                 w="full"
                 mt="1rem"
                 direction="column"
+                variants={inputAnimation}
+                initial="hidden"
+                animate="visible"
               >
                 {/* <Button mt="1rem" size="sm" w="100px">
                     Cadastre-se
@@ -497,7 +501,7 @@ export default function HomeLogin() {
                 </Button>
 
                 <SignUp isOpen={isOpen} onClose={onClose} />
-              </Flex>
+              </MotionFlex>
             </MotionFlex>
           </Flex>
         </>
