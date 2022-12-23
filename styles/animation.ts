@@ -33,7 +33,7 @@ export const itemAnimation = {
 };
 
 export const inputAnimation = {
-  hidden: { y: 60, opacity: 0 },
+  hidden: { y: 35, opacity: 0 },
   visible: {
     y: 1,
     opacity: 1,

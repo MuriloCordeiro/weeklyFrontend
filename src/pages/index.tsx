@@ -57,7 +57,7 @@ export default function HomeLogin() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>();
-  const isWideVersion = useBreakpointValue({
+  const isMobileVersion = useBreakpointValue({
     base: true,
     sm: true,
     md: false,
@@ -170,7 +170,7 @@ export default function HomeLogin() {
 
   return (
     <>
-      {isWideVersion ? (
+      {isMobileVersion ? (
         <>
           {/* <SignUpPage isOpen={isOpen} onClose={onClose} /> */}
           <Flex
@@ -190,7 +190,10 @@ export default function HomeLogin() {
             {/* {user.photoURL && <img src={user.photoURL} alt="Foto do usuário" />} */}
             {/* <Button onClick={test}>criaremail</Button> */}
 
-            <Flex
+            <MotionFlex
+              initial="hidden"
+              animate="visible"
+              variants={itemAnimation}
               justify="center"
               // data-aos="fade-up"
               bgColor="#021C45"
@@ -206,7 +209,14 @@ export default function HomeLogin() {
               {/* <Flex> {props.children}</Flex> */}
               {/* <NavBar /> */}
 
-              <Flex direction="column" align="center" p="1rem">
+              <MotionFlex
+                variants={inputAnimation}
+                initial="hidden"
+                animate="visible"
+                direction="column"
+                align="center"
+                p="1rem"
+              >
                 {/* <Lottie options={defaultOptions} /> */}
                 <Image src="/Image/bgimagelogin.gif" alt="" />
                 <Text
@@ -327,8 +337,8 @@ export default function HomeLogin() {
 
                   <SignUp isOpen={isOpen} onClose={onClose} />
                 </Flex>
-              </Flex>
-            </Flex>
+              </MotionFlex>
+            </MotionFlex>
           </Flex>
           {/* <LayoutMob></LayoutMob> */}
         </>
@@ -424,13 +434,13 @@ export default function HomeLogin() {
               </InputMotion>
 
               <MotionFlex
+                variants={inputAnimation}
+                initial="hidden"
+                animate="visible"
                 justify="space-evenly"
                 w="full"
                 mt="1rem"
                 direction="column"
-                variants={inputAnimation}
-                initial="hidden"
-                animate="visible"
               >
                 {/* <Button mt="1rem" size="sm" w="100px">
                     Cadastre-se
