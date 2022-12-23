@@ -36,6 +36,14 @@ import { useState } from "react";
 import SignUp from "../components/SignUp";
 import { parseCookies } from "nookies";
 // import { useAuth } from "../contexts/AuthContext";
+
+import {
+  MotionFlex,
+  animationFlex,
+  itemAnimation,
+  InputMotion,
+  inputAnimation,
+} from "../../styles/animation";
 export default function HomeLogin() {
   const Router = useRouter();
   // const { signInEmailPassword } = useAuth();
@@ -332,7 +340,10 @@ export default function HomeLogin() {
             align="center"
             justify="center"
           >
-            <Flex
+            <MotionFlex
+              initial="hidden"
+              animate="visible"
+              variants={itemAnimation}
               borderRadius="15px"
               direction="column"
               align="center"
@@ -342,23 +353,40 @@ export default function HomeLogin() {
             >
               {/* <Lottie options={defaultOptions} /> */}
               {/* <Image src="/Image/bgimagelogin.gif" alt="" /> */}
-              <Text
-                fontSize="24px"
-                color="white"
-                fontWeight="bold"
-                alignSelf="start"
+              <MotionFlex
+                justify="start"
+                direction="column"
+                variants={itemAnimation}
+                initial="hidden"
+                animate="visible"
               >
-                Seja bem-vindo!
-              </Text>
-              <Text
-                fontSize="16px"
-                color="gray.300"
-                fontWeight="medium"
-                alignSelf="start"
+                <Text
+                  fontSize="24px"
+                  color="white"
+                  fontWeight="bold"
+                  alignSelf="start"
+                >
+                  Seja bem-vindo!
+                </Text>
+
+                <Text
+                  fontSize="16px"
+                  color="gray.300"
+                  fontWeight="medium"
+                  alignSelf="start"
+                >
+                  Faça o login para começar.
+                </Text>
+              </MotionFlex>
+              <InputMotion
+                variants={inputAnimation}
+                initial="hidden"
+                animate="visible"
+                mt="2rem"
+                w="full"
+                variant="solid"
+                size="md"
               >
-                Faça o login para começar.
-              </Text>
-              <InputGroup mt="2rem" w="full" variant="solid" size="md">
                 <InputLeftElement>
                   <AiOutlineUser color="gray.300" />
                 </InputLeftElement>
@@ -370,8 +398,16 @@ export default function HomeLogin() {
                     setEmail(e.target.value);
                   }}
                 />
-              </InputGroup>
-              <InputGroup w="full" variant="solid" size="md" mt="1rem">
+              </InputMotion>
+              <InputMotion
+                variants={inputAnimation}
+                initial="hidden"
+                animate="visible"
+                w="full"
+                variant="solid"
+                size="md"
+                mt="1rem"
+              >
                 <InputLeftElement>
                   <BsShieldLock color="gray.300" />
                 </InputLeftElement>
@@ -384,7 +420,7 @@ export default function HomeLogin() {
                     setPassword(e.target.value);
                   }}
                 />
-              </InputGroup>
+              </InputMotion>
 
               <Flex
                 justify="space-evenly"
@@ -462,7 +498,7 @@ export default function HomeLogin() {
 
                 <SignUp isOpen={isOpen} onClose={onClose} />
               </Flex>
-            </Flex>
+            </MotionFlex>
           </Flex>
         </>
       )}
