@@ -31,7 +31,7 @@ import {
   createUserWithEmailAndPassword,
   User,
 } from "firebase/auth";
-// import { auth } from "../services/firebase";
+import { auth } from "../services/firebase";
 import { useState } from "react";
 
 import SignUp from "../components/SignUp";
