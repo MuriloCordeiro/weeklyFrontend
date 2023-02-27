@@ -36,7 +36,6 @@ import { useState } from "react";
 
 import SignUp from "../components/SignUp";
 import { parseCookies } from "nookies";
-// import { useAuth } from "../contexts/AuthContext";
 
 import {
   MotionFlex,
@@ -46,10 +45,6 @@ import {
   inputAnimation,
 } from "../../styles/animation";
 export default function HomeLogin() {
-  const Router = useRouter();
-  // const { signInEmailPassword } = useAuth();
-
-  // const { createUserWithEmailAndPassword } = useAuth();
   const toast = useToast({
     duration: 5000,
     isClosable: true,
@@ -57,6 +52,7 @@ export default function HomeLogin() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>();
+
   const isMobileVersion = useBreakpointValue({
     base: true,
     sm: true,
@@ -75,6 +71,7 @@ export default function HomeLogin() {
   const { user, signInWithGoogle, signInEmailPassword, isAuthenticated } =
     useAuth();
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   const Toast = useToast({
     position: "bottom",
     isClosable: true,
@@ -83,20 +80,7 @@ export default function HomeLogin() {
       color: "white",
     },
   });
-  // const [user, setUser] = useState<User>({} as User);
 
-  // function signInWithGoogle() {
-  //   const provider = new GoogleAuthProvider();
-
-  //   signInWithPopup(auth, provider)
-  //     .then((result) => {
-  //       console.log(result.user);
-  //       setUser(result.user);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }
   const CLIENT_TOKEN: any = process.env.NEXT_PUBLIC_CLIENT_TOKEN;
 
   const cookies = parseCookies();
@@ -147,49 +131,19 @@ export default function HomeLogin() {
       }
       setLoading(false);
     }
-    // if (!userToken) {
-    //   Toast.closeAll();
-    //   Toast({
-    //     title: "Deu ruim.",
-    //     status: "error",
-    //     containerStyle: {
-    //       color: "white",
-    //     },
-    //   });
-    // } else {
-    //   Toast.closeAll();
-    //   Toast({
-    //     title: "Deu boa.",
-    //     status: "success",
-    //     containerStyle: {
-    //       color: "white",
-    //     },
-    //   });
-    // }
   }
 
   return (
     <>
       {isMobileVersion ? (
         <>
-          {/* <SignUpPage isOpen={isOpen} onClose={onClose} /> */}
           <Flex
-            bgColor="#011735"
+            bgColor="#EBEBEB"
             minHeight="100vh"
             direction="column"
             p="1rem"
             justify="center"
           >
-            {/* <Button onClick={signInWithGoogle}>teste</Button> */}
-            {/* <Text fontSize="32px" color="white">
-              {user?.email}
-            </Text>
-            <Text fontSize="32px" fontWeight="bold" color="white">
-              {user?.displayName}
-            </Text> */}
-            {/* {user.photoURL && <img src={user.photoURL} alt="Foto do usuário" />} */}
-            {/* <Button onClick={test}>criaremail</Button> */}
-
             <MotionFlex
               initial="hidden"
               animate="visible"
@@ -240,7 +194,7 @@ export default function HomeLogin() {
                     <AiOutlineUser color="gray.300" />
                   </InputLeftElement>
                   <Input
-                    borderRadius="12px"
+                    borderRadius="15px"
                     placeholder="Digite seu email."
                     value={email}
                     onChange={(e) => {
@@ -253,7 +207,7 @@ export default function HomeLogin() {
                     <BsShieldLock color="gray.300" />
                   </InputLeftElement>
                   <Input
-                    borderRadius="12px"
+                    borderRadius="15px"
                     placeholder="Digite sua senha. "
                     variant="solid"
                     value={password}
@@ -345,25 +299,28 @@ export default function HomeLogin() {
       ) : (
         <>
           <Flex
-            bgColor="#011735"
-            w="100vw"
+            bgColor="#EBEBEB"
+            w="full"
             h="100vh"
             align="center"
             justify="center"
           >
             <MotionFlex
+              boxShadow="lg"
+              rounded="lg"
               initial="hidden"
               animate="visible"
               variants={itemAnimation}
               borderRadius="15px"
               direction="column"
               align="center"
-              p="2rem"
-              bgColor="#021C45"
-              w="30%"
+              justify="center"
+              px="3rem"
+              py="1rem"
+              bgColor="#FFFFFF"
+              w="35%"
             >
               {/* <Lottie options={defaultOptions} /> */}
-              {/* <Image src="/Image/bgimagelogin.gif" alt="" /> */}
               <MotionFlex
                 justify="start"
                 direction="column"
@@ -371,20 +328,29 @@ export default function HomeLogin() {
                 initial="hidden"
                 animate="visible"
               >
+                <Image
+                  src="/Image/login.svg"
+                  alt=""
+                  mt="-1rem"
+                  w="227px"
+                  h="227px"
+                />
+
                 <Text
-                  fontSize="24px"
-                  color="white"
+                  fontSize="25px"
+                  color="#081F49"
                   fontWeight="bold"
-                  alignSelf="start"
+                  alignSelf="center"
                 >
                   Seja bem-vindo!
                 </Text>
 
                 <Text
-                  fontSize="16px"
-                  color="gray.300"
+                  opacity="45%"
+                  fontSize="14px"
+                  color="black"
                   fontWeight="medium"
-                  alignSelf="start"
+                  alignSelf="center"
                 >
                   Faça o login para começar.
                 </Text>
@@ -393,16 +359,19 @@ export default function HomeLogin() {
                 variants={inputAnimation}
                 initial="hidden"
                 animate="visible"
-                mt="2rem"
+                mt="1rem"
                 w="full"
                 variant="solid"
                 size="md"
               >
                 <InputLeftElement>
-                  <AiOutlineUser color="gray.300" />
+                  <AiOutlineUser opacity="45%" />
                 </InputLeftElement>
                 <Input
-                  borderRadius="12px"
+                  opacity="70%"
+                  borderColor="gray.300"
+                  variant="outline"
+                  borderRadius="15px"
                   placeholder="Digite seu email."
                   value={email}
                   onChange={(e) => {
@@ -420,12 +389,14 @@ export default function HomeLogin() {
                 mt="1rem"
               >
                 <InputLeftElement>
-                  <BsShieldLock color="gray.300" />
+                  <BsShieldLock opacity="45%" />
                 </InputLeftElement>
                 <Input
-                  borderRadius="12px"
+                  opacity="70%"
+                  borderColor="gray.300"
+                  variant="outline"
+                  borderRadius="15px"
                   placeholder="Digite sua senha. "
-                  variant="solid"
                   value={password}
                   onChange={(e) => {
                     setPassword(e.target.value);
@@ -439,7 +410,6 @@ export default function HomeLogin() {
                 animate="visible"
                 justify="space-evenly"
                 w="full"
-                mt="1rem"
                 direction="column"
               >
                 {/* <Button mt="1rem" size="sm" w="100px">
@@ -448,12 +418,13 @@ export default function HomeLogin() {
                   </Button> */}
 
                 <Button
+                  boxShadow="lg"
                   isLoading={loading}
                   borderWidth="1px"
                   mt="1rem"
                   h="40px"
-                  borderRadius="10px"
-                  bgColor="#011735"
+                  borderRadius="15px"
+                  bgColor="#4887FA"
                   // variant="solid"
                   colorScheme="#021C45"
                   color="white"
@@ -465,7 +436,7 @@ export default function HomeLogin() {
                 </Button>
 
                 <Text
-                  mt="1.5rem"
+                  mt="0.5rem"
                   align="center"
                   color="gray.300"
                   fontSize="13px"
@@ -480,11 +451,11 @@ export default function HomeLogin() {
                   alignContent="end"
                   h="40px"
                   justifyContent="center"
-                  mt="1.5rem"
-                  bgColor="#011735"
-                  borderRadius="10px"
+                  mt="0.5rem"
+                  // bgColor="#4887FA"
+                  borderRadius="15px"
                   colorScheme="#021C45"
-                  color="white"
+                  color="#4887FA"
                   variant="outline"
                   onClick={signInWithGoogle}
                   aria-label={"Entrar com google"}
@@ -499,13 +470,18 @@ export default function HomeLogin() {
 
                 <Button
                   colorScheme="#021C45"
-                  mt="1rem"
                   borderRadius="10px"
                   // onClick={handleCreateUser}
                   onClick={onOpen}
                 >
                   {" "}
-                  <Text as="u" fontSize="14px" fontWeight="medium">
+                  <Text
+                    mt="0.5rem"
+                    as="u"
+                    fontSize="14px"
+                    fontWeight="medium"
+                    color="gray.300"
+                  >
                     Criar uma conta
                   </Text>
                 </Button>
