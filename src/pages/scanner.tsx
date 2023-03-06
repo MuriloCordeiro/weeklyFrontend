@@ -1,10 +1,11 @@
 // import Lottie from "react-lottie";
 import { useState, useEffect } from "react";
-import { Flex } from "@chakra-ui/react";
+import { Button, Flex } from "@chakra-ui/react";
 import useScanDetection from "use-scan-detection";
 
 export default function Scanner() {
   const [barcodeScan, setBarcodeScan] = useState<any>("");
+  const [verifyTest, setVerifyTest] = useState<any>("Iniciar");
 
   if (typeof window !== "undefined") {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -16,11 +17,27 @@ export default function Scanner() {
     });
   }
 
+  function handleVerify() {
+    if (verifyTest === "Iniciar") {
+      setVerifyTest("Cancelar");
+    } else {
+      setVerifyTest("Iniciar");
+    }
+  }
+
   console.log("estado2", barcodeScan);
 
   return (
     <>
       <Flex>teste:{barcodeScan}</Flex>
+      <Button
+        mt="10rem"
+        onClick={() => {
+          handleVerify();
+        }}
+      >
+        {verifyTest} verificação
+      </Button>
     </>
   );
 }
