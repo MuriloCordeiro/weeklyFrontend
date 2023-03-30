@@ -18,7 +18,7 @@ import {
   Box,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import LayoutDesk from "../components/Layouts/layoutDesktop";
+import LayoutDesk from "../Layouts/Layout";
 // import Lottie from "react-lottie";
 import animationData from "../animations/login.json";
 import { useAuth } from "../contexts/AuthContext";

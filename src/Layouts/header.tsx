@@ -24,8 +24,7 @@ import {
 } from "@chakra-ui/react";
 import Aos from "aos";
 import "aos/dist/aos.css";
-import { useAuth } from "../../contexts/AuthContext";
-import SideBar from "../SidebarNav";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function Header() {
   const { user, signInWithGoogle } = useAuth();
@@ -72,7 +71,7 @@ export default function Header() {
         <Flex w="30px" color="red" borderWidth="2px" />
         <Flex w="30px" color="red" borderWidth="2px" />
       </Flex>
-      <SideBar isOpenSideBar={isOpenSideBar} onCloseSideBar={onCloseSideBar} />
+      {/* <SideBar isOpenSideBar={isOpenSideBar} onCloseSideBar={onCloseSideBar} /> */}
     </Flex>
   );
 }
