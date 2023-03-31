@@ -52,13 +52,13 @@ export default function Home() {
 
   return (
     <Layout>
-      {/* <Button
+      <Button
         onClick={() => {
           Send();
         }}
       >
-        go
-      </Button> */}
+        Clica aqui pra testar o CORS julião
+      </Button>
       <Flex direction="column" w="100%" h="100%">
         <Text mb="2rem">LOGO VAI AQUI</Text>
         <Flex w="full" justify="space-between" mb="4rem">
