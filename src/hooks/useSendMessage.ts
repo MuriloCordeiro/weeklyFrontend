@@ -5,7 +5,7 @@ export async function SendMessages(phoneNumber: any, textMessage: any) {
   try {
     const response = await api.post("sendMessages", {
       receiver: phoneNumber,
-      messages: {
+      message: {
         text: textMessage,
       },
     });
