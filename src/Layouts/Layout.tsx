@@ -11,7 +11,7 @@ export default function LayoutDesk(props: any) {
           w="80px"
           boxShadow="0px 8px 10px rgba(0, 0, 0, 0.1)"
         >
-          teste
+          testes
         </Flex>
         <Flex
           bgColor="#EBEBEB"

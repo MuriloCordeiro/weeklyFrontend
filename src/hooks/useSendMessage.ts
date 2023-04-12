@@ -1,14 +1,24 @@
 import { api } from "../services/api";
 import { useState } from "react";
 
-export async function SendMessages(teste: any) {
+export async function SendMessages(phoneNumber: any, textMessage: any) {
   try {
-    const response = await api.post("Message/SendMessage", {
-      receiver: ["+5541984341194"],
+    const response = await api.post("sendMessages", {
+      receiver: phoneNumber,
       messages: {
-        text: teste,
+        text: textMessage,
       },
     });
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getMessages() {
+  try {
+    const response = await api.get("Messages");
 
     return response.data;
   } catch (error) {
