@@ -182,6 +182,7 @@ export default function Homepage() {
                           w="420px"
                           h="480px"
                           bg="blue.500"
+                          boxShadow="5px 1px 16px -3px rgba(0, 0, 0, 0.25)"
                           bgColor="rgba( 255, 255, 255, 0.40 )"
                           backdropBlur="xl"
                           borderRadius="10px"
@@ -225,7 +226,7 @@ export default function Homepage() {
                                 align="center"
                                 w="full"
                                 bgColor="white"
-                                p="1rem"
+                                p="0.5rem"
                                 borderRadius="15px"
                                 justify="space-between"
                               >
