@@ -47,25 +47,26 @@ type AuthProviderProps = {
 const AuthContext = createContext({} as AuthContextData);
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [user, setUser] = useState<User>({} as User);
+  const [user, setUser] = useState<any>();
   const [token, setToken] = useState();
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const cookies = parseCookies();
   const [loading, setIsLoading] = useState();
-
   const CLIENT_TOKEN: any = process.env.NEXT_PUBLIC_CLIENT_TOKEN;
   const COOKIE_MAX_AGE: any = process.env.NEXT_PUBLIC_CLIENT_MAX_AGE;
+  const userToken = cookies[CLIENT_TOKEN];
 
   function signInWithGoogle() {
     const provider = new GoogleAuthProvider();
 
     signInWithPopup(auth, provider)
       .then((result) => {
-        setUser(result.user);
+        console.log("result", result);
+        setUser(result.user.email);
         if (user) {
           // setToken(result.user.uid);
           setIsAuthenticated(true);
-          setCookie(undefined, CLIENT_TOKEN, user.uid, {
+          setCookie(undefined, CLIENT_TOKEN, user.toString(), {
             maxAge: COOKIE_MAX_AGE,
             path: "/",
           });
@@ -82,10 +83,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
   function signInEmailPassword(email: string, password: string) {
     signInWithEmailAndPassword(auth, email, password)
       .then((result) => {
-        setUser(result.user);
+        setUser(result.user.email);
         if (user) {
           setIsAuthenticated(true);
-          setCookie(undefined, CLIENT_TOKEN, user.uid, {
+          setCookie(undefined, CLIENT_TOKEN, user.toString(), {
             maxAge: COOKIE_MAX_AGE,
             path: "/",
           });
@@ -106,6 +107,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
   //     destroyCookie(undefined, CLIENT_TOKEN);
   //   }
   // }
+  useEffect(() => {
+    !userToken && Router.push("/");
+  }, [userToken]);
 
   return (
     <AuthContext.Provider

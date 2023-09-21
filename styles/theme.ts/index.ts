@@ -4,134 +4,117 @@ import { extendTheme } from "@chakra-ui/react";
 
 const breakpoints = {
   base: "0rem",
-  sm: "30rem", //480px
-  md: "64rem", //1024px
+  xsm: "43.125rem", //690px
+  sm: "54.875rem", //878px
+  md: "82.875rem", //1326px
   lg: "120rem", //1920px
+};
+
+const toastOptions = {
+  duration: 3000,
+  isClosable: true,
+  containerStyle: {
+    color: "white",
+  },
 };
 
 export const defaultTheme = extendTheme({
   breakpoints,
 
-  colors: {
-    white: {
-      "50": "#FFF5E5",
+  toast: toastOptions,
+
+  components: {
+    Select: {
+      baseStyle: {
+        _hover: {
+          transform: "scale(1.01)",
+        },
+      },
     },
 
-    black: {
-      "900": "#060808",
+    // _active={{
+    //   boxShadow: "inset -3px -1px 20px -3px rgba(0,0,0,0.75)",
+    // }}
+    // boxShadow="-1px 8px 10px -8px rgba(0,0,0,0.80)"
+
+    Button: {
+      // baseStyle: {
+      //   _hover: {
+      //     // transform: "scale(1.01)",
+      //     boxShadow: "md",
+      //     _disabled: {
+      //       transform: "scale(1)",
+      //       bgColor: "gray.400",
+      //       opacity: "50%",
+      //       color: "gray.200",
+      //     },
+      //   },
+      // },
+      variants: {
+        primary: {
+          borderRadius: "15px",
+          _active: {
+            boxShadow: "0px 2px 5px 0px rgba(0, 0, 0, 0.25) inset",
+            borderBottom: "1px solid ",
+          },
+
+          // boxShadow: "-1px 8px 10px -8px rgba(0,0,0,0.80)",
+          bgColor: "#4871CC",
+          color: "white",
+        },
+      },
+    },
+  },
+
+  colors: {
+    blue: {
+      main: "#005165",
+      action: "#4871CC",
+      "3": "",
     },
 
     gray: {
-      "700": "#333333",
-      "300": "#c3c3c3",
-      "50": "#F7F5F6",
-    },
-
-    blue: {
-      "900": "#27509B",
-      "500": "#0766C7",
-    },
-
-    yellow: {
-      "900": "#FCE500",
-      "50": "#FFF5E5",
-    },
-
-    green: {
-      "900": "#1DB954",
-      "50": "#EDF7ED",
-      "1000": "#128a15",
+      main: "#898989",
     },
 
     red: {
-      "900": "#FF003A",
-      "100": "#FF95AD",
+      "1": "#E30613",
+      "2": "",
+      "5": "",
+    },
+    yellow: {
+      "1": "#F9B000",
     },
   },
 
   fonts: {
-    heading: "Poppins, Noto Sans, Arial, sans-serif",
-    body: "Poppins, Noto Sans, Arial, sans-serif",
+    heading: "Montserrat, Noto Sans, Arial",
+    body: "Montserrat, Noto Sans, Arial",
   },
 
   fontSizes: {
-    h1: "1.75rem", //28px
-    h2: "1.5rem", //24px
-    h3: "1.25rem", //20px
-    h4: "1,125rem", //18px
-    text1: "1rem", //16px
-    text2: "0.875rem", //14px
-    text3: "0.75rem", //12px
-    text4: "0.625rem", //10px
+    title: "20px",
+    subtitle: "18px",
+    text1: "16px",
+    text2: "14px",
+    text3: "12px",
+    text4: "10px",
+    h1: "40px",
+    h2: "28px",
   },
 
   textStyles: {
-    Header1: {
-      fontFamily: "Exo, Arial, sans-serif",
-      fontWeight: "300",
-    },
-    Header2: {
-      fontFamily: "Exo, Arial, sans-serif",
-      fontWeight: "700",
-    },
-
-    Regular: {
-      fontFamily: "Poppins, Arial, sans-serif",
+    regular: {
       fontWeight: "400",
     },
-
-    Medium: {
-      fontFamily: "Poppins, Arial, sans-serif",
+    medium: {
       fontWeight: "500",
     },
-
-    Bold: {
-      fontFamily: "Poppins, Arial, sans-serif",
+    semibold: {
+      fontWeight: "600",
+    },
+    bold: {
       fontWeight: "700",
-    },
-
-    MLight: {
-      fontFamily: "Poppins, Noto Sans, Arial, sans-serif",
-    },
-
-    MRegular: {
-      fontFamily: "Poppins, Noto Sans, Arial, sans-serif",
-    },
-
-    MSemi: {
-      fontFamily: "Poppins, Noto Sans, Arial, sans-serif",
-    },
-
-    MBold: {
-      fontFamily: "Poppins, Noto Sans, Arial, sans-serif",
-    },
-
-    MBlack: {
-      fontFamily: "Poppins, Noto Sans, Arial, sans-serif",
-      fontWeight: "700",
-    },
-
-    SearchBox: {
-      fontSize: "text1",
-      fontFamily: "Poppins, Noto Sans, Arial, sans-serif",
-      lineHeight: "126%",
-    },
-
-    titleSpaced: {
-      fontFamily: "Poppins, Noto Sans, Arial, sans-serif",
-
-      fontSize: "text1",
-      fontWeight: "500",
-      lineHeight: "110%",
-      letterSpacing: "0.50rem",
-      color: "blue.900",
-    },
-
-    textSpacedSideMenu: {
-      fontSize: "text2",
-      fontWeight: "400",
-      lineHeight: "14px",
-      letterSpacing: "0.3rem",
     },
   },
 
