@@ -19,7 +19,6 @@ import {
   PopoverBody,
   PopoverFooter,
   PopoverArrow,
-  PopoverCloseButton,
   PopoverAnchor,
 } from "@chakra-ui/react";
 import Aos from "aos";
