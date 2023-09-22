@@ -1,15 +1,15 @@
 import { Flex } from "@chakra-ui/react";
 
 import Header from "./header";
-import Sidebar from "./Sidebar";
+import SideBar from "./Sidebar";
 
 export default function LayoutDesk(props: any) {
   return (
     <>
       <Flex
         w="full"
-        h="1100px"
-        direction="row"
+        // h={["full", "full", "full", "full", "full", "100vh"]}
+        direction={["column", "column", "column", "row"]}
         bgSize="cover"
         // bgColor="#86CEFF"
         // bgColor="red"
@@ -22,9 +22,12 @@ export default function LayoutDesk(props: any) {
         // py="2.5rem"
         // direction="column"
         // borderWidth="2px"
+        h="full"
       >
-        <Sidebar />
-        <Flex direction="column" p="1rem" h="full">
+        <Flex>
+          <SideBar />
+        </Flex>
+        <Flex direction="column" px="1rem" py="0.5rem" w="full" h="full">
           {/* <Header /> */}
           {props.children}
         </Flex>
