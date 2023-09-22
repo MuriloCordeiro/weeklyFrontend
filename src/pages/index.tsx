@@ -120,14 +120,35 @@ export default function HomeLogin() {
     <>
       <Flex
         direction="column"
-        bgColor="#EBEBEB"
+        // bgColor="#EBEBEB"
         h="100vh"
         align="center"
         justify="center"
+        bgRepeat="no-repeat"
+        bgSize="cover"
+        bgImage="/image/background.jpg"
+        borderRadius="10px"
       >
-        <Flex direction="column" gap="1rem">
+        <Flex
+          p="4rem"
+          direction="column"
+          gap="1rem"
+          boxShadow="5px 1px 16px -3px rgba(0, 0, 0, 0.25)"
+          bgColor="rgba( 255, 255, 255, 0.40 )"
+          backdropBlur="xl"
+          borderRadius="15px"
+          align="center"
+          w="30%"
+        >
+          <Text fontSize="28px" fontWeight="bold" color="blue.main">
+            Weekly.
+          </Text>
+          <Text mb="1rem" fontSize="16px">
+            Seja bem vindo, faça seu login começar.
+          </Text>
           <Input
-            opacity="70%"
+            // opacity="70%"
+            // h="50px"
             borderColor="gray.300"
             variant="outline"
             borderRadius="15px"
@@ -138,9 +159,10 @@ export default function HomeLogin() {
             }}
           />
           <Input
-            opacity="70%"
+            // opacity="70%"
             borderColor="gray.300"
             variant="outline"
+            // h="50px"
             borderRadius="15px"
             placeholder="Digite sua senha. "
             value={password}
@@ -149,23 +171,25 @@ export default function HomeLogin() {
             }}
           />
           <Button
-            boxShadow="lg"
+            // boxShadow="lg"
             isLoading={loading}
             borderWidth="1px"
             mt="1rem"
-            h="40px"
+            // h="40px"
+            variant="primary"
             borderRadius="15px"
-            bgColor="#4887FA"
+            // bgColor="#4887FA"
             // variant="solid"
-            colorScheme="#021C45"
+            // colorScheme="#021C45"
             color="white"
             onClick={() => {
               handleLogin(email, password);
             }}
+            w="full"
           >
             Entrar
           </Button>
-          <Text mt="0.5rem" align="center" color="gray.300" fontSize="13px">
+          <Text align="center" color="gray.main" fontSize="13px">
             Você também pode se conectar com:
           </Text>
           {/* <IconButton>
@@ -176,7 +200,6 @@ export default function HomeLogin() {
             alignContent="end"
             h="40px"
             justifyContent="center"
-            mt="0.5rem"
             // bgColor="#4887FA"
             borderRadius="15px"
             colorScheme="#021C45"
