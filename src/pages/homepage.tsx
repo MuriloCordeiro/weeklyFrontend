@@ -8,6 +8,7 @@ import {
   Spinner,
   Text,
   Img,
+  Icon,
 } from "@chakra-ui/react";
 import Layout from "../Layouts/Layout";
 import { useAuth } from "../contexts/AuthContext";
@@ -65,6 +66,9 @@ export default function Homepage() {
   const [expensesData, setExpensesData] = useState<any>();
 
   const [budgetIsLoading, setBudgetIsLoading] = useState<any>(false);
+  const [buttonHandler, setButtonHandler] = useState<Record<number, boolean>>(
+    {}
+  );
 
   console.log("cookies", cookies.userEmail);
 
@@ -99,7 +103,6 @@ export default function Homepage() {
   }
 
   console.log("totalBudget", totalBudget);
-  console.log("budgetData", budgetData);
 
   useEffect(() => {
     handleGetBudget();
@@ -123,6 +126,7 @@ export default function Homepage() {
             backdropBlur="xl"
             borderRadius="10px"
             p="4rem"
+            w="full"
             h="full"
           >
             <Spinner />
@@ -172,73 +176,143 @@ export default function Homepage() {
                   </Flex>
                 </Flex>
                 <Flex justify="center" w="full">
-                  <Grid templateColumns="repeat(3, 1fr)" gap={6} w="full">
+                  {/* AQUI SÃO OS GASTOS SEMANAIS */}
+                  <Grid
+                    templateColumns={[
+                      "repeat(1, 1fr)",
+                      "repeat(1, 1fr)",
+                      "repeat(2, 1fr)",
+                      "repeat(2, 1fr)",
+                      "repeat(3, 1fr)",
+                      "repeat(3, 1fr)",
+                    ]}
+                    gap={6}
+                    w="full"
+                  >
                     {budgetData &&
                       budgetData.weeks.map((week: any, index: number) => (
-                        <GridItem
-                          key={index}
-                          px="1rem"
-                          py="0.5rem"
-                          w="420px"
-                          h="480px"
-                          bg="blue.500"
-                          boxShadow="5px 1px 16px -3px rgba(0, 0, 0, 0.25)"
-                          bgColor="rgba( 255, 255, 255, 0.40 )"
-                          backdropBlur="xl"
-                          borderRadius="10px"
-                        >
-                          <Flex w="full" direction="column" gap="2rem">
-                            <Flex align="center" w="100%" gap="2rem">
-                              <Img
-                                src="/icons/calendarIcon.svg"
-                                alt="calendario"
-                                h="35px"
-                              />
-                              <Flex direction="column" w="full">
-                                <Text fontWeight="bold" fontSize="16px">
-                                  Semana {week.weekNumber}
-                                </Text>
-                                <Text
-                                  fontWeight="bold"
-                                  color="gray.main"
-                                  fontSize="14px"
-                                >
-                                  de {week.startDate} até {week.endDate}
-                                </Text>
-                              </Flex>
+                        <>
+                          <Flex direction="column" gap="1rem">
+                            <GridItem
+                              key={index}
+                              px="1rem"
+                              py="0.5rem"
+                              w={[
+                                "full",
+                                "full",
+                                "full",
+                                "full",
+                                "full",
+                                "full",
+                              ]}
+                              h="460px"
+                              bg="blue.500"
+                              boxShadow="5px 1px 16px -3px rgba(0, 0, 0, 0.25)"
+                              bgColor="rgba( 255, 255, 255, 0.40 )"
+                              backdropBlur="xl"
+                              borderRadius="10px"
+                            >
                               <Flex
-                                bgColor="white"
-                                p="0.5rem"
-                                borderRadius="15px"
-                                alignSelf="end"
-                                justify="center"
-                              >
-                                {" "}
-                                <Text fontWeight="bold" fontSize="13px">
-                                  {week.remainingBudget}
-                                </Text>
-                              </Flex>
-                            </Flex>
-
-                            {week.expenses.map((exp: any, index: any) => (
-                              <Flex
-                                key={index}
-                                align="center"
                                 w="full"
-                                bgColor="white"
-                                p="0.5rem"
-                                borderRadius="15px"
-                                justify="space-between"
+                                direction="column"
+                                h="full"
+                                gap="2rem"
                               >
-                                <Text fontWeight="bold">{exp.description}</Text>
-                                <Text fontWeight="bold" color="gray.main">
-                                  {exp.expenseDate}
-                                </Text>
-                                <Text fontWeight="bold">R${exp.value}</Text>
+                                <Flex align="center" w="100%" gap="2rem">
+                                  <Img
+                                    src="/icons/calendarIcon.svg"
+                                    alt="calendario"
+                                    h="35px"
+                                  />
+                                  <Flex direction="column" w="full">
+                                    <Text fontWeight="bold" fontSize="16px">
+                                      Semana {week.weekNumber}
+                                    </Text>
+                                    <Text
+                                      fontWeight="bold"
+                                      color="gray.main"
+                                      fontSize="14px"
+                                    >
+                                      de {week.startDate} até {week.endDate}
+                                    </Text>
+                                  </Flex>
+
+                                  <Flex justify="end">
+                                    <Button
+                                      justifySelf="start"
+                                      variant="primary"
+                                    >
+                                      {"+"}
+                                    </Button>
+                                  </Flex>
+                                </Flex>
+
+                                {week.expenses.length === 0 ? (
+                                  // Caso o array esteja vazio, exibe a imagem de fundo
+                                  <Flex
+                                    align="center"
+                                    justify="center"
+                                    w="full"
+                                    h="250px" // ou qualquer altura que desejar
+                                    // bgImage="/icons/emptyExpense.svg"
+                                    bgSize="50px"
+                                    // bgPosition="center" // Centraliza a imagem de fundo
+                                    // bgRepeat="no-repeat"
+                                    style={{ opacity: "0.7" }}
+                                  >
+                                    <Text>
+                                      Nenhuma despesa encontrada pra essa
+                                      semana.
+                                    </Text>
+                                  </Flex>
+                                ) : (
+                                  // Caso contrário, mapeia e exibe as despesas
+                                  week.expenses.map((exp: any, index: any) => (
+                                    <Flex
+                                      key={index}
+                                      align="center"
+                                      w="full"
+                                      bgColor="white"
+                                      p="0.5rem"
+                                      borderRadius="15px"
+                                      justify="space-between"
+                                    >
+                                      <Text fontWeight="bold">
+                                        {exp.description}
+                                      </Text>
+                                      <Text fontWeight="bold" color="gray.main">
+                                        {exp.expenseDate}
+                                      </Text>
+                                      <Text fontWeight="bold">
+                                        R${exp.value}
+                                      </Text>
+                                    </Flex>
+                                  ))
+                                )}
+                                <Flex justify="end" h="full">
+                                  {" "}
+                                  <Flex
+                                    p="0.5rem"
+                                    justify="end"
+                                    direction="column"
+                                  >
+                                    Saldo:
+                                    <Text
+                                      borderRadius="15px"
+                                      bgColor="white"
+                                      p="0.5rem"
+                                      fontWeight="bold"
+                                      fontSize="16px"
+                                      alignSelf="end"
+                                    >
+                                      R${week.remainingBudget}
+                                    </Text>
+                                  </Flex>
+                                </Flex>
                               </Flex>
-                            ))}
+                            </GridItem>
                           </Flex>
-                        </GridItem>
+                        </>
                       ))}
                   </Grid>
                 </Flex>

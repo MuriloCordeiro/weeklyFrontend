@@ -54,43 +54,59 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [loading, setIsLoading] = useState();
   const CLIENT_TOKEN: any = process.env.NEXT_PUBLIC_CLIENT_TOKEN;
   const COOKIE_MAX_AGE: any = process.env.NEXT_PUBLIC_CLIENT_MAX_AGE;
-  const userToken = cookies[CLIENT_TOKEN];
+  const userToken = cookies["userLogin"];
 
-  function signInWithGoogle() {
-    const provider = new GoogleAuthProvider();
+  async function signInWithGoogle() {
+    try {
+      const provider = new GoogleAuthProvider();
 
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        console.log("result", result);
-        setUser(result.user.email);
-        if (user) {
-          // setToken(result.user.uid);
-          setIsAuthenticated(true);
-          setCookie(undefined, CLIENT_TOKEN, user.toString(), {
-            maxAge: COOKIE_MAX_AGE,
-            path: "/",
-          });
-          Router.push("/homepage");
-        } else {
-          setIsAuthenticated(false);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      const response = await signInWithPopup(auth, provider);
+
+      if (response) {
+        const login: any = response.user.email;
+        console.log("response", response.user.email);
+        setCookie(undefined, "userLogin", login, {
+          maxAge: COOKIE_MAX_AGE,
+          path: "/",
+        });
+        Router.push("/homepage");
+      }
+      // signInWithPopup(auth, provider)
+      //   .then((result) => {
+      //     console.log("result", result);
+      //     setUser(result.user.email);
+      //     if (result.user.email) {
+      //       // setToken(result.user.uid);
+      //       setIsAuthenticated(true);
+      //       setCookie(undefined, "userLogin", user.toString(), {
+      //         maxAge: COOKIE_MAX_AGE,
+      //         path: "/",
+      //       });
+      //       Router.push("/homepage");
+      //     } else {
+      //       setIsAuthenticated(false);
+      //     }
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      //   });
+    } catch (err) {
+      console.error("erro ao logar", err);
+    }
   }
 
   function signInEmailPassword(email: string, password: string) {
     signInWithEmailAndPassword(auth, email, password)
       .then((result) => {
         setUser(result.user.email);
-        if (user) {
+        if (result.user.email) {
           setIsAuthenticated(true);
           setCookie(undefined, CLIENT_TOKEN, user.toString(), {
             maxAge: COOKIE_MAX_AGE,
             path: "/",
           });
-          Router.push("/homepage");
+
+          // Router.push("/homepage");
         } else {
           setIsAuthenticated(false);
         }

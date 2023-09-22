@@ -53,6 +53,7 @@ export const defaultTheme = extendTheme({
       variants: {
         primary: {
           borderRadius: "15px",
+          boxShadow: "lg",
           _active: {
             boxShadow: "0px 2px 5px 0px rgba(0, 0, 0, 0.25) inset",
             borderBottom: "1px solid ",
