@@ -122,15 +122,17 @@ export default function HomeLogin() {
         direction="column"
         // bgColor="#EBEBEB"
         h="100vh"
+        // w="full"
         align="center"
         justify="center"
         bgRepeat="no-repeat"
         bgSize="cover"
         bgImage="/image/background.jpg"
         borderRadius="10px"
+        p="1rem"
       >
         <Flex
-          p="4rem"
+          p={["1rem", "4rem", "4rem", "4rem", "4rem"]}
           direction="column"
           gap="1rem"
           boxShadow="5px 1px 16px -3px rgba(0, 0, 0, 0.25)"
@@ -138,7 +140,7 @@ export default function HomeLogin() {
           backdropBlur="xl"
           borderRadius="15px"
           align="center"
-          w="30%"
+          w={["full", "70%", "60%", "50%", "40%", "30%"]}
         >
           <Text fontSize="28px" fontWeight="bold" color="blue.main">
             Weekly.
