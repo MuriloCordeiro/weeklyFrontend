@@ -63,6 +63,30 @@ export const defaultTheme = extendTheme({
           bgColor: "#4871CC",
           color: "white",
         },
+        confirmAction: {
+          borderRadius: "15px",
+          boxShadow: "lg",
+          _active: {
+            boxShadow: "0px 2px 5px 0px rgba(0, 0, 0, 0.25) inset",
+            borderBottom: "1px solid ",
+          },
+
+          // boxShadow: "-1px 8px 10px -8px rgba(0,0,0,0.80)",
+          bgColor: "#48CC5D",
+          color: "white",
+        },
+        cancelAction: {
+          borderRadius: "15px",
+          boxShadow: "lg",
+          _active: {
+            boxShadow: "0px 2px 5px 0px rgba(0, 0, 0, 0.25) inset",
+            borderBottom: "1px solid ",
+          },
+
+          // boxShadow: "-1px 8px 10px -8px rgba(0,0,0,0.80)",
+          bgColor: "#CC4848",
+          color: "white",
+        },
       },
     },
   },
