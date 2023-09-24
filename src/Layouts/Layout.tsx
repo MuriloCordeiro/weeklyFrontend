@@ -8,7 +8,8 @@ export default function LayoutDesk(props: any) {
     <>
       <Flex
         w="full"
-        // h={["full", "full", "full", "full", "full", "100vh"]}
+        // h={["full", "full", "full", "full", "full", "100vh"]}.
+        minH="100vh"
         direction={["column", "column", "column", "row"]}
         bgSize="cover"
         // bgColor="#86CEFF"
@@ -22,12 +23,12 @@ export default function LayoutDesk(props: any) {
         // py="2.5rem"
         // direction="column"
         // borderWidth="2px"
-        h="full"
+        // h="full"
       >
         <Flex>
           <SideBar />
         </Flex>
-        <Flex direction="column" px="1rem" py="0.5rem" w="full" h="full">
+        <Flex direction="column" px="1rem" py="0.5rem" w="full">
           {/* <Header /> */}
           {props.children}
         </Flex>
