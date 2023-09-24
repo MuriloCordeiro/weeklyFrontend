@@ -492,22 +492,24 @@ export default function Homepage() {
             </Flex>
           </Flex>
         ) : (
-          <Flex align="center" justify="center" w="full" h="full">
+          <Flex align="center" justify="center" h="full">
             <Flex
+              w="full"
               align="center"
               justify="center"
+              h="full"
               gap="1rem"
               direction="column"
               bgColor="rgba( 255, 255, 255, 0.2 )"
               backdropBlur="xl"
               borderRadius="10px"
-              p="4rem"
+              p="2rem"
             >
               <Text fontSize="26px" fontWeight="bold">
                 Começando no Weekly.
               </Text>
               <Text
-                fontSize="18px"
+                fontSize={["16px", "18px"]}
                 w="500px"
                 align="center"
                 fontWeight="bold"
@@ -519,6 +521,7 @@ export default function Homepage() {
 
               <Input
                 type="number"
+                w="50%"
                 onChange={(e) => {
                   setTotalBudget(e.target.value);
                 }}
