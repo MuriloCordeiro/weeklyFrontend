@@ -139,6 +139,7 @@ export default function Homepage() {
     if (response) {
       console.log("response", response);
       setBudgetData(response.data);
+      handleGetBudget();
     } else if (error) {
       console.log("error", error);
     }
@@ -505,12 +506,12 @@ export default function Homepage() {
               borderRadius="10px"
               p="2rem"
             >
-              <Text fontSize="26px" fontWeight="bold">
+              <Text fontSize="26px" fontWeight="bold" align="center">
                 Começando no Weekly.
               </Text>
               <Text
                 fontSize={["16px", "18px"]}
-                w="500px"
+                // w="500px"
                 align="center"
                 fontWeight="bold"
                 color="gray.main"
@@ -521,7 +522,7 @@ export default function Homepage() {
 
               <Input
                 type="number"
-                w="50%"
+                w="full"
                 onChange={(e) => {
                   setTotalBudget(e.target.value);
                 }}
