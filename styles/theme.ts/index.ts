@@ -63,6 +63,19 @@ export const defaultTheme = extendTheme({
           bgColor: "#4871CC",
           color: "white",
         },
+        secundary: {
+          borderRadius: "15px",
+          borderColor: "black",
+          boxShadow: "lg",
+          _active: {
+            boxShadow: "0px 2px 5px 0px rgba(0, 0, 0, 0.25) inset",
+            borderBottom: "1px solid ",
+          },
+
+          // boxShadow: "-1px 8px 10px -8px rgba(0,0,0,0.80)",
+          bgColor: "#F6F6FF",
+          color: "black",
+        },
         confirmAction: {
           borderRadius: "15px",
           boxShadow: "lg",
@@ -100,6 +113,9 @@ export const defaultTheme = extendTheme({
 
     gray: {
       main: "#898989",
+    },
+    white: {
+      filter: "#F6F6FF",
     },
 
     red: {
