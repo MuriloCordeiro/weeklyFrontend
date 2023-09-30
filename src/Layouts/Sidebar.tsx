@@ -1,7 +1,10 @@
 import { Button, Flex, Text } from "@chakra-ui/react";
 import "aos/dist/aos.css";
+import { useRouter } from "next/router";
 
 export default function SideBar() {
+  const router = useRouter();
+
   return (
     <Flex
       display={["none", "none", "none", "none", "none", "flex"]}
@@ -20,8 +23,23 @@ export default function SideBar() {
         <Text fontSize="24px" fontWeight="bold" color="blue.main">
           Weekly.
         </Text>
-        <Flex mt="8rem" w="full">
-          <Button variant="primary" w="full">
+        <Flex mt="8rem" w="full" direction="column" gap="2rem">
+          <Button
+            onClick={() => {
+              router.push("/expenses");
+            }}
+            variant={router.asPath === "/expenses" ? "primary" : "secundary"}
+            w="full"
+          >
+            Expenses
+          </Button>
+          <Button
+            onClick={() => {
+              router.push("/homepage");
+            }}
+            variant={router.asPath === "/homepage" ? "primary" : "secundary"}
+            w="full"
+          >
             Weekly
           </Button>
         </Flex>
