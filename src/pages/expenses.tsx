@@ -35,6 +35,7 @@ import { parseCookies } from "nookies";
 import ModalAddExpense from "../components/modalAddExpense";
 import { AddExpenseBudget } from "../hooks/addExpenseBudget";
 import { getExpensesByType } from "../hooks/getExpensesByType";
+import MainFooter from "../Layouts/footer";
 
 type budgetType = {
   budget: budgetExpenseTypes;
@@ -160,53 +161,55 @@ export default function Expenses() {
   return (
     <>
       {!budgetData ? (
-        <Flex align="center" justify="center" h="full">
-          <Flex
-            w="full"
-            align="center"
-            justify="center"
-            h="full"
-            gap="1rem"
-            direction="column"
-            bgColor="rgba( 255, 255, 255, 0.2 )"
-            backdropBlur="xl"
-            borderRadius="10px"
-            p="2rem"
-          >
-            <Text fontSize="26px" fontWeight="bold" align="center">
-              Começando no Weekly.
-            </Text>
-            <Text
-              fontSize={["16px", "18px"]}
-              // w="500px"
-              align="center"
-              fontWeight="bold"
-              color="gray.main"
-            >
-              Para começar a gerenciar seu dinheiro de maneira mais inteligente,
-              clique no botão abaixo
-            </Text>
-
-            <Input
-              type="number"
+        <LayoutDesk>
+          <Flex align="center" justify="center" h="full">
+            <Flex
               w="full"
-              onChange={(e) => {
-                setTotalBudget(e.target.value);
-              }}
-            />
-            <Button
-              onClick={() => {
-                handleCreateBudgetExpense();
-              }}
-              isDisabled={totalBudget ? false : true}
-              variant="primary"
-              fontWeight="bold"
-              boxShadow="0 2px 10px #4871CC"
+              align="center"
+              justify="center"
+              h="full"
+              gap="1rem"
+              direction="column"
+              bgColor="rgba( 255, 255, 255, 0.2 )"
+              backdropBlur="xl"
+              borderRadius="10px"
+              p="2rem"
             >
-              Criar meu orçamento{" "}
-            </Button>
+              <Text fontSize="26px" fontWeight="bold" align="center">
+                Começando no Weekly.
+              </Text>
+              <Text
+                fontSize={["16px", "18px"]}
+                // w="500px"
+                align="center"
+                fontWeight="bold"
+                color="gray.main"
+              >
+                Para começar a gerenciar seu dinheiro de maneira mais
+                inteligente, clique no botão abaixo
+              </Text>
+
+              <Input
+                type="number"
+                w="full"
+                onChange={(e) => {
+                  setTotalBudget(e.target.value);
+                }}
+              />
+              <Button
+                onClick={() => {
+                  handleCreateBudgetExpense();
+                }}
+                isDisabled={totalBudget ? false : true}
+                variant="primary"
+                fontWeight="bold"
+                boxShadow="0 2px 10px #4871CC"
+              >
+                Criar meu orçamento{" "}
+              </Button>
+            </Flex>
           </Flex>
-        </Flex>
+        </LayoutDesk>
       ) : (
         <LayoutDesk>
           <Flex w="full" h="full" gap="3rem" direction="column">
