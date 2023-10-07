@@ -1,5 +1,6 @@
 import { Box, Flex, Grid, GridItem, Text } from "@chakra-ui/react";
 import { expensesTypes } from "../types/typeExpenses";
+import MainFooter from "../Layouts/footer";
 
 type expensesType = {
   expenses: expensesTypes[];
@@ -11,6 +12,7 @@ export default function GridMobile({ expenses }: expensesType) {
       {expenses &&
         expenses?.map((exp, index) => (
           <Flex
+            mb="4rem"
             key={index}
             boxShadow="5px 1px 16px -3px rgba(0, 0, 0, 0.25)"
             bgColor="rgba( 255, 255, 255, 0.40 )"

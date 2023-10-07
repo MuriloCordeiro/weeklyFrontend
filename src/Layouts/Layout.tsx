@@ -1,9 +1,17 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, useBreakpointValue } from "@chakra-ui/react";
 
 import Header from "./header";
 import SideBar from "./Sidebar";
+import MainFooter from "./footer";
 
 export default function LayoutDesk(props: any) {
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    xsm: false,
+    sm: false,
+    md: true,
+    lg: true,
+  });
   return (
     <>
       <Flex
@@ -33,6 +41,7 @@ export default function LayoutDesk(props: any) {
           {props.children}
         </Flex>
         {/* <NavBar /> */}
+        {!isWideVersion && <MainFooter AddButton={props} />}
       </Flex>
     </>
   );
