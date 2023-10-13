@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   Flex,
   Text,
@@ -66,7 +67,7 @@ export default function Expenses() {
   const [parameterValue, setParameterValue] = useState<string>(valueOfType);
   const [startDate, setStartDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>("");
-  const [isLoaded, setIsLoaded] = useState<boolean>(true);
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
   const {
     isOpen: isOpenAddExpense,
@@ -84,11 +85,11 @@ export default function Expenses() {
       setBudgetValue(response.data.totalBudget);
       setBudgetRemaining(response.data.remainingBudget);
       setExpenseData(response.data.expenses);
-      setIsLoaded(true);
     } else if (error) {
       console.log("error", error);
-      setIsLoaded(true);
     }
+    setIsLoaded(true);
+
     // setBudgetIsLoading(false);
   }
   async function handleCreateBudgetExpense() {
@@ -97,11 +98,10 @@ export default function Expenses() {
     if (response) {
       console.log(userId);
       setTotalBudget(response.data.totalBudget);
-      setIsLoaded(true);
     } else if (error) {
       console.log("error", error);
-      setIsLoaded(true);
     }
+    setIsLoaded(true);
   }
   async function handleAddExpenseBudget() {
     const { response, error } = await AddExpenseBudget(
@@ -116,13 +116,12 @@ export default function Expenses() {
 
     if (response) {
       console.log(isLoaded);
-      setIsLoaded(true);
       onCloseAddExpense();
       handleBudgetExpense();
     } else if (error) {
-      setIsLoaded(true);
       console.log("error", error);
     }
+    setIsLoaded(true);
   }
   function handleCheckBoxValidation() {
     if (valueOfType === "variable") {
@@ -144,11 +143,10 @@ export default function Expenses() {
       setExpenseData(response.data);
       onCloseAddExpense();
       handleBudgetExpense();
-      setIsLoaded(true);
     } else if (error) {
-      setIsLoaded(true);
       console.log("error", error);
     }
+    setIsLoaded(true);
   }
 
   useEffect(() => {
