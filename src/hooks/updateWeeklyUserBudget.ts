@@ -25,11 +25,16 @@ type WeeklyTypes = {
   };
 };
 
-export async function UpdateWeeklyBudget(userId: string, newBudget: number) {
+export async function UpdateWeeklyBudget(
+  userId: string,
+  newBudget: number | undefined,
+  currentVigency: string
+) {
   try {
     const data = await api.post(`updateWeeklyBudget`, {
       userId: userId,
-      newBudget: newBudget,
+      totalBudget: newBudget,
+      currentVigency: currentVigency,
     });
 
     return { response: data, error: null } as unknown as WeeklyTypes;
