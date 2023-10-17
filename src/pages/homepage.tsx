@@ -27,7 +27,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { CreateBudget } from "../hooks/createUserBudget";
 import { parseCookies } from "nookies";
 import { useEffect, useState } from "react";
-import { GetBudget } from "../hooks/getUserBudget";
+import { GetBudget } from "../hooks/getWeeklyBudget";
 
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaPlus } from "react-icons/fa";
@@ -68,7 +68,7 @@ type budgetTypes = {
           value: number;
         }
       ];
-      remainingBudget: string;
+      weekRemainingBudget: string;
       startDate: string;
       weekNumber: number;
     }
@@ -90,12 +90,12 @@ export default function Homepage() {
     string | number
   >();
   const [expenseValue, setExpenseValue] = useState<any>();
-
+  const [currentVigency, setCurrentVigency] = useState<any>("10/2023");
   const [title, setTitle] = useState<string>();
   const [description, setDescription] = useState<string>();
-  const [value, setValue] = useState<string>();
+  const [value, setValue] = useState<number>();
   const [expenseDate, setExpenseDate] = useState<string>();
-  const [newBudget, setNewBudget] = useState<any>();
+  const [newBudget, setNewBudget] = useState<number>();
 
   const [weekNumber, setWeekNumber] = useState<number | undefined>();
 
@@ -182,7 +182,11 @@ export default function Homepage() {
     const { response, error } = await AddWeeklyExpenses(
       userId,
       weekNumber,
-      expense
+      currentVigency,
+      title,
+      description,
+      value,
+      expenseDate
     );
 
     if (response) {
@@ -201,7 +205,11 @@ export default function Homepage() {
   }
 
   async function handleNewBudget() {
-    const { response, error } = await UpdateWeeklyBudget(userId, newBudget);
+    const { response, error } = await UpdateWeeklyBudget(
+      userId,
+      newBudget,
+      currentVigency
+    );
 
     if (response) {
       console.log("new budget", response);
@@ -251,6 +259,7 @@ export default function Homepage() {
     const { response, error } = await DeleteWeeklyExpense(
       userId,
       weekNumber,
+      currentVigency,
       expenseId
     );
 
@@ -345,7 +354,7 @@ export default function Homepage() {
                   w="full"
                 >
                   {budgetData &&
-                    budgetData.weeks.map((week: any, index: number) => (
+                    budgetData?.weeks?.map((week: any, index: number) => (
                       <>
                         <Flex direction="column" gap="1rem">
                           <GridItem
@@ -477,7 +486,7 @@ export default function Homepage() {
                                     fontSize="16px"
                                     alignSelf="end"
                                   >
-                                    R${week.remainingBudget}
+                                    R${week.weekRemainingBudget}
                                   </Text>
                                 </Flex>
                               </Flex>
@@ -504,25 +513,34 @@ export default function Homepage() {
               bgColor="rgba( 255, 255, 255, 0.2 )"
               backdropBlur="xl"
               borderRadius="10px"
-              p="2rem"
+              p="1rem"
             >
-              <Text fontSize="26px" fontWeight="bold" align="center">
+              <Text
+                fontSize="26px"
+                fontWeight="bold"
+                color="blue.main"
+                align="center"
+              >
                 Começando no Weekly.
               </Text>
               <Text
+                w="800px"
                 fontSize={["16px", "18px"]}
                 // w="500px"
                 align="center"
-                fontWeight="bold"
+                // fontWeight="bold"
                 color="gray.main"
               >
                 Para começar a gerenciar seu dinheiro de maneira mais
-                inteligente, clique no botão abaixo
+                inteligente, digite um orçamento mensal e clique em Criar meu
+                orçamento
               </Text>
 
               <Input
+                placeholder="Ex: R$1000,00"
                 type="number"
-                w="full"
+                // w="full"
+                w="400px"
                 onChange={(e) => {
                   setTotalBudget(e.target.value);
                 }}
@@ -534,7 +552,7 @@ export default function Homepage() {
                 isDisabled={totalBudget ? false : true}
                 variant="primary"
                 fontWeight="bold"
-                boxShadow="0 2px 10px #4871CC"
+                // boxShadow="0 2px 10px #4871CC"
               >
                 Criar meu orçamento{" "}
               </Button>
@@ -559,7 +577,7 @@ export default function Homepage() {
                     value={newBudget}
                     placeholder="Ex: 1200"
                     onChange={(e) => {
-                      setNewBudget(e.currentTarget.value);
+                      setNewBudget(e.currentTarget.valueAsNumber);
                     }}
                   />
                 </Flex>
@@ -624,9 +642,10 @@ export default function Homepage() {
                     Valor
                   </Text>
                   <Input
+                    type="number"
                     placeholder="Ex: R$150,00"
                     onChange={(e) => {
-                      setValue(e.target.value);
+                      setValue(e.target.valueAsNumber);
                     }}
                   />
                 </Flex>

@@ -28,13 +28,21 @@ type WeeklyTypes = {
 export async function AddWeeklyExpenses(
   userId: string,
   weekNumber: number | undefined,
-  expense: {}
+  currentVigency: string,
+  title: string | undefined,
+  description: string | undefined,
+  value: number | undefined,
+  expenseDate: any
 ) {
   try {
     const data = await api.post(`addWeeklyExpenses`, {
       userId: userId,
       weekNumber: weekNumber,
-      expense: expense,
+      currentVigency: currentVigency,
+      title: title,
+      description: description,
+      value: value,
+      expenseDate: expenseDate,
     });
 
     return { response: data, error: null } as unknown as WeeklyTypes;

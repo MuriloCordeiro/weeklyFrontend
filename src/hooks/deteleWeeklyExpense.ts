@@ -28,15 +28,15 @@ type WeeklyTypes = {
 export async function DeleteWeeklyExpense(
   userId: string | undefined,
   weekNumber: number | undefined,
+  currentVigency: string | undefined,
   expenseId: string | undefined
 ) {
   try {
-    const data = await api.delete(`deleteWeeklyExpense`, {
-      params: {
-        userId: userId,
-        weekNumber: weekNumber,
-        expenseId: expenseId,
-      },
+    const data = await api.post(`deleteWeeklyExpense`, {
+      userId: userId,
+      weekNumber: weekNumber,
+      currentVigency: currentVigency,
+      expenseId: expenseId,
     });
 
     return { response: data, error: null };
