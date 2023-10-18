@@ -1,5 +1,5 @@
 export interface expensesTypes {
-  id: string;
+  _id: string;
   title: string;
   description: string;
   value: number;

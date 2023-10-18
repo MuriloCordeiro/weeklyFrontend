@@ -3,7 +3,6 @@ import { api } from "../services/api";
 export async function getExpensesByType(
   userId: string,
   parameter: string,
-  value: string,
   startDate: string,
   endDate: string
 ) {
@@ -14,7 +13,7 @@ export async function getExpensesByType(
     }
     // const data = await api.get(`getBudget?userId=ana`);
     const data = await api.get(
-      `getExpenses?userId=${userId}&parameter=${parameter}&value=${value}${startDateParameter}`
+      `getExpenses?userId=${userId}&typeExpense=${parameter}${startDateParameter}`
     );
 
     return { response: data, error: null } as unknown as any;
