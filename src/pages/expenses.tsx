@@ -22,6 +22,7 @@ import {
   useBreakpointValue,
   useDisclosure,
   Skeleton,
+  useToast,
 } from "@chakra-ui/react";
 import LayoutDesk from "../Layouts/Layout";
 import { FaPlus } from "react-icons/fa";
@@ -63,11 +64,20 @@ export default function Expenses() {
   const [checkBoxValue, setCheckBoxValue] = useState<boolean>(false);
   const [valueOfType, setValueOfType] = useState<string>("variable");
   const [installments, setInstallments] = useState<number>(1);
-  const [parameter, setParameter] = useState<string>("type");
   const [parameterValue, setParameterValue] = useState<string>(valueOfType);
   const [startDate, setStartDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>("");
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const toast = useToast({
+    position: "bottom",
+    isClosable: true,
+    duration: 2500,
+    containerStyle: {
+      color: "white",
+    },
+  });
 
   const {
     isOpen: isOpenAddExpense,
@@ -76,34 +86,48 @@ export default function Expenses() {
   } = useDisclosure();
 
   async function handleBudgetExpense() {
-    // setBudgetIsLoading(true);
-    const { response, error } = await GetBudgetExpenses(userId);
     setIsLoaded(false);
+    setIsLoading(true);
+    const { response, error } = await GetBudgetExpenses(userId);
+
     if (response) {
-      console.log("response", response.data);
       setBudgetData(response.data);
       setBudgetValue(response.data.totalBudget);
       setBudgetRemaining(response.data.remainingBudget);
       setExpenseData(response.data.expenses);
+      setIsLoading(false);
+      setIsLoaded(true);
     } else if (error) {
-      console.log("error", error);
+      toast({
+        title: "Erro!.",
+        description: error,
+        status: "error",
+        duration: 4000,
+        isClosable: true,
+      });
+      setIsLoading(false);
     }
-    setIsLoaded(true);
-
-    // setBudgetIsLoading(false);
   }
   async function handleCreateBudgetExpense() {
+    setIsLoading(true);
     const { response, error } = await CreateBudgetExpense(userId, totalBudget);
-    setIsLoaded(false);
     if (response) {
-      console.log(userId);
       setTotalBudget(response.data.totalBudget);
+      setIsLoading(false);
     } else if (error) {
-      console.log("error", error);
+      toast({
+        title: "Erro!.",
+        description: error,
+        status: "error",
+        duration: 4000,
+        isClosable: true,
+      });
+      setIsLoading(false);
     }
-    setIsLoaded(true);
   }
   async function handleAddExpenseBudget() {
+    setIsLoading(true);
+    setIsLoaded(false);
     const { response, error } = await AddExpenseBudget(
       userId,
       title,
@@ -112,16 +136,22 @@ export default function Expenses() {
       installments,
       valueOfType
     );
-    setIsLoaded(false);
 
     if (response) {
-      console.log(isLoaded);
       onCloseAddExpense();
       handleBudgetExpense();
+      setIsLoaded(true);
+      setIsLoading(false);
     } else if (error) {
-      console.log("error", error);
+      toast({
+        title: "Erro!.",
+        description: error,
+        status: "error",
+        duration: 4000,
+        isClosable: true,
+      });
+      setIsLoading(false);
     }
-    setIsLoaded(true);
   }
   function handleCheckBoxValidation() {
     if (valueOfType === "variable") {
@@ -131,27 +161,33 @@ export default function Expenses() {
     }
   }
   async function handleGetExpensesByType() {
+    setIsLoaded(false);
+    setIsLoading(true);
     const { response, error } = await getExpensesByType(
       userId,
-      parameter,
-      valueOfType,
+      parameterValue,
       startDate,
       endDate
     );
-    setIsLoaded(false);
     if (response) {
-      setExpenseData(response.data);
-      onCloseAddExpense();
-      handleBudgetExpense();
+      setExpenseData(response.data[0].expenses);
+      setIsLoaded(true);
+      setIsLoading(false);
     } else if (error) {
-      console.log("error", error);
+      toast({
+        title: "Erro!.",
+        description: error.response.data,
+        status: "error",
+        duration: 4000,
+        isClosable: true,
+      });
+      setIsLoading(false);
     }
-    setIsLoaded(true);
   }
 
-  useEffect(() => {
-    handleBudgetExpense();
-  }, []);
+  // useEffect(() => {
+  //   handleBudgetExpense();
+  // }, []);
   useEffect(() => {
     handleCheckBoxValidation();
   }, [checkBoxValue, valueOfType]);
@@ -194,17 +230,32 @@ export default function Expenses() {
                   setTotalBudget(e.target.value);
                 }}
               />
-              <Button
-                onClick={() => {
-                  handleCreateBudgetExpense();
-                }}
-                isDisabled={totalBudget ? false : true}
-                variant="primary"
-                fontWeight="bold"
-                boxShadow="0 2px 10px #4871CC"
-              >
-                Criar meu orçamento{" "}
-              </Button>
+              <Flex direction="row" display={"flex"} gap="2rem">
+                <Button
+                  onClick={() => {
+                    handleCreateBudgetExpense();
+                  }}
+                  isDisabled={totalBudget ? false : true}
+                  variant="primary"
+                  fontWeight="bold"
+                  boxShadow="0 2px 10px #4871CC"
+                >
+                  Criar meu orçamento{" "}
+                </Button>
+                <Button
+                  onClick={() => {
+                    handleBudgetExpense();
+                  }}
+                  isLoading={isLoading}
+                  isDisabled={totalBudget ? true : false}
+                  variant="primary"
+                  bgColor="green"
+                  fontWeight="bold"
+                  boxShadow="0 2px 10px #4871CC"
+                >
+                  Já tenho o orçamento
+                </Button>
+              </Flex>
             </Flex>
           </Flex>
         </LayoutDesk>
@@ -280,43 +331,45 @@ export default function Expenses() {
                 justifyContent={"flex-start"}
                 alignItems={"baseline"}
               >
-                <Text w={["full", "full", "15%", "15%"]} textStyle="semibold">
+                <Text w={["full", "full", "10%", "10%"]} textStyle="semibold">
                   Tipo de despesa
                 </Text>
                 <Select
                   onChange={(e) => {
                     setParameterValue(e.target.value);
                   }}
-                  w={["full", "full", "15%", "15%"]}
+                  w={["full", "full", "12%", "12%"]}
                 >
+                  <option value="undefined">Todas</option>
                   <option value="variable">Despesa variável</option>
                   <option value="fixed">Despesa fixa</option>
                 </Select>
-                <Text w={["full", "full", "15%", "15%"]} textStyle="semibold">
+                <Text w={["full", "full", "10%", "10%"]} textStyle="semibold">
                   Data inicial
                 </Text>
                 <Input
                   onChange={(e) => {
                     setStartDate(e.target.value);
                   }}
-                  w={["full", "full", "15%", "15%"]}
+                  w={["full", "full", "10%", "10%"]}
                   placeholder="Inicio"
                   size="md"
                   type="date"
                 />
-                <Text w={["full", "full", "15%", "15%"]} textStyle="semibold">
+                <Text w={["full", "full", "10%", "10%"]} textStyle="semibold">
                   Data final
                 </Text>
                 <Input
                   onChange={(e) => {
                     setEndDate(e.target.value);
                   }}
-                  w={["full", "full", "15%", "15%"]}
+                  w={["full", "full", "10%", "10%"]}
                   placeholder="Fim"
                   size="md"
                   type="date"
                 />
                 <Button
+                  isLoading={isLoading}
                   onClick={() => {
                     handleGetExpensesByType();
                   }}
@@ -327,6 +380,7 @@ export default function Expenses() {
                 </Button>
 
                 <IconButton
+                  _hover={{ transform: " scale(1.08) " }}
                   alignSelf={["center", "center", "start", "start"]}
                   w={["full", "full", "3%", "3%"]}
                   onClick={() => {

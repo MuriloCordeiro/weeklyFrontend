@@ -1,6 +1,9 @@
-import { Box, Flex, Grid, GridItem, Text } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem, IconButton, Text } from "@chakra-ui/react";
 import { expensesTypes } from "../types/typeExpenses";
 import MainFooter from "../Layouts/footer";
+import formatData from "../utils/formatData";
+import { HiOutlinePencilAlt } from "react-icons/hi";
+import { AiFillDelete } from "react-icons/ai";
 
 type expensesType = {
   expenses: expensesTypes[];
@@ -57,7 +60,9 @@ export default function GridMobile({ expenses }: expensesType) {
                 <Text mr="0.5rem" fontWeight="semibold" color="gray.500">
                   Data criação:
                 </Text>
-                <Text fontWeight="bold">{String(exp.createdAt)}</Text>
+                <Text fontWeight="bold">
+                  {formatData(String(exp.createdAt))}
+                </Text>
               </GridItem>
               <GridItem
                 fontSize="15px"
@@ -69,13 +74,28 @@ export default function GridMobile({ expenses }: expensesType) {
                 <Text mr="0.5rem" fontWeight="semibold" color="gray.500">
                   Data fim:
                 </Text>
-                <Text fontWeight="bold">{String(exp.endDate)}</Text>
+                <Text fontWeight="bold">{formatData(String(exp.endDate))}</Text>
               </GridItem>
               <GridItem bgColor="#EDF2F7" p="0.5rem" borderRadius="5px">
                 <Text mr="0.5rem" fontWeight="semibold" color="gray.500">
                   Parcelas :
                 </Text>
                 <Text fontWeight="bold">{exp.installments}</Text>
+              </GridItem>
+              <GridItem justifySelf={"center"}>
+                <Flex w="2px" variant="ghost" as={IconButton} color="blue">
+                  <HiOutlinePencilAlt size="25" />
+                </Flex>
+              </GridItem>
+              <GridItem justifySelf={"center"}>
+                <Flex
+                  variant="ghost"
+                  as={IconButton}
+                  color="red"
+                  justify={"center"}
+                >
+                  <AiFillDelete size="25" />
+                </Flex>
               </GridItem>
             </Grid>
           </Flex>
