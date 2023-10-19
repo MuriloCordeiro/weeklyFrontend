@@ -14,10 +14,9 @@ export default function MainFooter({ AddButton }: footerType) {
       boxShadow="5px 1px 16px -3px rgba(0, 0, 0, 0.25)"
       bgColor="white"
       backdropBlur="xl"
-      borderRadius="10px"
       position="fixed"
       h="80px"
-      bottom="0"
+      bottom="-3"
       w="full"
       zIndex={99}
       p="1rem"

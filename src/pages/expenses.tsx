@@ -125,6 +125,7 @@ export default function Expenses() {
       setIsLoading(false);
     }
   }
+
   async function handleAddExpenseBudget() {
     setIsLoading(true);
     setIsLoaded(false);
@@ -153,6 +154,7 @@ export default function Expenses() {
       setIsLoading(false);
     }
   }
+
   function handleCheckBoxValidation() {
     if (valueOfType === "variable") {
       setCheckBoxValue(false);
@@ -185,9 +187,9 @@ export default function Expenses() {
     }
   }
 
-  // useEffect(() => {
-  //   handleBudgetExpense();
-  // }, []);
+  useEffect(() => {
+    handleBudgetExpense();
+  }, []);
   useEffect(() => {
     handleCheckBoxValidation();
   }, [checkBoxValue, valueOfType]);

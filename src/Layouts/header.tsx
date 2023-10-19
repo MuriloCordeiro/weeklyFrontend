@@ -28,7 +28,7 @@ import { useAuth } from "../contexts/AuthContext";
 
 export default function Header() {
   return (
-    <Flex mb="1rem">
+    <Flex mb="4rem">
       <Text fontSize="30px" fontWeight="bold" color="blue.main">
         Weekly.
       </Text>
