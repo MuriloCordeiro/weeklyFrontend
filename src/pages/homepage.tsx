@@ -201,6 +201,13 @@ export default function Homepage() {
       handleGetBudget();
       onCloseAddWeekly();
     } else if (error) {
+      toast({
+        title: "Erro.",
+        description: "Orçamento da semana insuficiente.",
+        status: "error",
+        duration: 4000,
+        isClosable: true,
+      });
     }
   }
 
@@ -661,7 +668,14 @@ export default function Homepage() {
             </ModalBody>
 
             <ModalFooter gap="1rem">
-              <Button variant="cancelAction">Cancelar</Button>
+              <Button
+                variant="cancelAction"
+                onClick={() => {
+                  onCloseAddWeekly();
+                }}
+              >
+                Cancelar
+              </Button>
 
               <Button
                 variant="confirmAction"
