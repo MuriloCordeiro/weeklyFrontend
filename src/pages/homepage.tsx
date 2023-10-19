@@ -266,7 +266,7 @@ export default function Homepage() {
     if (response) {
       console.log("new budget", response);
       toast({
-        title: "Sucesso!.",
+        title: "Sucesso!",
         description: "Despesa removida com sucesso.",
         status: "success",
         duration: 4000,
@@ -275,6 +275,14 @@ export default function Homepage() {
       handleGetBudget();
       onClose();
     } else if (error) {
+      console.log("error", error);
+      toast({
+        title: "Erro!",
+        description: "Orçamento da semana insuficiente.",
+        status: "success",
+        duration: 4000,
+        isClosable: true,
+      });
     }
   }
   useEffect(() => {
