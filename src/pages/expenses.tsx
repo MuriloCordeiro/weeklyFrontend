@@ -263,7 +263,7 @@ export default function Expenses() {
         </LayoutDesk>
       ) : (
         <LayoutDesk>
-          <Flex w="full" h="full" gap="3rem" direction="column">
+          <Flex w="full" h="full" gap="0.5rem" direction="column">
             <Flex gap="1rem">
               <Flex
                 align="start"
@@ -318,7 +318,7 @@ export default function Expenses() {
               </Flex>
             </Flex>
 
-            <Flex direction={["column"]} gap="3rem">
+            <Flex direction={["column"]} gap="1rem">
               <Flex
                 boxShadow="5px 1px 16px -3px rgba(0, 0, 0, 0.25)"
                 bgColor="rgba( 255, 255, 255, 0.40 )"

@@ -292,7 +292,7 @@ export default function Homepage() {
         /> */}
 
         {budgetData ? (
-          <Flex w="full" h="full" direction="column" gap="1rem">
+          <Flex w="full" h="full" direction="column" gap="1rem" mb="6rem">
             <Flex align="end" gap="1rem">
               <Flex align="start" direction="column">
                 <Text fontSize="14px" fontWeight="bold" color="#005165">

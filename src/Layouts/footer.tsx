@@ -1,4 +1,4 @@
-import { Button, Flex, IconButton, Text } from "@chakra-ui/react";
+import { Button, Flex, IconButton, Text, Img } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { FaPlus } from "react-icons/fa";
 
@@ -12,18 +12,53 @@ export default function MainFooter({ AddButton }: footerType) {
   return (
     <Flex
       boxShadow="5px 1px 16px -3px rgba(0, 0, 0, 0.25)"
-      bgColor="white"
+      bgColor="rgba( 255, 255, 255, 0.70 )"
       backdropBlur="xl"
       position="fixed"
-      h="80px"
-      bottom="-3"
-      w="full"
+      bottom="2"
+      // left="50%"
+      w="160px"
+      h="75px"
+      right="28%"
+      // align="start"
       zIndex={99}
-      p="1rem"
-      justify="center"
-      justifyContent={"space-evenly"}
+      p="0.5rem"
+      borderRadius="full"
+      // justify="center"
+      // justifyContent={"space-evenly"}
     >
-      <Flex
+      <Flex h="full" w="full" justify="space-between">
+        <IconButton
+          borderRadius="full"
+          w="60px"
+          h="60px"
+          bgColor="gray.400"
+          onClick={() => {
+            Router.push("/expenses");
+          }}
+          // variant="primary"
+          aria-label="Search database"
+          icon={<Img src="icons/weekly1.svg" w="40px" />}
+        />
+        {/* <Button borderRadius="full" w="60px" h="60px" variant="primary">
+          oi
+        </Button> */}
+        <IconButton
+          borderRadius="full"
+          w="60px"
+          h="60px"
+          bgColor="gray.400"
+          aria-label="Search database"
+          icon={<Img src="icons/weekly2.svg" w="40px" />}
+          onClick={() => {
+            Router.push("/homepage");
+          }}
+        />
+        {/* <Button borderRadius="full" w="60px" h="60px" variant="primary">
+          oi
+        </Button> */}
+      </Flex>
+      {/* <Flex
         direction="column"
         align="center"
         justify="center"
@@ -51,7 +86,7 @@ export default function MainFooter({ AddButton }: footerType) {
         align="center"
         justify="center"
         as={Button}
-        variant="unystled"
+        variant="unstyled"
         transform={asPath.includes("/homepage") ? "scale(1.08)" : ""}
       >
         <Text
@@ -68,7 +103,7 @@ export default function MainFooter({ AddButton }: footerType) {
         >
           <Text>Weekly</Text>
         </Flex>
-      </Flex>
+      </Flex> */}
 
       {/* <Flex
         direction="column"
