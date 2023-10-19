@@ -279,7 +279,7 @@ export default function Homepage() {
       toast({
         title: "Erro!",
         description: "Orçamento da semana insuficiente.",
-        status: "success",
+        status: "error",
         duration: 4000,
         isClosable: true,
       });
